@@ -1,3 +1,8 @@
 django
 django-oscar
 six
+django-extensions
+django-debug-toolbar
+django-debug-toolbar-template-timings
+django-widget_tweaks
+django-localflavor
