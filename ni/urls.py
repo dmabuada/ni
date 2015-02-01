@@ -8,6 +8,8 @@ from oscar.app import application
 from oscar.views import handler500, handler404, handler403  # noqa
 
 
+from ni import views
+
 admin.autodiscover()
 
 urlpatterns = [
@@ -16,6 +18,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     # i18n URLS need to live outside of i18n_patterns scope of the shop
     url(r'^i18n/', include('django.conf.urls.i18n')),
+    url(r'^ping', views.ping)
 ]
 
 # Prefix Oscar URLs with language codes
