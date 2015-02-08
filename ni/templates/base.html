@@ -15,45 +15,17 @@
 <body{% if bodyid %} id="{{ bodyid }}"{% endif %}{% if bodyclass %} class="{{ bodyclass }}"{% endif %}>
     {% plugin_point "page_top" %}
     <div id="container">
-	    <div id="top">
-	        <h1>{{ shop_name }}</h1>
-	    </div>
 
-	    <div id="navbar">
-	    <ul>
-	    	{% block navbar %}Breadcrumbs here{% endblock %}
-	   	</ul>
-    </div>
-
-    <div id="sidebar-secondary">
-		{% block sidebar-secondary %}
+	<div id="navbar">
+		<ul>
+			<li><a href="">Stores</a></li>
+			<li><a href="">Ocassion</a></li>
+			<li><a href="">Accessories</a></li>
+		</ul>
 		<div>
 			{% satchmo_search_form %}
-		</div>
-		<div>
-			{% block sidebar %}
-			<h3>{% trans "Shop Categories" %}</h3>
-			{% block sidebar-categories %}
-			<div id="menu_container">
-                {% if category.id %}
-                    {% category_tree category.id %}
-                {% else %}
-                    {% if product.get_category %}
-                        {% category_tree product.get_category.id %}
-                    {% else %}
-                        {% category_tree %}
-                    {% endif %}
-                {% endif %}
-			</div>
-			{% endblock sidebar-categories %}
-			
-			{% block sidebar-secondary-bottom %}
-			{% plugin_point "sidebar_secondary_bottom" %}
-			{% endblock %}
-			{% endblock sidebar %}
-		</div>
-		{% endblock sidebar-secondary %}
-	</div>
+		</div>  
+    </div>
 
 	<div id="sidebar-primary">{# rightnav #}
 		{% block sidebar-primary %}
