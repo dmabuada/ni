@@ -5,7 +5,7 @@ import os
 DIRNAME = os.path.dirname(os.path.normpath(os.path.abspath(__file__)))
 
 DJANGO_PROJECT = 'store'
-DJANGO_SETTINGS_MODULE = 'store.settings'
+DJANGO_SETTINGS_MODULE = 'ni.settings'
 
 ADMINS = (
      ('', ''),         # tuple (name, email) - important for error reports sending, if DEBUG is disabled.
