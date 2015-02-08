@@ -39,7 +39,7 @@ MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
 MEDIA_URL="/static/"
 
 # STATIC_ROOT can be whatever different from other dirs
-STATIC_ROOT = os.path.join(DIRNAME, 'static-collect/')
+STATIC_ROOT = os.path.join(DIRNAME, '..', 'static/')
 STATIC_URL = '/static-collect/'
 
 STATICFILES_DIRS = (
