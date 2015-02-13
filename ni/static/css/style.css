@@ -1,11 +1,10 @@
 /* @override http://localhost:8000/static/css/style.css */
 
 #container {
-width: 90%;
+width: 100%;
 margin: 10px auto;
 background-color: #fff;
 color: #333;
-border: 1px solid gray;
 line-height: 130%;
 padding: 0;
 margin-top: 0;
@@ -17,7 +16,10 @@ background-color: #fff;
 color: #333;
 line-height: 90%;	
 border: none;
-border-bottom: 1px solid silver;
+height: 5rem;
+-webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+-moz-box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
+box-shadow: 0 1px 1px 0 rgba(0,0,0,0.25);
 }
 
 #top {
@@ -69,14 +71,35 @@ border-bottom: 1px solid silver;
 margin-left: 200px;
 margin-right: 200px;
 padding: 1em;
+margin-bottom: 5rem;
 }
 
 body {
-	font-family:  "Arial", serif;
-	font-size: 12px;
-	background-color: #555;
-	margin-top: 0px;
-	padding-top: 0px;
+	font-family:  "Muli", sans-serif;
+	font-size: 0.8rem;
+	color: #666;
+	background-color: #e9eaed;
+	margin:0;
+	padding: 0;
+	min-width: 1140px;
+}
+
+a {
+font-family:  "Muli", sans-serif;
+font-size: 0.8rem;
+color: #666;
+text-decoration: none;
+}
+
+a.down-arrow:after {
+	content: '▾';
+	color: #bbb;
+	font-size: 0.7rem;
+	line-height: 1rem;
+	position: relative;
+	top: 0rem;
+	left: 0.2rem;
+	margin: 0 0.1rem;
 }
 
 #pagination {
@@ -320,24 +343,53 @@ img {
 
 /* =============== Navigation Bars ===================== */
 
-#navbar ul {		
-	margin: 1em;
-	padding: 0px;
+#navbar ul {
+	float: left;
+	margin: 3rem 0 0 0;
+	padding: 0;
 }
-#navbar ul li { 
-	display: inline; 
-	list-style: none; 		
+
+#navbar #secondary-nav {
+	float: right;
+	margin-right: 8rem;
 }
+#navbar #secondary-nav li:last-of-type{
+	width: 1rem;
+	height: 1.5rem;
+	vertical-align: middle;
+	overflow: hidden;
+	background: url(http://i.imgur.com/C0tCBjr.png) no-repeat;
+}
+
 #navbar ul li { 
-	padding-left: 0.7em; 
-	padding-right: 0.5em; 
-	border-left: 1px solid #b0b0b0; 	
-}  
+	display: inline-block;
+	list-style: none;
+	padding-left: 0.5rem;
+	padding-right: 0.5em;
+	height: 1rem; 
+}
+#navbar ul li span {
+	float: left;
+	height: 1.5rem;
+	width: 1px;
+	border-left: 1px solid #e5e5e5;
+}
 #navbar ul li.first {
 	padding-left: 0em; 
 	border-left: none; 
 }
-
+#navbar div:last-of-type {
+	display: inline-block;
+}
+#navbar #logo {
+	width: 7rem;
+	overflow: hidden;
+	background: url(http://i.imgur.com/hRHFHkE.jpg) no-repeat;
+	float: left;
+	background-position: center;
+	height: 4rem;
+	margin: 0.4rem 1rem 0 0.4rem;
+}
 .recentview h3 {
 	padding-bottom: 10px;
 }
