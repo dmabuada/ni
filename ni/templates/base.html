@@ -45,7 +45,8 @@
 		    {% endif %}
 		    <li><a href="{{ logout_url }}?next={{request.path}}">Log out</a></li>
 			{% else %}
-		    <li><a href="{{ login_url }}?next={{request.path}}">Log in</a></li>
+		    <li><a href="{% url registration_register %}">Register</a></li>
+		    <li><a id="login" href="{{ login_url }}?next={{request.path}}">Log in</a></li>
 			{% endif %}
 			<li><span></span></li>
 			{% url satchmo_cart as carturl %}
