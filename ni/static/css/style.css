@@ -354,7 +354,7 @@ img {
 	margin-right: 8rem;
 }
 #navbar #secondary-nav #login {
-	border: 1px solid #787878;
+	border: 1px solid #989898;
 	padding: 0.4rem;
 	border-radius: 0.2rem;
 }
@@ -364,6 +364,31 @@ img {
 	display: block;
 	background: url(http://i.imgur.com/C0tCBjr.png) no-repeat;
 }
+#navbar #search {
+	position: relative;
+}
+#navbar #search input {
+	border-radius: 0.6rem;
+	height: 1.3rem;
+	border: 1px solid #989898;
+}
+#navbar #search:before {
+    content:'';
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(http://getbootstrap.com/2.3.2/assets/img/glyphicons-halflings.png);
+    background-position: -48px 0;
+    position: absolute;
+    top:0.4rem;
+    left:0.5rem;
+    opacity: .5;
+    z-index: 1000;
+}
+#navbar #search .search-query {
+	padding-left: 2rem;
+}
+
 #navbar ul li { 
 	display: inline-block;
 	list-style: none;
