@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 {% endblock %}
 <head>
-	<link href='http://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
     {% block extra-head %}{% endblock %}
     {% block stylesheet %}<link rel="stylesheet" href="{{ media_url }}css/style.css" />{% endblock %}
     <title>{% block title %}{{ shop_name }}{% if pagetitle %}: {{ pagetitle }}{% endif %}{% endblock %}</title>
@@ -20,13 +20,13 @@
 	<div id="navbar">
 	 	<div id="logo"></div>
 		<ul id="primary-nav">
-			<li><a class="down-arrow" href="">Stores</a></li>
+			<li><a class="down-arrow" href="">Designers</a></li>
 			<li><span></span></li>
 			<li><a href="">Ocassion</a></li>
 			<li><a href="">Accessories</a></li>
 			{% url satchmo_product_best_selling as popularurl %}
 			{% if popularurl %}
-			<li><a href="{{ popularurl }}">Best Sellers</a></li>
+			<li><a href="{{ popularurl }}">Popular Items</a></li>
 			{% endif %}
 			{% url satchmo_product_recently_added as recenturl %}
 			{% if recenturl %}

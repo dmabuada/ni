@@ -33,6 +33,13 @@ padding: 0;
 margin: 0;
 }
 
+h1 {
+	color: #666;
+	padding: 1rem;
+	border-bottom: 2px groove rgba(255,255,255,0.2);
+	font-weight: 300;
+}
+
 h5 {
 margin: 0;
 padding: 0;
@@ -68,10 +75,8 @@ border-bottom: 1px solid silver;
 
 
 #content {
-margin-left: 200px;
-margin-right: 200px;
-padding: 1em;
 margin-bottom: 5rem;
+margin-top: 0.1rem;
 }
 
 body {
@@ -341,6 +346,24 @@ img {
     text-align: center;
 }
 
+/* =============== Homepage ===================== */
+
+#content #featured-image {
+	overflow: hidden;
+	min-width: 1140px;
+	height: 600px;
+}
+#content #reserve-form {
+	position: absolute;
+	left: 9rem;
+	top: 8rem;
+	width: 30rem;
+	opacity: 0.9;
+	height: 15rem;
+	background-color: #fff;
+	box-shadow: 0 1px 9px 0 rgba(0,0,0,0.25);
+}
+
 /* =============== Navigation Bars ===================== */
 
 #navbar ul {
@@ -363,7 +386,7 @@ img {
 	position: relative;
 	display: inline-block;
 	top: 46%;
-	left: 16%;
+	left: 13%;
 	width: 18%;
 	overflow: hidden;
 }
