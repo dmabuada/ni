@@ -353,17 +353,16 @@ img {
 	float: right;
 	margin-right: 8rem;
 }
-#navbar #secondary-nav li:last-of-type {
-	width: 1rem;
-	height: 1.5rem;
-	vertical-align: middle;
-	overflow: hidden;
-	background: url(http://i.imgur.com/C0tCBjr.png) no-repeat;
-}
 #navbar #secondary-nav #login {
 	border: 1px solid #787878;
 	padding: 0.4rem;
 	border-radius: 0.2rem;
+}
+#navbar #secondary-nav #cart {
+	width: 2rem;
+	height: 1.5rem;
+	display: block;
+	background: url(http://i.imgur.com/C0tCBjr.png) no-repeat;
 }
 #navbar ul li { 
 	display: inline-block;

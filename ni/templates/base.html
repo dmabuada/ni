@@ -51,7 +51,7 @@
 			<li><span></span></li>
 			{% url satchmo_cart as carturl %}
 	   		{% if carturl %}
-	   		<li><a href="{{ carturl }}"></a></li>
+	   		<li><a id="cart" href="{{ carturl }}"></a></li>
 	   		{% endif %}
 		</ul> 
     </div>
