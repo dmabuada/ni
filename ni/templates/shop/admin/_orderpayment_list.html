@@ -14,19 +14,19 @@
     {% for payment in order.payments.all %}
         <tr>
             <td>
-                <a href="{% url admin:shop_orderpayment_change payment.id %}">{{ payment.id }}</a>
+                <a href="{% url admin:shop_orderpayment_change payment.id %}">{{payment.id}}</a>
             </td>
             <td>
-                {{ payment.amount|currency }}
+                {{payment.amount|currency}}
             </td>
             <td>
-                {{ payment.payment }}
+                {{payment.payment}}
             </td>
             <td>
-                {{ payment.time_stamp }}
+                {{payment.time_stamp}}
             </td>
             <td>
-                {{ payment.transaction_id }}
+                {{payment.transaction_id}}
             </td>
         </tr>
     {% endfor %}
@@ -39,7 +39,7 @@
     {% if order.paid_in_full %}
     <i>{% trans 'Paid in full' %}</i>
     {% else %}
-    <b>{% trans 'Balance on order:' %} </b>{{ order.balance|currency }}
+    <b>{% trans 'Balance on order:' %} </b>{{order.balance|currency}}
     {% endif %}
     </div>
 </fieldset>

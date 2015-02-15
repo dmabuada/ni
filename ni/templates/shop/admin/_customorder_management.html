@@ -3,7 +3,7 @@
     <h2>{% trans "Custom Order Management" %}</h2>
     <ul>
     {% for custom in customitems %}
-        <li>{{ custom.product }}
+        <li>{{custom.product}}
             {% ifequal custom.unit_price custom.product.customproduct.full_price %}
                 [{% trans 'Fully charged' %}]
             {% else %}

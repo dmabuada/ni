@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <!DOCTYPE document SYSTEM "rml_1_0.dtd">
 {% load i18n satchmo_currency %}
-<document filename="{{ filename }}">
-<template pageSize="(21.5cm, 28cm)" leftMargin="1.0cm" rightMargin="1.0cm" topMargin="1.0cm" bottomMargin="1.0cm" title="{% trans "Store Invoice" %}" author="{{ shopDetails.store_name }}" allowSplitting="20">
+<document filename="{{filename}}">
+<template pageSize="(21.5cm, 28cm)" leftMargin="1.0cm" rightMargin="1.0cm" topMargin="1.0cm" bottomMargin="1.0cm" title="{% trans "Store Invoice" %}" author="{{shopDetails.store_name}}" allowSplitting="20">
     <pageTemplate id="first">
         <pageGraphics>
 
-            <image x="5mm" y="240mm" width="65mm" height="30mm" file="{{ iconURI }}" />
+            <image x="5mm" y="240mm" width="65mm" height="30mm" file="{{iconURI}}" />
 
             <setFont name="Helvetica" size="10"/>
             <fill color="(0,0,0)"/>
@@ -14,7 +14,7 @@
             <drawString x="14cm" y="270mm">{% trans "Invoice #" %}</drawString>
             <drawString x="14cm" y="266mm">{% trans "Date" %}: </drawString>
 
-            <drawRightString x="18cm" y="270mm">{{ order.id }}</drawRightString>
+            <drawRightString x="18cm" y="270mm">{{order.id}}</drawRightString>
             <drawRightString x="18cm" y="266mm">{% now "N j, Y" %}</drawRightString>
 
             <setFont name="Helvetica" size="16"/>
@@ -48,7 +48,7 @@
     </pageTemplate>
     <pageTemplate id="others">
         <pageGraphics>
-            <image x="5mm" y="240mm" width="65mm" height="30mm" file="{{ iconURI }}"/>
+            <image x="5mm" y="240mm" width="65mm" height="30mm" file="{{iconURI}}"/>
 
             <setFont name="Helvetica" size="8"/>
             <fill color="(0,0,0)"/>
@@ -56,7 +56,7 @@
             <drawString x="15cm" y="270mm">{% trans "Invoice #" %}</drawString>
             <drawString x="15cm" y="266mm">{% trans "Date" %}: </drawString>
 
-            <drawRightString x="20cm" y="270mm">{{ order.id }}</drawRightString>
+            <drawRightString x="20cm" y="270mm">{{order.id}}</drawRightString>
             <drawRightString x="20cm" y="266mm">{% now "N j, Y" %}</drawRightString>
 
             <setFont name="Helvetica" size="18"/>
@@ -135,11 +135,11 @@
     </tr>
     {% for item in order.orderitem_set.all %}
     <tr>
-        <td><para>{{ item.product.name|fix_ampersands }}</para></td>
-        <td>{{ item.quantity }} </td>
-        <td>{{ item.unit_price|currency }}</td>
-	<td>{{ item.discount|currency }}</td>
-        <td>{{ item.sub_total|currency }} </td>
+        <td><para>{{item.product.name|fix_ampersands}}</para></td>
+        <td>{{item.quantity}} </td>
+        <td>{{item.unit_price|currency}}</td>
+	<td>{{item.discount|currency}}</td>
+        <td>{{item.sub_total|currency}} </td>
     </tr>
     {% endfor %}
     <tr><td></td></tr>
@@ -166,7 +166,7 @@
     {% if order.shipping_discount %}
     <tr>
         <td></td><td></td><td></td>
-        <td>{% trans "Shipping Discount" %}</td><td>- {{ order.shipping_discount|currency }}</td>
+        <td>{% trans "Shipping Discount" %}</td><td>- {{order.shipping_discount|currency}}</td>
     </tr>
     {% endif %}
     <tr>
@@ -178,11 +178,11 @@
     </tr>
     <tr>
 	<td></td><td></td><td></td>
-	<td>{% trans "Payments Made" %}</td><td>- {{ order.balance_paid|currency }}</td>
+	<td>{% trans "Payments Made" %}</td><td>- {{order.balance_paid|currency}}</td>
     </tr>
     <tr>
 	<td></td><td></td><td></td>
-        <td>{% trans "Balance Due" %}</td><td>{{ order.balance|currency }}</td>
+        <td>{% trans "Balance Due" %}</td><td>{{order.balance|currency}}</td>
     </tr>
     </blockTable>
     <spacer length="2cm" width="1mm"/>
@@ -209,7 +209,7 @@
         {% with order.total|currency as order_total %}
         {% with order.credit_card.credit_type as credit_card_type %}
         {% with order.credit_card.display_cc as credit_card_number %}
-        <para style="payment">{% blocktrans with order.time_stamp|date:"F j, Y" as order_date %}{{ order_total }} was charged to your {{ credit_card_type }} card (x{{ credit_card_number }}) on {{ order_date }}.{% endblocktrans %}</para>
+        <para style="payment">{% blocktrans with order.time_stamp|date:"F j, Y" as order_date %}{{order_total}} was charged to your {{ credit_card_type }} card (x{{ credit_card_number }}) on {{ order_date }}.{% endblocktrans %}</para>
         {% endwith %}{% endwith %}{% endwith %}
         {% endif %}
         <para style="payment">{% blocktrans %}This invoice has been paid in full. Thank you for your business!{% endblocktrans %}</para>

@@ -1,8 +1,8 @@
 {% load i18n satchmo_currency satchmo_order %}
 
-{% block salutation %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}{% endblock %}
+{% block salutation %}{% with order.contact.first_name as first_name %}{% with order.contact.last_name as last_name %}{% blocktrans %}Dear {{first_name}} {{ last_name }},{% endblocktrans %}{% endwith %}{% endwith %}{% endblock %}
 
-{% blocktrans %}Thank you for ordering with {{ shop_name }}.{% endblocktrans %}
+{% blocktrans %}Thank you for ordering with {{shop_name}}.{% endblocktrans %}
 
 {% trans "Your order is summarized below:" %}
 
@@ -18,7 +18,7 @@
 {% if payment.credit_card %}
 {% trans "Your" %} {{payment.credit_card.get_credit_type_display}} {% trans "ending in" %} {{payment.credit_card.display_cc}} {% trans "will be charged" %} {{payment.amount|currency}}
 {% else %}
-{{ payment.get_payment_display }} {% trans "will be charged" %} {{ payment.amount|currency }}
+{{payment.get_payment_display}} {% trans "will be charged" %} {{ payment.amount|currency }}
 {% endif %}
 {% endfor %}
 {% endspaceless %}
@@ -28,7 +28,7 @@
 {% trans "Your order contains products that can be downloaded" %}
 {% trans "Please click the link to begin the download" %}
 {% for download in order.downloadlink_set.all %}
-{{ download.product_name }}: {{download.get_full_url}}
+{{download.product_name}}: {{download.get_full_url}}
 {% endfor %}
 {% endif %}
 

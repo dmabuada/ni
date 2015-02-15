@@ -1,6 +1,6 @@
 {% load i18n satchmo_currency satchmo_discounts satchmo_order normalize_decimal satchmo_checkout %}
 <table style="margin-bottom:20px;">
-	<tr><th style="text-align:left;">Order #:</th><td>{{ order.id }}</td></tr>
+	<tr><th style="text-align:left;">Order #:</th><td>{{order.id}}</td></tr>
 </table>
 
 <table style="width:100%;margin-bottom:20px;">
@@ -9,9 +9,9 @@
 	</tr>
 	<tr>
 		<td >
-		{{ order.contact.full_name }}<br />
-		<a href="mailto:{{ order.contact.email }}">{{ order.contact.email }}</a><br />
-		{{ order.contact.primary_phone.phone }}
+		{{order.contact.full_name}}<br />
+		<a href="mailto:{{order.contact.email}}">{{ order.contact.email }}</a><br />
+		{{order.contact.primary_phone.phone}}
 		</td>
 
 	</tr>
@@ -25,15 +25,15 @@
 	</tr>
 	<tr>
 		<td>
-		{{ order.full_bill_street }}<br />
-		{{ order.bill_city }}, {{ order.bill_state }} {{ order.bill_postal_code }}<br />
-		{{ order.bill_country_name|title }}
+		{{order.full_bill_street}}<br />
+		{{order.bill_city}}, {{ order.bill_state }} {{ order.bill_postal_code }}<br />
+		{{order.bill_country_name|title}}
 		</td>
 		{% if order.is_shippable %}
 		<td>
-		{{ order.full_ship_street }}<br />
-		{{ order.ship_city }}, {{ order.ship_state }} {{ order.ship_postal_code }}<br />
-		{{ order.ship_country_name|title }}
+		{{order.full_ship_street}}<br />
+		{{order.ship_city}}, {{ order.ship_state }} {{ order.ship_postal_code }}<br />
+		{{order.ship_country_name|title}}
 		</td>
 		{% endif %}
 	</tr>
@@ -50,10 +50,10 @@
 	</tr>
 	{% for item in order.orderitem_set.all %}
 	<tr>
-		<td style="border-bottom:1px dotted #ccc;" >{{ item.product.sku }}</td>
-		<td style="border-bottom:1px dotted #ccc;" >{{ item }}</td>
+		<td style="border-bottom:1px dotted #ccc;" >{{item.product.sku}}</td>
+		<td style="border-bottom:1px dotted #ccc;" >{{item}}</td>
 		<td style="text-align:center;border-bottom:1px dotted #ccc;" >{{item.quantity|normalize_decimal}}</td>
-		<td style="text-align:center;border-bottom:1px dotted #ccc;" >{{item.product|discount_price:sale|currency }}</td>
+		<td style="text-align:center;border-bottom:1px dotted #ccc;" >{{item.product|discount_price:sale|currency}}</td>
 		<td style="text-align:right;border-bottom:1px dotted #ccc;" >{{item|discount_line_total:sale|currency}}</td>
 	</tr>
 	{% endfor %}
@@ -98,7 +98,7 @@
             {% if payment.credit_card %}
                 {% trans "Your" %}  {{payment.credit_card.get_credit_type_display}} {% trans "ending in" %} {{payment.credit_card.display_cc}} {% trans "will be charged" %} {{payment.amount|currency}}<br/>
             {% else %}
-                {{ payment.get_payment_display }} {% trans "will be charged" %} {{ payment.amount|currency }} <br/>
+                {{payment.get_payment_display}} {% trans "will be charged" %} {{ payment.amount|currency }} <br/>
             {% endif %}
         {% endfor %}
 		</td>
@@ -111,7 +111,7 @@
 		{% if order.has_downloads %}
 		{% trans "This is a downloadable product" %}
 		{% for download in order.downloadlink_set.all %}
-		{{ download.product_name }} - {{download.get_full_url}}
+		{{download.product_name}} - {{download.get_full_url}}
 		{% endfor %}
 		{% endif %}
 		</td>

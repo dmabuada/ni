@@ -26,10 +26,10 @@
            {% if product.main_image %}
               <center>
               {% thumbnail product.main_image.picture 85x85 as image %}
-              <a href="{{ product.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
+              <a href="{{product.get_absolute_url}}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
               </center>
            {% endif %}     
-            <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
+            <p><a href="{{product.get_absolute_url}}">{{ product.translated_name }}</a></p>
         </div>
     {% endfor %}
     <a class="btn" href="#">Shop Featured Items</a>
@@ -45,10 +45,10 @@
            {% if product.main_image %}
               <center>
               {% thumbnail product.main_image.picture 85x85 as image %}
-              <a href="{{ product.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
+              <a href="{{product.get_absolute_url}}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
               </center>
            {% endif %}     
-            <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
+            <p><a href="{{product.get_absolute_url}}">{{ product.translated_name }}</a></p>
         </div>
     {% endfor %}
     <a class="btn" href="#">Shop Recommended Items</a>
