@@ -3,10 +3,6 @@
 {% load thumbnail %}
 {% load satchmo_util %}
 
-{% block navbar %}
-   <li class="first">{% trans "Home" %}</li>
-{% endblock %}
-
 {% block content %}
 <div id="featured-image">
     <img src="http://i.imgur.com/gKPkv83.jpg">
@@ -23,7 +19,8 @@
 </div>
 
 {% if all_products_list %}
-    <h4>{% trans "Featured Items" %}</h4>
+<div class="featured-container container-items">
+    <h1>{% trans "Featured Items" %}</h1>
     {% for product in all_products_list %} 
             <div class = "productImage">    
            {% if product.main_image %}
@@ -35,7 +32,28 @@
             <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
         </div>
     {% endfor %}
+    <a class="btn" href="#">Shop Featured Items</a>
+</div>
 {% endif %}
+
+{# Duping the featured products for now until we can write an algorithm that tailors picks#}
+<div class="recommendations-container container-items">
+{% if all_products_list %}
+    <h1>Recommendations for you</h1>
+    {% for product in all_products_list %} 
+            <div class = "productImage">    
+           {% if product.main_image %}
+              <center>
+              {% thumbnail product.main_image.picture 85x85 as image %}
+              <a href="{{ product.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
+              </center>
+           {% endif %}     
+            <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
+        </div>
+    {% endfor %}
+    <a class="btn" href="#">Shop Recommended Items</a>
+{% endif %}
+</div>
 
     {% if is_paginated %}
     <div id = "pagination">
