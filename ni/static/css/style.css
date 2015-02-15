@@ -38,7 +38,7 @@ h1 {
 	padding: 1rem;
 	border-bottom: 2px groove rgba(255,255,255,0.2);
 	font-weight: 300;
-	text-transform: uppercase
+	text-transform: uppercase;
 }
 
 h5 {
@@ -375,6 +375,14 @@ img {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
+}
+#reserve-form input[type=submit] {
+border-color: #ddd1e7 #bba3d0 #aa8cc5;
+background: #ddd1e7;
+background: -o-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+background: -ms-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+background: -moz-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
 }
 #reserve-form  a {
   color: #0089ec;
