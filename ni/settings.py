@@ -109,6 +109,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
+    'livesettings',
     'django.contrib.sites',
     'satchmo_store.shop',
     'django.contrib.admin',
@@ -128,7 +129,6 @@ INSTALLED_APPS = (
 
     'sorl.thumbnail',
     'keyedcache',
-    'livesettings',
     'l10n',
     'satchmo_utils.thumbnail',
     'satchmo_store.contact',
@@ -139,13 +139,13 @@ INSTALLED_APPS = (
     'shipping',
     # 'satchmo_store.contact.supplier',
     # 'shipping.modules.tiered',
-    #'satchmo_ext.newsletter',
-    #'satchmo_ext.recentlist',
+    # 'satchmo_ext.newsletter',
+    # 'satchmo_ext.recentlist',
     'product',
     'product.modules.configurable',
     'product.modules.custom',
-    #'product.modules.downloadable',
-    #'product.modules.subscription',
+    # 'product.modules.downloadable',
+    # 'product.modules.subscription',
     #'satchmo_ext.product_feeds',
     #'satchmo_ext.brand',
     'payment',
@@ -172,15 +172,15 @@ AUTHENTICATION_BACKENDS = (
 
 # DEBUG_TOOLBAR_CONFIG = {
 # 'INTERCEPT_REDIRECTS' : False,
-#}
+# }
 
 #### Satchmo unique variables ####
-#from django.conf.urls import patterns, include
+# from django.conf.urls import patterns, include
 SATCHMO_SETTINGS = {
     'SHOP_BASE': '',
     'MULTISHOP': False,
     'DOCUMENT_CONVERTER': 'shipping.views.HTMLDocument',
-    #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
+    # 'SHOP_URLS' : patterns('satchmo_store.shop.views',)
 }
 
 SKIP_SOUTH_TESTS = True
