@@ -1,8 +1,8 @@
 """Satchmo product rating views"""
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
-from django.contrib.comments.models import Comment
-from django.contrib.comments.views.comments import post_comment
+from django_comments.models import Comment
+from django_comments.views.comments import post_comment
 from django.contrib.contenttypes.models import ContentType
 from django.http import HttpResponseRedirect, Http404
 from django.contrib.sites.models import Site
@@ -12,7 +12,7 @@ from logging import getLogger
 log = getLogger('satchmo_store.shop.views.ratings')
 
 def post_rating(request, url='/ratings/posted/', maxcomments=1):
-    """Wrap django.contrib.comments.views.comments.post_comment, so that we can control where the user
+    """Wrap django_comments.views.comments.post_comment, so that we can control where the user
     is returned after submit, also add the ability to control the maximum number of ratings per user 
     per product.
     """

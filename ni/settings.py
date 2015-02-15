@@ -1,5 +1,6 @@
 # Django settings for satchmo project.
 # This is a recommended base setting for further customization, default for clonesatchmo.py
+
 import os
 import sys
 
@@ -114,7 +115,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.comments',
+    'django_comments',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',

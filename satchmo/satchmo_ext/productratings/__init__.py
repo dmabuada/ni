@@ -1,5 +1,4 @@
-from django.contrib.comments.models import Comment
-from django.contrib.comments.signals import comment_will_be_posted, comment_was_posted
+from django_comments.signals import comment_will_be_posted, comment_was_posted
 from listeners import *
 
 comment_was_posted.connect(save_rating, sender=Comment)
