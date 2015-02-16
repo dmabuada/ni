@@ -4,6 +4,7 @@
 {% load satchmo_util %}
 
 {% block content %}
+
 <div id="featured-image">
     <img src="http://i.imgur.com/gKPkv83.jpg">
 </div>
@@ -55,8 +56,8 @@
 {% endif %}
 </div>
 
-    {% if is_paginated %}
-    <div id = "pagination">
+{% if is_paginated %}
+<div id = "pagination">
     <ul>
         {% if page_obj.has_previous %}
             <li> <a href="{{ shop_base }}/?page={{ page_obj.previous_page_number }}">{% trans "Previous" %}</a> </li>
@@ -76,7 +77,7 @@
             <li> {% trans "Next" %} </li>
         {% endif %}
     </ul>
-    </div>
-    {% endif %}
+</div>
+{% endif %}
 
 {% endblock %}
