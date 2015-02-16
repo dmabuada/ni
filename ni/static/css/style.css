@@ -621,11 +621,7 @@ img { border: none }
 .featured-container {
     position: relative;
     overflow: hidden;
-    height: 18rem;
     margin: -5rem 3rem 0;
-    padding: 4rem;
-    padding-top: 0;
-    padding-bottom: 7rem;
     text-align: center;
     background: #fff;
     -webkit-box-shadow: 0 -3px 5px rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.2);
@@ -635,8 +631,6 @@ img { border: none }
 }
 .recommendations-container {
     margin-top: 3rem;
-    padding-right: 7rem;
-    padding-left: 7rem;
     text-align: center;
 }
 .container-items div:not(:last-of-type) { margin-right: 2rem }
