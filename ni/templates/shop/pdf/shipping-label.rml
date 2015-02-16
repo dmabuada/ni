@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <!DOCTYPE document SYSTEM "rml_1_0.dtd">
-<document filename="{{filename}}">
+<document filename="{{ filename }}">
 <template pageSize="(10.2cm, 15.4cm)"
           leftMargin="1cm"
           rightMargin="1cm"
@@ -40,34 +40,34 @@
 </stylesheet>
 <story>
      <para style="returnto">
-        {{shopDetails.store_name}}
+        {{ shopDetails.store_name }}
      </para>
      <para style="returnto">
-        {{shopDetails.street1}}
+        {{ shopDetails.street1 }}
      </para>
      {% if shopDetails.street2 %}
      <para style="returnto">
-        {{shopDetails.street2}}
+        {{ shopDetails.street2 }}
      </para>
      {% endif %}
      <para style="returnto">
-        {{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}
+        {{ shopDetails.city }}, {{ shopDetails.state }} {{ shopDetails.postal_code }}
      </para>
      {% ifnotequal shopDetails.country.iso2_code order.ship_country %}
      <para style="returnto">
-       {{shopDetails.country.name}}
+       {{ shopDetails.country.name }}
      </para>
      {% endifnotequal %}
      <nextFrame/>
 
-    <para style="sendto"><b>{{order.ship_addressee}}</b></para>
-    <para style="sendto">{{order.ship_street1}}</para>
+    <para style="sendto"><b>{{ order.ship_addressee }}</b></para>
+    <para style="sendto">{{ order.ship_street1 }}</para>
     {% if order.ship_street2 %}
-    <para style="sendto">{{order.ship_street2}}</para>
+    <para style="sendto">{{ order.ship_street2 }}</para>
     {% endif %}
-    <para style="sendto">{{order.ship_city}}, {{order.ship_state}} {{order.ship_postal_code}}</para>
+    <para style="sendto">{{ order.ship_city }}, {{ order.ship_state }} {{ order.ship_postal_code }}</para>
     {% ifnotequal shopDetails.country.iso2_code order.ship_country %}
-    <para style="sendto">{{order.ship_country_name}}</para>
+    <para style="sendto">{{ order.ship_country_name }}</para>
     {% endifnotequal %}
 
 </story>

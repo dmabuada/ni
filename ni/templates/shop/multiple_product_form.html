@@ -7,7 +7,7 @@
 {% load app_plugins %}
 
 {% block navbar %}
-<li class="first"><a href="{{shop_base}}/">{% trans "Home" %}</a></li>
+<li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
 <li>{% trans "Quick Order Form" %}</li>
 {% endblock %}
 
@@ -26,25 +26,25 @@
 		{% thumbnail product.main_image.picture 84x84 as image %}
 		<tr {% if forloop.first %} class="first"{% else %}{% if forloop.last %} class="last"{% endif %}{% endif %}>
 			<td>
-				<img src="{{image}}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ product.short_description }}"/>
+				<img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ product.short_description }}"/>
 			</td>
 			<td class="productDetail">
-				<h3>{{product.name}}</h3>
+				<h3>{{ product.name }}</h3>
 				<p>
-					{{product.description}}
+					{{ product.description }}
 				</p>
 			</td>
 			<td class="price">
-				{% if sale %}<strike id="fullprice" style="display: block;">{{product|discount_price:""|currency}}</strike>{% endif %}
-				<span id="price">{{product|discount_price:storewide_sale|currency}}</span>
+				{% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+				<span id="price">{{ product|discount_price:storewide_sale|currency }}</span>
 			</td>
 			<td class="qty">
-				{{field}}
+				{{ field }}
 			</td>
 		</tr>
 		{% if field.errors %}<tr>
 			<td>&nbsp;</td>
-			<td colspan="3" class="error">{{field.errors|join:","}}</td>
+			<td colspan="3" class="error">{{ field.errors|join:"," }}</td>
 		</tr>{% endif %}
 		{% endwith %}{% endfor %}
 		<tr>

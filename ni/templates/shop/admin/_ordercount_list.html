@@ -3,12 +3,12 @@
 <ul>
 {% for order in orders %}
 	<li>
-		{% if multihost %}[{{order.site.name}}] {% endif %}<a href="shop/order/{{ order.id }}/">{{ order }}</a> 
-		&ndash; {{order.total|currency}} {% trans "on" %} {{ order.time_stamp|date:"F jS Y H:i" }}
+		{% if multihost %}[{{ order.site.name }}] {% endif %}<a href="shop/order/{{ order.id }}/">{{ order }}</a> 
+		&ndash; {{ order.total|currency }} {% trans "on" %} {{ order.time_stamp|date:"F jS Y H:i" }}
 	    <ul>
 	        {% for item in order.orderitem_set.all %}
 	            <li>
-					{{item}} x {{ item.quantity|normalize_decimal }}
+					{{ item }} x {{ item.quantity|normalize_decimal }}
 				</li>
 	        {% endfor %}
 	    </ul>

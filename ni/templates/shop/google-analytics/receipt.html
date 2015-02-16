@@ -4,8 +4,8 @@
 {% if shop.options.GOOGLE.USE_URCHIN.value %}
     <form style="display:none;" name="utmform">
     <textarea id="utmtrans">
-    UTM:T|{{order.id}}|{{Store}}|{{order.total|truncate_decimal}}|{{order.tax|truncate_decimal}}|{{order.shipping_sub_total|truncate_decimal}}|{{order.ship_city}}|{{order.ship_state}}|{{order.ship_country}}
-    {% for item in order.orderitem_set.all %}UTM:I|{{order.id}}|{{item.product.name}}|{{item }}|{{ item.category }}|{{item.unit_price|truncate_decimal}}|{{item.quantity|normalize_decimal}}
+    UTM:T|{{ order.id }}|{{ Store }}|{{ order.total|truncate_decimal }}|{{ order.tax|truncate_decimal }}|{{ order.shipping_sub_total|truncate_decimal }}|{{ order.ship_city }}|{{ order.ship_state }}|{{ order.ship_country }}
+    {% for item in order.orderitem_set.all %}UTM:I|{{ order.id }}|{{ item.product.name }}|{{item }}|{{ item.category }}|{{ item.unit_price|truncate_decimal }}|{{ item.quantity|normalize_decimal }}
     {% endfor %}</textarea>
     </form>
 
@@ -17,23 +17,23 @@
     $(function() {
     var pageTracker = _gat._getTrackerByName();
     pageTracker._addTrans(
-     "{{order.id}}",
-     "{{Store}}",
-     "{{order.total|truncate_decimal}}",
-     "{{order.tax|truncate_decimal}}",
-     "{{order.shipping_sub_total|truncate_decimal}}",
-     "{{order.ship_city}}",
-     "{{order.ship_state}}",
-     "{{order.ship_country}}"
+     "{{ order.id }}",
+     "{{ Store }}",
+     "{{ order.total|truncate_decimal }}",
+     "{{ order.tax|truncate_decimal }}",
+     "{{ order.shipping_sub_total|truncate_decimal }}",
+     "{{ order.ship_city }}",
+     "{{ order.ship_state }}",
+     "{{ order.ship_country }}"
     );
     {% for item in order.orderitem_set.all %}
         pageTracker._addItem(
-         "{{order.id}}",
-         "{{item.product.name}}",
-         "{{item}}",
-         "{{item.category}}",
-         "{{item.unit_price|truncate_decimal}}",
-         "{{item.quantity|normalize_decimal}}"
+         "{{ order.id }}",
+         "{{ item.product.name }}",
+         "{{ item }}",
+         "{{ item.category }}",
+         "{{ item.unit_price|truncate_decimal }}",
+         "{{ item.quantity|normalize_decimal }}"
         );
     {% endfor %}
     pageTracker._trackTrans();

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="no" ?>
 <!DOCTYPE document SYSTEM "rml_1_0.dtd">
 {% load i18n satchmo_currency %}
-<document filename="{{filename}}">
-<template pageSize="(21.5cm, 28cm)" leftMargin="1.0cm" rightMargin="1.0cm" topMargin="1.0cm" bottomMargin="1.0cm" title="Store Packing Slip" author="{{shopDetails.store_name}}" allowSplitting="20">
+<document filename="{{ filename }}">
+<template pageSize="(21.5cm, 28cm)" leftMargin="1.0cm" rightMargin="1.0cm" topMargin="1.0cm" bottomMargin="1.0cm" title="Store Packing Slip" author="{{ shopDetails.store_name }}" allowSplitting="20">
 	<pageTemplate id="first">
 		<pageGraphics>
 
-			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{iconURI}}"/>
+			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{ iconURI }}"/>
 
             <setFont name="Helvetica" size="10"/>
 			<fill color="(0,0,0)"/>
@@ -14,7 +14,7 @@
 			<drawString x="14cm" y="270mm">{% trans "Invoice #" %}</drawString>
 			<drawString x="14cm" y="266mm">{% trans "Date" %}: </drawString>
 
-			<drawRightString x="18cm" y="270mm">{{order.id}}</drawRightString>
+			<drawRightString x="18cm" y="270mm">{{ order.id }}</drawRightString>
 			<drawRightString x="18cm" y="266mm">{% now "N j, Y" %}</drawRightString>
 
 			<setFont name="Helvetica" size="16"/>
@@ -25,16 +25,16 @@
             <drawString x="13.5cm" y="24cm">{% trans "Shipping Address" %}</drawString>
             
             <setFont name="Helvetica" size="12"/>
-            <drawString x="1cm" y="235mm">{{shopDetails.street1}}</drawString>
+            <drawString x="1cm" y="235mm">{{ shopDetails.street1 }}</drawString>
             {% if shopDetails.street2 %}
-            <drawString x="1cm" y="230mm">{{shopDetails.street2}}</drawString>
-            <drawString x="1cm" y="225mm">{{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}</drawString>
-            <drawString x="1cm" y="220mm">{{shopDetails.phone}}</drawString>
-            <drawString x="1cm" y="215mm">{{shopDetails.store_email}}</drawString>
+            <drawString x="1cm" y="230mm">{{ shopDetails.street2 }}</drawString>
+            <drawString x="1cm" y="225mm">{{ shopDetails.city }}, {{ shopDetails.state }} {{ shopDetails.postal_code }}</drawString>
+            <drawString x="1cm" y="220mm">{{ shopDetails.phone }}</drawString>
+            <drawString x="1cm" y="215mm">{{ shopDetails.store_email }}</drawString>
             {% else %}
-            <drawString x="1cm" y="230mm">{{shopDetails.city}}, {{shopDetails.state}} {{shopDetails.postal_code}}</drawString>
-            <drawString x="1cm" y="225mm">{{shopDetails.phone}}</drawString>
-            <drawString x="1cm" y="220mm">{{shopDetails.store_email}}</drawString>
+            <drawString x="1cm" y="230mm">{{ shopDetails.city }}, {{ shopDetails.state }} {{ shopDetails.postal_code }}</drawString>
+            <drawString x="1cm" y="225mm">{{ shopDetails.phone }}</drawString>
+            <drawString x="1cm" y="220mm">{{ shopDetails.store_email }}</drawString>
             {% endif %}
             <rect x="13.5cm" y="26.2cm" width="5cm" height="1.3cm" fill="no" stroke="yes" round="5mm" />
             
@@ -48,7 +48,7 @@
 	</pageTemplate>
 	<pageTemplate id="others">
 		<pageGraphics>
-			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{iconURI}}"/>
+			<image x="5mm" y="240mm" width="65mm" height="30mm" file="{{ iconURI }}"/>
 
 			<setFont name="Helvetica" size="8"/>
 			<fill color="(0,0,0)"/>
@@ -56,7 +56,7 @@
 			<drawString x="15cm" y="270mm">{% trans "Invoice #" %}</drawString>
 			<drawString x="15cm" y="266mm">{% trans "Date" %}: </drawString>
 
-			<drawRightString x="20cm" y="270mm">{{order.id}}</drawRightString>
+			<drawRightString x="20cm" y="270mm">{{ order.id }}</drawRightString>
 			<drawRightString x="20cm" y="266mm">{% now "N j, Y" %}</drawRightString>
 
 			<setFont name="Helvetica" size="18"/>
@@ -86,32 +86,32 @@
 </stylesheet>
 <story>
 
-    <para style="name">{{order.bill_addressee}}</para>
-	<para>{{order.bill_street1}}</para>
+    <para style="name">{{ order.bill_addressee }}</para>
+	<para>{{ order.bill_street1 }}</para>
 	{% if order.bill_street2 %}
-          <para>{{order.bill_street2}}</para>
+          <para>{{ order.bill_street2 }}</para>
         {% endif %}
-	<para>{{order.bill_city}}, {{order.bill_state}}</para>
-	<para>{{order.bill_postal_code}}</para>
+	<para>{{ order.bill_city }}, {{ order.bill_state }}</para>
+	<para>{{ order.bill_postal_code }}</para>
         {% ifnotequal order.bill_country shopDetails.country.iso2_code %}
-        <para>{{order.bill_country_name}}</para>
+        <para>{{ order.bill_country_name }}</para>
         {% else %}
 	<spacer length="0.8cm" width="1mm"/>
 	{% endifnotequal %}
-	<para>{% trans "Phone" %}: {{order.contact.primary_phone.phone}}</para>
-	<para>{% trans "Email" %}: {{order.contact.email}}</para>
+	<para>{% trans "Phone" %}: {{ order.contact.primary_phone.phone }}</para>
+	<para>{% trans "Email" %}: {{ order.contact.email }}</para>
 
 	<nextFrame/>
     
-    <para style="name">{{order.ship_addressee}}</para>
-	<para>{{order.ship_street1}}</para>
+    <para style="name">{{ order.ship_addressee }}</para>
+	<para>{{ order.ship_street1 }}</para>
         {% if order.ship_street2 %}
-          <para>{{order.ship_street2}}</para>
+          <para>{{ order.ship_street2 }}</para>
         {% endif %}
-	<para>{{order.ship_city}}, {{order.ship_state}}</para>
-	<para>{{order.ship_postal_code}}</para>
+	<para>{{ order.ship_city }}, {{ order.ship_state }}</para>
+	<para>{{ order.ship_postal_code }}</para>
         {% ifnotequal order.ship_country shopDetails.country.iso2_code %}
-        <para>{{order.ship_country_name}}</para>
+        <para>{{ order.ship_country_name }}</para>
         {% else %}
 	<spacer length="0.8cm" width="1mm"/>
         {% endifnotequal %}
@@ -126,8 +126,8 @@
 	</tr>
     {% for item in order.orderitem_set.all %}
     <tr>
-        <td><para>{{item.product.name|fix_ampersands}}</para></td>
-        <td>{{item.quantity}} </td>
+        <td><para>{{ item.product.name|fix_ampersands }}</para></td>
+        <td>{{ item.quantity }} </td>
     </tr>
     {% endfor %}
 	<tr><td></td></tr>
