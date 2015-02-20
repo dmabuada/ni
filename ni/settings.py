@@ -169,5 +169,12 @@ SATCHMO_SETTINGS = {
 
 SKIP_SOUTH_TESTS=True
 
+LIVESETTINGS_OPTIONS = {
+    1: {
+        'DB': False,
+        'SETTINGS': {}
+    }
+}
+
 # Load the local settings
 from local_settings import *
