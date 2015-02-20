@@ -6,8 +6,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 {% endblock %}
 <head>
-	<link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Muli:300,400' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     {% block extra-head %}{% endblock %}
     {% block stylesheet %}<link rel="stylesheet" href="{{ media_url }}css/style.css" />{% endblock %}
     <script src="{{ media_url }}js/pickadate.js"></script>
@@ -19,96 +19,96 @@
     {% plugin_point "page_top" %}
     <div id="container">
 
-	<div id="navbar">
-	 	<div id="logo"></div>
-		<ul id="primary-nav">
-			<li><a class="down-arrow" href="">Designers</a></li>
-			<li><span></span></li>
-			<li><a href="">Ocassion</a></li>
-			<li><a href="">Accessories</a></li>
-			{% url satchmo_product_best_selling as popularurl %}
-			{% if popularurl %}
-			<li><a href="{{ popularurl }}">Popular Items</a></li>
-			{% endif %}
-			{% url satchmo_product_recently_added as recenturl %}
-			{% if recenturl %}
-			<li><a href="{{ recenturl }}">Recently Added</a></li>
-			{% endif %}
-		</ul>
-		{% satchmo_search_form %}
-		<ul id="secondary-nav">
-			{% if user.is_staff %}
-			<li><a href="{% url admin:index %}" target="blank">Admin</a></li>
-			{% endif %}
-			{% if user.is_authenticated %}
-			{% url satchmo_account_info as accounturl %}
-		    {% if accounturl %}
-		    <li><a href="{{ accounturl }}" target="blank">Account Details</a></li>
-		    {% endif %}
-		    <li><a href="{{ logout_url }}?next={{ request.path }}">Log out</a></li>
-			{% else %}
-		    <li><a href="{% url registration_register %}">Register</a></li>
-		    <li><a href="{{ login_url }}?next={{ request.path }}">Log in</a></li>
-			{% endif %}
-			<li><span></span></li>
-			{% url satchmo_cart as carturl %}
-	   		{% if carturl %}
-	   		<li><a id="cart" href="{{ carturl }}"></a></li>
-	   		{% endif %}
-		</ul> 
+    <div id="navbar">
+        <div id="logo"></div>
+        <ul id="primary-nav">
+            <li><a class="down-arrow" href="">Designers</a></li>
+            <li><span></span></li>
+            <li><a href="">Ocassion</a></li>
+            <li><a href="">Accessories</a></li>
+            {% url satchmo_product_best_selling as popularurl %}
+            {% if popularurl %}
+            <li><a href="{{ popularurl }}">Popular Items</a></li>
+            {% endif %}
+            {% url satchmo_product_recently_added as recenturl %}
+            {% if recenturl %}
+            <li><a href="{{ recenturl }}">Recently Added</a></li>
+            {% endif %}
+        </ul>
+        {% satchmo_search_form %}
+        <ul id="secondary-nav">
+            {% if user.is_staff %}
+            <li><a href="{% url admin:index %}" target="blank">Admin</a></li>
+            {% endif %}
+            {% if user.is_authenticated %}
+            {% url satchmo_account_info as accounturl %}
+            {% if accounturl %}
+            <li><a href="{{ accounturl }}" target="blank">Account Details</a></li>
+            {% endif %}
+            <li><a href="{{ logout_url }}?next={{ request.path }}">Log out</a></li>
+            {% else %}
+            <li><a href="{% url registration_register %}">Register</a></li>
+            <li><a href="{{ login_url }}?next={{ request.path }}">Log in</a></li>
+            {% endif %}
+            <li><span></span></li>
+            {% url satchmo_cart as carturl %}
+            {% if carturl %}
+            <li><a id="cart" href="{{ carturl }}"></a></li>
+            {% endif %}
+        </ul> 
     </div>
 
-	<div id="content">
-	    {% block content %}{% endblock %}
-	</div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 
-	<div id="footer">
-		{% block footer %}
-		<div id="footer-items">
-			<div class="footer-column">
-				<p>About</p>
-				<ul>
-					<li><a href="">How it works</a></li>
-					<li><a href="">Careers</a></li>
-					<li><a href="">Press</a></li>
-				</ul>
-			</div>
-			<div class="footer-column">
-				<p>My Account</p>
-				<ul>
-					<li><a href="">Settings</a></li>
-					<li><a href="">Orders &amp; Returns</a></li>
-					<li><a href="">Report Someone</a></li>
-				</ul>
-			</div>
-			<div class="footer-column">
-				<p>Contact Us</p>
-				<ul>
-					<li><a href="">Email</a></li>
-					<li><a href="">Send Feedback</a></li>
-				</ul>
-			</div>
-		</div>
-		<div class="footer-row">
-			<ul>
-				{# look up jinja's built-in filter for date retrieval#}
-				<li><a href="">©2015 Ni</a></li>
-				<li><a href="">Terms</a></li>
-				<li><a href="">Privacy</a></li>
-				<li><a href="">Copyright</a></li>
-			</ul>
-		</div>
-		{% endblock %}
-	</div>
+    <div id="footer">
+        {% block footer %}
+        <div id="footer-items">
+            <div class="footer-column">
+                <p>About</p>
+                <ul>
+                    <li><a href="">How it works</a></li>
+                    <li><a href="">Careers</a></li>
+                    <li><a href="">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <p>My Account</p>
+                <ul>
+                    <li><a href="">Settings</a></li>
+                    <li><a href="">Orders &amp; Returns</a></li>
+                    <li><a href="">Report Someone</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <p>Contact Us</p>
+                <ul>
+                    <li><a href="">Email</a></li>
+                    <li><a href="">Send Feedback</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-row">
+            <ul>
+                {# look up jinja's built-in filter for date retrieval#}
+                <li><a href="">©2015 Ni</a></li>
+                <li><a href="">Terms</a></li>
+                <li><a href="">Privacy</a></li>
+                <li><a href="">Copyright</a></li>
+            </ul>
+        </div>
+        {% endblock %}
+    </div>
 
     </div>
-	{% block page-close %}
+    {% block page-close %}
     {% block google-tracker %}
     {% if shop.options.GOOGLE.ANALYTICS.value %}
         {% show_tracker is_secure %}
     {% endif %}
     {% endblock %}
-	{% endblock %}
+    {% endblock %}
 </body>
 {% endblock %}
 </html>

@@ -1,13 +1,13 @@
 {% load i18n %}
 <form id="search" action="{{ satchmo_search_url }}" method="get">
-	{% if categories %}
-	<select name="category">
-	 	<option value="" selected="selected">{% trans "All Products" %}</option>
-		{% for cat in categories %}
-		<option value="{{ cat.slug }}"{% ifequal cat category %} selected="selected"{% endifequal %}>{{ cat.name}}</option>
-		{% endfor %}
-	</select><br/>
-	{% endif %}
+    {% if categories %}
+    <select name="category">
+        <option value="" selected="selected">{% trans "All Products" %}</option>
+        {% for cat in categories %}
+        <option value="{{ cat.slug }}"{% ifequal cat category %} selected="selected"{% endifequal %}>{{ cat.name}}</option>
+        {% endfor %}
+    </select><br/>
+    {% endif %}
     <input type="text" placeholder="Search for stores or items" class="search-query" size="20" name="keywords" id="search_keywords" />
     <input type="submit" value="Search" />
  </form>
