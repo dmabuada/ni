@@ -314,6 +314,9 @@ img { border: none }
     min-width: 1140px;
     height: 600px;
 }
+#featured-image img {
+    width: 100%;
+}
 #reserve-form {
     position: absolute;
     top: 9rem;
