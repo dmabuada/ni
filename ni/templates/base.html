@@ -38,7 +38,7 @@
         {% satchmo_search_form %}
         <ul id="secondary-nav">
             {% if user.is_staff %}
-            <li><a href="{% url admin:index %}" target="blank">Admin</a></li>
+            <li><a href="{% url 'admin:index' %}" target="blank">Admin</a></li>
             {% endif %}
             {% if user.is_authenticated %}
             {% url satchmo_account_info as accounturl %}
@@ -47,7 +47,7 @@
             {% endif %}
             <li><a href="{{ logout_url }}?next={{ request.path }}">Log out</a></li>
             {% else %}
-            <li><a href="{% url registration_register %}">Register</a></li>
+            <li><a href="{% url 'registration_register' %}">Register</a></li>
             <li><a href="{{ login_url }}?next={{ request.path }}">Log in</a></li>
             {% endif %}
             <li><span></span></li>
