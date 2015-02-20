@@ -1,5 +1,6 @@
 Django==1.4.19
 django-caching-app-plugins==0.1.4
+django-debug-toolbar==1.2.2
 django-keyedcache==1.5.1
 django-livesettings==1.4-14
 django-registration==1.0
