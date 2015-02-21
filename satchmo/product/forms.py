@@ -477,7 +477,8 @@ class VariationManagerForm(forms.Form):
                 self.fields[slugkey] = sf
                 self.slugdict[key] = slugkey
 
-    def _save(self, request):
+    @transaction.atomic
+    def save(self, request):
         self.full_clean()
         data = self.cleaned_data
         optiondict = _get_optiondict()
@@ -497,8 +498,6 @@ class VariationManagerForm(forms.Form):
                             self._delete_variation(opts, request)
                 except KeyError:
                     pass
-
-    save = transaction.commit_on_success(_save)
 
     def _create_variation(self, opts, key, data, request):
         namekey = "name__" + key

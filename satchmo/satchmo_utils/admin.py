@@ -146,7 +146,7 @@ class AutocompleteAdmin(admin.ModelAdmin):
 
     def get_urls(self):
         from django.conf.urls import url
-        
+
         def wrap(view):
             # This is needed to secure the view so that only admin users can access
             def wrapper(*args, **kwargs):
@@ -154,7 +154,7 @@ class AutocompleteAdmin(admin.ModelAdmin):
             return update_wrapper(wrapper, view)
 
         patterns = super(AutocompleteAdmin, self).get_urls()
-        info = self.admin_site.name, self.model._meta.app_label, self.model._meta.module_name
+        info = self.admin_site.name, self.model._meta.app_label, self.model._meta.model_name
         patterns.insert(
                 -1,     # insert just before (.+) rule (see django.contrib.admin.options.ModelAdmin.get_urls)
                 url(r'^search/$',

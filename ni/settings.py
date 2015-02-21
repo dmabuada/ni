@@ -73,7 +73,7 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.middleware.doc.XViewMiddleware",
+    "django.contrib.admindocs.middleware.XViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "threaded_multihost.middleware.ThreadLocalMiddleware",
     "satchmo_store.shop.SSLMiddleware.SSLRedirect",
@@ -191,6 +191,9 @@ LIVESETTINGS_OPTIONS = {
         'SETTINGS': {}
     }
 }
+
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
 
 # Load the local settings
 from local_settings import *
