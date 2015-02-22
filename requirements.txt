@@ -16,3 +16,4 @@ requests-oauthlib==0.4.2
 sorl-thumbnail==12.2
 South==1.0.2
 sqlparse==0.1.14
+psycopg2==2.6
