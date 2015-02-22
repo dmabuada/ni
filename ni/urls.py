@@ -2,9 +2,11 @@ from django.conf.urls import *
 
 from satchmo_store.urls import urlpatterns
 
+from ni import views
 
 urlpatterns += patterns('',
-                        url(r'^accounts/', include('allauth.urls')),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^ping/', views.ping)
 )
 
 # if settings.DEBUG:
