@@ -406,20 +406,22 @@ img { border: none }
     -moz-opacity: 0;
 }
 .picker--opened .picker__holder {
-    max-height: 25em;
-    -webkit-transition: all .15s ease-out,max-height 0;
-    -moz-transition: all .15s ease-out,max-height 0;
-    transition: all .15s ease-out,max-height 0;
-    -webkit-transform: translateY() perspective(600px) rotateX();
-    -moz-transform: translateY() perspective(600px) rotateX();
-    transform: translateY() perspective(600px) rotateX();
-    opacity: 1;
     -webkit-box-shadow: 0 6px 18px 1px rgba(0,0,0,.12);
     -moz-box-shadow: 0 6px 18px 1px rgba(0,0,0,.12);
-    box-shadow: 0 6px 18px 1px rgba(0,0,0,.12);
-    -ms-filter: 'alpha(Opacity=100)';
+
+    max-height: 25em;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
     -moz-opacity: 1;
+    opacity: 1;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    -webkit-transform: translateY(0) perspective(600px) rotateX(0);
+            transform: translateY(0) perspective(600px) rotateX(0);
+    transition: -webkit-transform 0.15s ease-out, opacity 0.15s ease-out, max-height 0s, border-width 0s;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out, max-height 0s, border-width 0s;
+    box-shadow: 0 6px 18px 1px rgba(0, 0, 0, 0.12);
+
 }
 .picker__box { padding: 0 1em }
 .picker__header {
