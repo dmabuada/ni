@@ -26,7 +26,7 @@
                 <div class="productImage">
                     {% if product.main_image %}
                         <center>
-                            {% thumbnail product.main_image.picture "85x85" as image %}
+                            {% thumbnail product.main_image.picture "275x229" as image %}
                                 <a href="{{ product.get_absolute_url }}"><img
                                         src="{{ image.url }}"
                                         width="{{ image.width }}"
@@ -51,7 +51,7 @@
                 <div class="productImage">
                     {% if product.main_image %}
                         <center>
-                            {% thumbnail product.main_image.picture "85x85" as image %}
+                            {% thumbnail product.main_image.picture "275x229" as image %}
                                 <a href="{{ product.get_absolute_url }}"><img
                                         src="{{ image.url }}"
                                         width="{{ image.width }}"
