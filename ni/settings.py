@@ -42,11 +42,11 @@ MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL = "/static/"
+MEDIA_URL = "/media/"
 
 # STATIC_ROOT can be whatever different from other dirs
 STATIC_ROOT = os.path.join(DIRNAME, '..', 'static/')
-STATIC_URL = '/static-collect/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(DIRNAME, 'static/'),
