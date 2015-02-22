@@ -18,11 +18,16 @@ window.Picker=function(e,t){function n(r,i,o,a){function s(){return n._.node("di
 
 /* Form on the homepage*/
 
-$('#input_date').pickadate({
-  onOpen: function() {
-    scrollIntoView( this.$node )
-  }
-})
+$(function() {
+  ['#delivery-date', '#return-date'].forEach(function(dateFormId) {
+    $(dateFormId).pickadate({
+      onOpen: function() {
+        scrollIntoView(this.$node);
+      }
+    });
+  });
+});
+
 
 function scrollIntoView( $node ) {
   $('html,body').animate({
