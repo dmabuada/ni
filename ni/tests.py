@@ -6,8 +6,8 @@ class HomePageTestCase(TestCase):
     def test_index(self):
         """Assert that the homepage works"""
         resp = self.client.get('/')
-        self.assertEqual(resp.status_code, 302)
-        self.assertTrue(resp.url.endswith('/en-us/'))
+        self.assertEqual(resp.status_code, 200)
+        # self.assertTrue(resp.url.endswith('/en-us/'))
 
     def test_ping(self):
         """Assert that the ping route comes back with a 200"""

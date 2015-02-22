@@ -1,21 +1,27 @@
 # Django settings for satchmo project.
 # This is a recommended base setting for further customization, default for clonesatchmo.py
+
 import os
+import sys
 
 DIRNAME = os.path.dirname(os.path.normpath(os.path.abspath(__file__)))
+BASENAME = os.path.dirname(DIRNAME)
+
+sys.path.append(os.path.join(BASENAME, 'satchmo'))
 
 DJANGO_PROJECT = 'store'
 DJANGO_SETTINGS_MODULE = 'ni.settings'
 
 ADMINS = (
-     ('', ''),         # tuple (name, email) - important for error reports sending, if DEBUG is disabled.
+    ('', ''),
+    # tuple (name, email) - important for error reports sending, if DEBUG is disabled.
 )
 
 MANAGERS = ADMINS
 
 # Local time zone for this installation. All choices can be found here:
 # http://www.postgresql.org/docs/current/static/datetime-keywords.html#DATETIME-TIMEZONE-SET-TABLE
-TIME_ZONE = 'US/Pacific'
+TIME_ZONE = 'America/New_York'
 
 # Language code for this installation. All choices can be found here:
 # http://www.w3.org/TR/REC-html40/struct/dirlang.html#langcodes
@@ -36,14 +42,14 @@ MEDIA_ROOT = os.path.join(DIRNAME, 'static/')
 
 # URL that handles the media served from MEDIA_ROOT.
 # Example: "http://media.lawrence.com"
-MEDIA_URL="/static/"
+MEDIA_URL = "/static/"
 
 # STATIC_ROOT can be whatever different from other dirs
 STATIC_ROOT = os.path.join(DIRNAME, '..', 'static/')
 STATIC_URL = '/static-collect/'
 
 STATICFILES_DIRS = (
-        os.path.join(DIRNAME, 'static/'),
+    os.path.join(DIRNAME, 'static/'),
 )
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
@@ -58,7 +64,7 @@ SECRET_KEY = '&jrnmg5)=ja@ioe1vhy51^j0hupv#!6nn4hr_poqs6go_iixkz'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+    # 'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,26 +73,30 @@ MIDDLEWARE_CLASSES = (
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
-    "django.middleware.doc.XViewMiddleware",
+    "django.contrib.admindocs.middleware.XViewMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "threaded_multihost.middleware.ThreadLocalMiddleware",
     "satchmo_store.shop.SSLMiddleware.SSLRedirect",
-    #"satchmo_ext.recentlist.middleware.RecentProductMiddleware",
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    # "satchmo_ext.recentlist.middleware.RecentProductMiddleware",
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
-#this is used to add additional config variables to each request
+# this is used to add additional config variables to each request
 # NOTE: If you enable the recent_products context_processor, you MUST have the
 # 'satchmo_ext.recentlist' app installed.
 TEMPLATE_CONTEXT_PROCESSORS = (
-        'satchmo_store.shop.context_processors.settings',
-        'django.contrib.auth.context_processors.auth',
-        #'satchmo_ext.recentlist.context_processors.recent_products',
-        # do not forget following. Maybe not so important currently
-        # but will be
-        'django.core.context_processors.media',   # MEDIA_URL
-        'django.core.context_processors.static',  # STATIC_URL
-        'django.contrib.messages.context_processors.messages',
+    'satchmo_store.shop.context_processors.settings',
+    'django.contrib.auth.context_processors.auth',
+    # 'satchmo_ext.recentlist.context_processors.recent_products',
+    # do not forget following. Maybe not so important currently
+    # but will be
+    'django.core.context_processors.media',  # MEDIA_URL
+    'django.core.context_processors.static',  # STATIC_URL
+    'django.contrib.messages.context_processors.messages',
+
+    # Allauth crap
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
 )
 
 ROOT_URLCONF = 'ni.urls'
@@ -95,25 +105,30 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(DIRNAME,'templates'),
+    os.path.join(DIRNAME, 'templates'),
 )
 
 INSTALLED_APPS = (
+    'livesettings',
     'django.contrib.sites',
     'satchmo_store.shop',
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.comments',
+    'django_comments',
     'django.contrib.sessions',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
-    'registration',
+    # 'registration',
+    # Authentication here
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'sorl.thumbnail',
     'keyedcache',
-    'livesettings',
     'l10n',
     'satchmo_utils.thumbnail',
     'satchmo_store.contact',
@@ -122,15 +137,15 @@ INSTALLED_APPS = (
     'tax.modules.area',
     'tax.modules.percent',
     'shipping',
-    #'satchmo_store.contact.supplier',
-    #'shipping.modules.tiered',
-    #'satchmo_ext.newsletter',
-    #'satchmo_ext.recentlist',
+    # 'satchmo_store.contact.supplier',
+    # 'shipping.modules.tiered',
+    # 'satchmo_ext.newsletter',
+    # 'satchmo_ext.recentlist',
     'product',
     'product.modules.configurable',
     'product.modules.custom',
-    #'product.modules.downloadable',
-    #'product.modules.subscription',
+    # 'product.modules.downloadable',
+    # 'product.modules.subscription',
     #'satchmo_ext.product_feeds',
     #'satchmo_ext.brand',
     'payment',
@@ -144,30 +159,31 @@ INSTALLED_APPS = (
     'satchmo_utils',
     #'shipping.modules.tieredquantity',
     #'satchmo_ext.tieredpricing',
-    # 'debug_toolbar',
+    'debug_toolbar',
     'app_plugins',
     'ni.localsite',
 )
 
 AUTHENTICATION_BACKENDS = (
     'satchmo_store.accounts.email-auth.EmailBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
     'django.contrib.auth.backends.ModelBackend',
 )
 
-#DEBUG_TOOLBAR_CONFIG = {
-#    'INTERCEPT_REDIRECTS' : False,
-#}
+# DEBUG_TOOLBAR_CONFIG = {
+# 'INTERCEPT_REDIRECTS' : False,
+# }
 
 #### Satchmo unique variables ####
-#from django.conf.urls import patterns, include
+# from django.conf.urls import patterns, include
 SATCHMO_SETTINGS = {
-    'SHOP_BASE' : '',
-    'MULTISHOP' : False,
+    'SHOP_BASE': '',
+    'MULTISHOP': False,
     'DOCUMENT_CONVERTER': 'shipping.views.HTMLDocument',
-    #'SHOP_URLS' : patterns('satchmo_store.shop.views',)
+    # 'SHOP_URLS' : patterns('satchmo_store.shop.views',)
 }
 
-SKIP_SOUTH_TESTS=True
+SKIP_SOUTH_TESTS = True
 
 LIVESETTINGS_OPTIONS = {
     1: {
@@ -176,5 +192,9 @@ LIVESETTINGS_OPTIONS = {
     }
 }
 
+TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+
 # Load the local settings
 from local_settings import *
+

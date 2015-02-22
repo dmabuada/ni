@@ -29,6 +29,7 @@
               {% thumbnail product.main_image.picture 85x85 as image %}
               <a href="{{ product.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
               </center>
+              {% endthumbnail %}
            {% endif %}     
             <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
         </div>
@@ -48,6 +49,7 @@
               {% thumbnail product.main_image.picture 85x85 as image %}
               <a href="{{ product.get_absolute_url }}"><img src="{{ image }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
               </center>
+              {% endthumbnail %}
            {% endif %}     
             <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
         </div>

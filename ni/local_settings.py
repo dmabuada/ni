@@ -13,26 +13,27 @@ if LOCAL_DEV:
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
 SATCHMO_DIRNAME = DIRNAME
-    
-gettext_noop = lambda s:s
+
+gettext_noop = lambda s: s
 
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = (
-   ('en', gettext_noop('English')),
+    ('en', gettext_noop('English')),
 )
 
-#These are used when loading the test data
-SITE_NAME = "simple"
+# These are used when loading the test data
+# SITE_NAME = "simple"
 
 DATABASES = {
     'default': {
         # The last part of ENGINE is 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'ado_mssql'.
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(DIRNAME, 'simple.db'),  # Or path to database file if using sqlite3
-        #'USER': '',             # Not used with sqlite3.
-        #'PASSWORD': '',         # Not used with sqlite3.
-        'HOST': '',             # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',             # Set to empty string for default. Not used with sqlite3.
+        'NAME': os.path.join(DIRNAME, 'simple.db'),
+        # Or path to database file if using sqlite3
+        # 'USER': '',             # Not used with sqlite3.
+        # 'PASSWORD': '',         # Not used with sqlite3.
+        'HOST': '',  # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '',  # Set to empty string for default. Not used with sqlite3.
     }
 }
 
@@ -65,7 +66,7 @@ LOGFILE = "satchmo.log"
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
                     datefmt='%a, %d %b %Y %H:%M:%S',
-                    filename=os.path.join(DIRNAME,LOGFILE),
+                    filename=os.path.join(DIRNAME, LOGFILE),
                     filemode='w')
 
 logging.getLogger('django.db.backends').setLevel(logging.INFO)
