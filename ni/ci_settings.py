@@ -150,8 +150,8 @@ INSTALLED_APPS = (
     # 'satchmo_ext.brand',
     'payment',
     'payment.modules.dummy',
-    #'payment.modules.purchaseorder',
-    #'payment.modules.giftcertificate',
+    # 'payment.modules.purchaseorder',
+    # 'payment.modules.giftcertificate',
     #'satchmo_ext.wishlist',
     #'satchmo_ext.upsell',
     #'satchmo_ext.productratings',
@@ -241,8 +241,8 @@ DATABASES = {
 # If this isn't set in your settings file, you can set these here
 # EMAIL_HOST = 'host here'
 # EMAIL_PORT = 587
-#EMAIL_HOST_USER = 'your user here'
-#EMAIL_HOST_PASSWORD = 'your password'
+# EMAIL_HOST_USER = 'your user here'
+# EMAIL_HOST_PASSWORD = 'your password'
 #EMAIL_USE_TLS = True
 
 #These are used when loading the test data
@@ -272,4 +272,3 @@ logging.getLogger('keyedcache').setLevel(logging.INFO)
 logging.getLogger('l10n').setLevel(logging.INFO)
 logging.getLogger('suds').setLevel(logging.INFO)
 logging.info("Satchmo Started")
-
