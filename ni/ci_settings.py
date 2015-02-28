@@ -201,6 +201,10 @@ LOCAL_DEV = False
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+ALLOWED_HOSTS = [
+    '.clowntown.me',
+]
+
 if LOCAL_DEV:
     INTERNAL_IPS = ('127.0.0.1', '0.0.0.0')
 
