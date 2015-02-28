@@ -197,8 +197,8 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 import logging
 
-LOCAL_DEV = True
-DEBUG = True
+LOCAL_DEV = False
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 if LOCAL_DEV:
