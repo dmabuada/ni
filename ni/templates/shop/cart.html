@@ -26,7 +26,19 @@
 {% endif %}
 
 {% if not cart|length %}
-    <h4>{% trans "Your cart is empty." %}</h4>
+<div class="empty-cart">
+    <div>
+        <h4>{% trans "Your bag is empty." %}</h4>
+        {% if popularurl %}
+        <p><a href="{{ popularurl }}">Shop our most popular items</a></p>
+        {% endif %}
+        {% if recenturl %}
+        <p><a href="{{ recenturl }}">Shop recently added items</a></p>
+        {% endif %}
+    </div>
+    {# assign this as a bg image when we get a real image for it #}
+    <div><img src="http://i.imgur.com/i5TT6tj.jpg"></div> 
+</div>
 {% else %}
     <h4>{% trans "Your Cart" %}</h4>
     <table><tr><th></th>
