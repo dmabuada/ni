@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     #'satchmo_ext.tieredpricing',
     'debug_toolbar',
     'app_plugins',
+    'compressor'
 )
 
 AUTHENTICATION_BACKENDS = (

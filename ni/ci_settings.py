@@ -146,8 +146,8 @@ INSTALLED_APPS = (
     'product.modules.custom',
     # 'product.modules.downloadable',
     # 'product.modules.subscription',
-    #'satchmo_ext.product_feeds',
-    #'satchmo_ext.brand',
+    # 'satchmo_ext.product_feeds',
+    # 'satchmo_ext.brand',
     'payment',
     'payment.modules.dummy',
     #'payment.modules.purchaseorder',
@@ -161,6 +161,7 @@ INSTALLED_APPS = (
     #'satchmo_ext.tieredpricing',
     'debug_toolbar',
     'app_plugins',
+    'compressor'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -227,17 +228,19 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'ni',
         # Or path to database file if using sqlite3
-        'USER': 'ni',             # Not used with sqlite3.
-        'PASSWORD': 'pandas12',         # Not used with sqlite3.
-        'HOST': 'ni.cogelwls8lwx.us-east-1.rds.amazonaws.com',  # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '5432',  # Set to empty string for default. Not used with sqlite3.
+        'USER': 'ni',  # Not used with sqlite3.
+        'PASSWORD': 'pandas12',  # Not used with sqlite3.
+        'HOST': 'ni.cogelwls8lwx.us-east-1.rds.amazonaws.com',
+        # Set to empty string for localhost. Not used with sqlite3.
+        'PORT': '5432',
+        # Set to empty string for default. Not used with sqlite3.
     }
 }
 
 ##### For Email ########
 # If this isn't set in your settings file, you can set these here
-#EMAIL_HOST = 'host here'
-#EMAIL_PORT = 587
+# EMAIL_HOST = 'host here'
+# EMAIL_PORT = 587
 #EMAIL_HOST_USER = 'your user here'
 #EMAIL_HOST_PASSWORD = 'your password'
 #EMAIL_USE_TLS = True
