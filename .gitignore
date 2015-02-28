@@ -80,7 +80,7 @@ target/
 
 /.idea/
 *.sqlite3
-static/
-media/
+/static/
+/media/
 *.db
 
