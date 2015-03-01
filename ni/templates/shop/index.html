@@ -11,10 +11,11 @@
     <div id="reserve-form">
         <h1>Reserve Your Outfit</h1>
         <fieldset>
-            <input type="text" id="delivery-date" placeholder="Delivery Date"></br>
-            <input type="text" id="return-date" placeholder="Return Date"></br>
-            <input type="text" placeholder="Zip Code"></br>
-            <input type="text" placeholder="Size"></br>
+            <input type="text" id="delivery-date"
+                   placeholder="Delivery Date"><br>
+            <input type="text" id="return-date" placeholder="Return Date"><br>
+            <input type="text" placeholder="Zip Code"><br>
+            <input type="text" placeholder="Size"><br>
             <input type="submit" value="Submit"/>
         </fieldset>
     </div>
@@ -25,14 +26,12 @@
             {% for product in all_products_list %}
                 <div class="productImage">
                     {% if product.main_image %}
-                        <center>
-                            {% thumbnail product.main_image.picture "275x229" as image %}
-                                <a href="{{ product.get_absolute_url }}"><img
-                                        src="{{ image.url }}"
-                                        width="{{ image.width }}"
-                                        height="{{ image.height }}"/></a>
-                                </center>
-                            {% endthumbnail %}
+                        {% thumbnail product.main_image.picture "275x229" as image %}
+                            <a href="{{ product.get_absolute_url }}"><img
+                                    src="{{ image.url }}"
+                                    width="{{ image.width }}"
+                                    height="{{ image.height }}"/></a>
+                        {% endthumbnail %}
                     {% endif %}
                     <p>
                         <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
@@ -50,14 +49,12 @@
             {% for product in all_products_list %}
                 <div class="productImage">
                     {% if product.main_image %}
-                        <center>
-                            {% thumbnail product.main_image.picture "275x229" as image %}
-                                <a href="{{ product.get_absolute_url }}"><img
-                                        src="{{ image.url }}"
-                                        width="{{ image.width }}"
-                                        height="{{ image.height }}"/></a>
-                                </center>
-                            {% endthumbnail %}
+                        {% thumbnail product.main_image.picture "275x229" as image %}
+                            <a href="{{ product.get_absolute_url }}"><img
+                                    src="{{ image.url }}"
+                                    width="{{ image.width }}"
+                                    height="{{ image.height }}"/></a>
+                        {% endthumbnail %}
                     {% endif %}
                     <p>
                         <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>

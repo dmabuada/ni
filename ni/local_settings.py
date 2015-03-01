@@ -41,13 +41,13 @@ SECRET_KEY = 'EXAMPLE SECRET KEY'
 
 ##### For Email ########
 # If this isn't set in your settings file, you can set these here
-#EMAIL_HOST = 'host here'
-#EMAIL_PORT = 587
-#EMAIL_HOST_USER = 'your user here'
-#EMAIL_HOST_PASSWORD = 'your password'
-#EMAIL_USE_TLS = True
+# EMAIL_HOST = 'host here'
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'your user here'
+# EMAIL_HOST_PASSWORD = 'your password'
+# EMAIL_USE_TLS = True
 
-#These are used when loading the test data
+# These are used when loading the test data
 SITE_DOMAIN = "localhost"
 SITE_NAME = "Simple Satchmo"
 
@@ -61,7 +61,7 @@ CACHES = {
 }
 ACCOUNT_ACTIVATION_DAYS = 7
 
-#Configure logging
+# Configure logging
 LOGFILE = "satchmo.log"
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
