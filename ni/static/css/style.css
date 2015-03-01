@@ -34,6 +34,9 @@ h1 {
     color: #666;
     border-bottom: 2px groove rgba(255,255,255,.2);
 }
+h4 {
+    font-size: 1.5rem;
+}
 .btn {
     position: relative;
     display: block;
@@ -738,3 +741,21 @@ div.recentlyadded { display: block }
 /* ============ Upsell section ============== */
 div.upsell { padding-top: 10px }
 div.upsell .upselldescription { padding-bottom: 10px }
+
+
+/* ============ Empty Cart ============= */
+
+.empty-cart {
+    width: 28rem;
+    height: 13rem;
+    margin: 2rem auto 0;
+}
+.empty-cart div:first-of-type {
+    float: left;
+}
+.empty-cart div:last-of-type {
+    float: right;
+}
+.empty-cart a:hover {
+    text-decoration: underline;
+}
