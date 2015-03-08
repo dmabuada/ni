@@ -33,51 +33,70 @@ satchmo.thumbnails = new Array();
 {% endblock %}
 
 {% block productdetail %}
-<h4>{{ product.translated_name }}</h4>
-<p>{{ product.translated_description }}</p>
-{% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3>{% spaceless %}
-	{% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
-	<span id="price">{{ product|discount_price:sale|currency }}</span>
-	{% endspaceless %}</h3>
+<div id="product-individual-wrapper">
+  <div id="product-individual">
+    <div id="product-left">
+      <ul id="product-image-thumbnails">
+        <li>
+        {% for pic in product.productimage_set.all %}
+          {% thumbnail pic.picture "40x55" as image %}
+          <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" />
+          {% endthumbnail %}
+        {% endfor %}  
+        </li>
+      </ul>
+      {# TODO: make this the main product image #}
+      <span id="product_images">
+      {% for pic in product.productimage_set.all %}
+          {% thumbnail pic.picture "280x400" as image %}
+          <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" />
+          {% endthumbnail %}
+      {% endfor %}
+      </span>
+    </div>
 
-<span id="product_images">
-{% for pic in product.productimage_set.all %}
-    {% thumbnail pic.picture "280x280" as image %}
-    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" />
-    {% endthumbnail %}
-{% endfor %}
-</span>
+    <div id="product-right">
+      <h4>{{ product.translated_name }}</h4>
+      <p>{{ product.translated_description }}</p>
+      {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}<h3>{% spaceless %}
+        {% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
+        <span id="price">{{ product|discount_price:sale|currency }}</span> {% trans "Rental" %}
+        {# TODO: insert reviewing capability, just an image placeholder for now #}
+        <img src="http://i.imgur.com/zri4NX4.png">
+        {% endspaceless %}</h3>
 
-{% with product.translated_attributes as atts %}{% if atts %}
-<p class="productattributes">
-{% for att in product.translated_attributes %}
-{{ att.description }}: {{ att.value }}<br/>
-{% endfor %}
-</p>
-{% endif %}{% endwith %}
+      {% with product.translated_attributes as atts %}{% if atts %}
+      <p class="productattributes">
+      {% for att in product.translated_attributes %}
+      {{ att.description }}: {{ att.value }}<br/>
+      {% endfor %}
+      </p>
+      {% endif %}{% endwith %}
 
-{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<form id="options" action="{% url 'satchmo_smart_add' %}" method="post">{% csrf_token %}
-{% if options %}
-<p>{% trans "Please choose your options" %}:</p>
-{% endif %}
+      {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+      <div id="options-checkout">
+        <form id="options" action="{% url 'satchmo_smart_add' %}" method="post">{% csrf_token %}
 
-{% for option_group in options %}
- {{ option_group.name }}
-    <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
-    {% for choice in option_group.items %}
-     <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
-        {% if choice.price_change %}
-            {% option_price choice %}
-        {% endif %}
-     </option>
-    {% endfor %}
-      </select>
-{% endfor %}
-{% trans "Quantity" %} <input type="text" size="2" name="quantity" id="quantity" value="1" class="priced" />
-<input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
-<input id="addcart" type="submit" name="addcart" value="{% trans "Add to cart" %}" />
-{% plugin_point "product_add_buttons" %}
-{% plugin_point "product_form" %}
-</form>
+        {% for option_group in options %}
+         {{ option_group.name }}
+            <select name="{{ option_group.id }}" id="{{option_group.id}}" class="priced">
+            {% for choice in option_group.items %}
+             <option value="{{ choice.value }}" {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
+                {% if choice.price_change %}
+                    {% option_price choice %}
+                {% endif %}
+             </option>
+            {% endfor %}
+              </select>
+        {% endfor %}
+        
+        <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
+        <input id="addcart" type="submit" name="addcart" value="{% trans "Reserve" %}" />
+        {% plugin_point "product_add_buttons" %}
+        {% plugin_point "product_form" %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
