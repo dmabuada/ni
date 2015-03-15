@@ -45,7 +45,7 @@ satchmo.thumbnails = new Array();
         {% endfor %}  
         </li>
       </ul>
-      {# TODO: make this the main product image #}
+      {# TODO: make this the main product image by targeting the first image in productimage_set.all #}
       <span id="product_images">
       {% for pic in product.productimage_set.all %}
           {% thumbnail pic.picture "280x400" as image %}
@@ -89,14 +89,13 @@ satchmo.thumbnails = new Array();
             {% endfor %}
               </select>
         {% endfor %}
-        
+        {% trans "Quantity" %} <input type="text" size="2" name="quantity" id="quantity" value="1" class="priced" />
         <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
         <input id="addcart" type="submit" name="addcart" value="{% trans "Reserve" %}" />
         {% plugin_point "product_add_buttons" %}
         {% plugin_point "product_form" %}
         </form>
       </div>
-    </div>
   </div>
 </div>
 {% endblock %}

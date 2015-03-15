@@ -1004,11 +1004,12 @@ div.upsell .upselldescription { padding-bottom: 10px }
     border-radius: 3px;
     color: #fff;
     text-decoration: none;
+    display: block;
     font-size: 1rem;
     cursor: pointer;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15);
     line-height: normal;
-    margin-top: 1rem;
+    margin: 1rem auto;
     width: 70%;
     height: 2rem;
     border-color: #ddd1e7 #bba3d0 #aa8cc5;
