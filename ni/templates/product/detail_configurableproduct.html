@@ -89,11 +89,11 @@ satchmo.thumbnails = new Array();
             {% endfor %}
               </select>
         {% endfor %}
-        {% trans "Quantity" %} <input type="text" size="2" name="quantity" id="quantity" value="1" class="priced" />
+        <input type="hidden" size="2" name="quantity" id="quantity" value="1" class="priced" />
         <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
         <input id="addcart" type="submit" name="addcart" value="{% trans "Reserve" %}" />
         {% plugin_point "product_add_buttons" %}
-        {% plugin_point "product_form" %}
+        {% plugin_point "pr`oduct_form" %}
         </form>
       </div>
   </div>
