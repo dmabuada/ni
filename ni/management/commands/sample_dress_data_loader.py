@@ -83,7 +83,7 @@ def load_sample_data(url):
 
     pool = multiprocessing.Pool(4)
     print('Getting source...')
-    pages = pool.map(get_page_source, full_links[:2])  # TODO: remove this limit
+    pages = pool.map(get_page_source, full_links[:8])  # TODO: remove this limit
     print()
     pool.close()
     pool.join()
