@@ -52,6 +52,11 @@ STATICFILES_DIRS = (
     os.path.join(DIRNAME, 'static/'),
 )
 
+# Fixtures directory
+FIXTURES_DIRS = (
+    os.path.join(DIRNAME, 'fixtures/')
+)
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -161,7 +166,8 @@ INSTALLED_APPS = (
     # 'satchmo_ext.tieredpricing',
     'debug_toolbar',
     'app_plugins',
-    'compressor'
+    'compressor',
+    'ni'
 )
 
 AUTHENTICATION_BACKENDS = (
