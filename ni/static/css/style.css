@@ -2,10 +2,9 @@
 #container {
     line-height: 130%;
     width: 100%;
-    margin: 10px auto;
-    margin-top: 0;
-    padding: 0 color : #333;
-    background-color: #fdfdfd;
+    padding: 0;
+    margin: 0;
+    color: #333;
 }
 
 #navbar {
@@ -72,7 +71,7 @@ h5 {
 
 #sidebar-secondary {
     float: left;
-    width: 160px;
+    width: 210px;
     margin: 0;
     padding: 1em;
 }
@@ -99,9 +98,6 @@ h5 {
     padding-top: 10px
 }
 
-#content {
-    margin: 1.1rem auto 2rem;
-}
 
 #content .informational {
     width: 80%;
@@ -114,7 +110,6 @@ body {
     margin: 0;
     padding: 0;
     color: #666;
-    background-color: #e9eaed;
 }
 
 a {
@@ -268,25 +263,60 @@ a.down-arrow:after {
 }
 
 #product_category {
-    margin: 0 0 0 140px;
+    margin-left: 210px;
+}
+
+#product_category ul {
+    text-align: center;
 }
 
 #wishlist ul li,
 #product_category ul li {
-    padding: .5em;
     list-style: none;
-    border-bottom: 1px dashed #e0e0e0;
     background-color: white;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 15px;
 }
 
+#product_category ul li .product-image {
+    display: block;
+}
+
+/*
+#product_category ul li .blur {
+    position: relative;
+    display: inline-block;
+}
+
+#product_category ul li:hover .blur:after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    -webkit-box-shadow: 0 0 15px rgba(219, 204, 231, 1) inset;
+}
+*/
+#product_category ul li .product-image img {
+    display: block;
+    margin: 0 auto;
+}
+
+/*
 #wishlist ul li:hover,
 #product_category ul li:hover {
-    background-color: #f0fff0
+    background-color: #DBCCE7;
 }
+*/
 
 #wishlist ul li a,
 #product_category ul li a {
-    display: block
+    display: block;
+    padding: 10px 10px;
+    text-align: center;
 }
 
 #wishlist span.date {
@@ -870,6 +900,7 @@ img {
     overflow: hidden;
     width: 250px;
     left: 20px;
+    float: left;
 }
 
 #navbar #search input {
@@ -969,9 +1000,13 @@ div.recentlyadded {
 }
 
 /* ============ Upsell section ============== */
-div.upsell { padding-top: 10px }
-div.upsell .upselldescription { padding-bottom: 10px }
+div.upsell {
+    padding-top: 10px
+}
 
+div.upsell .upselldescription {
+    padding-bottom: 10px
+}
 
 /* ============ Empty Cart ============= */
 
@@ -980,12 +1015,15 @@ div.upsell .upselldescription { padding-bottom: 10px }
     height: 13rem;
     margin: 2rem auto 0;
 }
+
 .empty-cart div:first-of-type {
     float: left;
 }
+
 .empty-cart div:last-of-type {
     float: right;
 }
+
 .empty-cart a:hover {
     text-decoration: underline;
 }
