@@ -55,27 +55,41 @@
 
     <div id="product_category">
         <h3>{{ category.translated_name }}</h3>
+
         {% if category.translated_description %}
-            <p class="product_category_description">{{ category.translated_description }}</p>{% endif %}
+            <p class="product_category_description">{{ category.translated_description }}</p>
+        {% endif %}
+
         {% if category.main_image %}
             {% thumbnail category.main_image.picture "400x400" as image %}
                 <img src="{{ image.url }}" width="{{ image.width }}"
                      height="{{ image.height }}"/>
             {% endthumbnail %}
         {% endif %}
+
         {% for product in products %}
+
             {% if forloop.first %}
-                <ul>  {% endif %}
+                <ul>
+            {% endif %}
+
         <li>
             {% thumbnail product.main_image.picture "400x400" as image %}
                 <a class='product-image' href="{{ product.get_absolute_url }}">
                     <img src="{{ image.url }}" width="{{ image.width }}"
-                         height="{{ image.height }}"/></a>
+                         height="{{ image.height }}"/>
+                </a>
             {% endthumbnail %}
             <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
+        <a href="{{ product.get_absolute_url }}">${{ product.unit_price }} to rent</a>
         </li>
-        {% if forloop.last %} </ul> {% endif %}
+
+        {% if forloop.last %}
+            </ul>
+        {% endif %}
+
         {% endfor %}
+
         {% if child_categories %}
             {% for cat in child_categories %}
                 <h4>{{ cat.translated_name }}</h4>
@@ -84,7 +98,8 @@
                 {% endif %}
                 {% for product in cat.active_products %}
                     {% if forloop.first %}
-                        <ul>  {% endif %}
+                        <ul>
+                    {% endif %}
                 <li>
                     {% thumbnail product.main_image.picture "400x400" as image %}
                         <a class='product-image'
@@ -96,10 +111,13 @@
                     {% endthumbnail %}
                     <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
                 </li>
-                {% if forloop.last %} </ul> {% endif %}
+                {% if forloop.last %}
+                    </ul>
+                {% endif %}
                 {% endfor %}
             {% endfor %}
         {% endif %}
+
         {% if sale %}
             {% include "product/some_discount_eligible.html" %}
         {% endif %}
