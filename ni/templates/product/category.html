@@ -58,7 +58,7 @@
         {% if category.translated_description %}
             <p class="product_category_description">{{ category.translated_description }}</p>{% endif %}
         {% if category.main_image %}
-            {% thumbnail category.main_image.picture "85x85" as image %}
+            {% thumbnail category.main_image.picture "400x400" as image %}
                 <img src="{{ image.url }}" width="{{ image.width }}"
                      height="{{ image.height }}"/>
             {% endthumbnail %}
@@ -67,8 +67,8 @@
             {% if forloop.first %}
                 <ul>  {% endif %}
         <li>
-            {% thumbnail product.main_image.picture "85x85" as image %}
-                <a href="{{ product.get_absolute_url }}">
+            {% thumbnail product.main_image.picture "400x400" as image %}
+                <a class='product-image' href="{{ product.get_absolute_url }}">
                     <img src="{{ image.url }}" width="{{ image.width }}"
                          height="{{ image.height }}"/></a>
             {% endthumbnail %}
@@ -85,10 +85,15 @@
                 {% for product in cat.active_products %}
                     {% if forloop.first %}
                         <ul>  {% endif %}
-                <li>{% thumbnail product.main_image.picture "85x85" as image %}
-                    <a href="{{ product.get_absolute_url }}"><img
-                            src="{{ image.url }}" width="{{ image.width }}"
-                            height="{{ image.height }}"/></a>{% endthumbnail %}
+                <li>
+                    {% thumbnail product.main_image.picture "400x400" as image %}
+                        <a class='product-image'
+                           href="{{ product.get_absolute_url }}">
+                            <img src="{{ image.url }}"
+                                 width="{{ image.width }}"
+                                 height="{{ image.height }}"/>
+                        </a>
+                    {% endthumbnail %}
                     <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
                 </li>
                 {% if forloop.last %} </ul> {% endif %}
@@ -100,3 +105,4 @@
         {% endif %}
     </div>
 {% endblock %}
+
