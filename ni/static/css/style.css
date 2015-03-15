@@ -995,6 +995,7 @@ div.upsell .upselldescription { padding-bottom: 10px }
 
 #product-individual {
     width: 100%;
+    display: inline-block;
 }
 
 #product-individual #addcart {

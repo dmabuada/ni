@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load thumbnail %}
 {% load satchmo_price %}
+{% load satchmo_ratings %}
 {% load satchmo_util %}
 {% load satchmo_currency satchmo_category%}
 {% load satchmo_discounts satchmo_tax %}
@@ -93,7 +94,7 @@ satchmo.thumbnails = new Array();
         <input type="hidden" name="productname" id="productname" value="{{product.slug}}" />
         <input id="addcart" type="submit" name="addcart" value="{% trans "Reserve" %}" />
         {% plugin_point "product_add_buttons" %}
-        {% plugin_point "pr`oduct_form" %}
+        {% plugin_point "product_form" %}
         </form>
       </div>
   </div>
