@@ -62,8 +62,9 @@ satchmo.thumbnails = new Array();
       {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}<h3>{% spaceless %}
         {% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
         <span id="price">{{ product|discount_price:sale|currency }}</span> {% trans "Rental" %}
-        {# TODO: insert reviewing capability, just an image placeholder for now #}
-        <img src="http://i.imgur.com/zri4NX4.png">
+        {% with product|product_rating_average_string as rating %}
+        <p class="averagerating">{% blocktrans %}--Average rating: {{rating}}{% endblocktrans %}</p>
+        {% endwith %}
         {% endspaceless %}</h3>
 
       {% with product.translated_attributes as atts %}{% if atts %}
