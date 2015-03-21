@@ -4,7 +4,8 @@
     width: 100%;
     margin: 10px auto;
     margin-top: 0;
-    padding: 0 color : #333;
+    padding: 0;
+    color : #333;
     background-color: #fdfdfd;
 }
 
@@ -62,6 +63,12 @@ h4 {
 }
 
 h5 {
+    margin: 0;
+    padding: 0;
+}
+
+ul, li {
+    list-style-type: none;
     margin: 0;
     padding: 0;
 }
@@ -149,7 +156,6 @@ a.down-arrow:after {
 #pagination li {
     display: inline;
     padding-bottom: 1px;
-    list-style-type: none;
 }
 
 #pagination a,
@@ -218,12 +224,10 @@ a.down-arrow:after {
 #menu_container ul {
     margin: 0;
     padding: 0;
-    list-style-type: none;
 }
 
 #shipping ul li {
     padding-left: 1em;
-    list-style-type: none;
     text-decoration: none;
     text-indent: -1em;
 }
@@ -337,10 +341,6 @@ a.down-arrow:after {
 .addressblock {
     padding-top: .5em;
     padding-bottom: .5em;
-}
-
-.profile li {
-    list-style-type: none
 }
 
 table.ordertable {
@@ -956,10 +956,6 @@ div.recentlyadded {
     width: 5em
 }
 
-#payment ul li {
-    list-style-type: none
-}
-
 /* ============ Upsell section ============== */
 div.upsell { padding-top: 10px }
 div.upsell .upselldescription { padding-bottom: 10px }
@@ -980,4 +976,76 @@ div.upsell .upselldescription { padding-bottom: 10px }
 }
 .empty-cart a:hover {
     text-decoration: underline;
+}
+
+/* ========== My account ========== */ 
+
+.my-account {
+    width: 71rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.my-account .account-sidebar {
+    float: left;
+    width: 11rem;
+    margin: 1rem 0 1rem 0;
+    text-align: left;
+    padding: 1rem;
+    background-color: #f2edf6;
+    -webkit-border-radius: 5px;
+    -mozilla-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.my-account .account-sidebar li {
+    border-top: 1px solid #dadbd6;
+    display: block;
+    padding: 0.5rem;
+}
+
+.my-account .account-sidebar a:hover{
+    color: #999;
+}
+
+.my-account .account-primary {
+    float: left;
+    width: 55rem;
+    margin: 1rem;
+}
+
+.my-account .section {
+    float: left;
+    width: 50.3rem;
+    height: auto;
+    border: 1px solid #dadbd6;
+    border-radius: 5px;
+    background-color: #FFF;
+    margin-bottom: 24px;
+}
+
+.my-account .about-me,
+.my-account .address-book {
+    width: 24rem;
+}
+
+.my-account .about-me {
+    margin-right: 2rem;
+}
+
+.my-account .profile {
+    margin: 1rem;
+    padding: 0.5rem;
+}
+
+.my-account h5 {
+    background-color: #f2edf6;
+    border-radius: 4px 4px 0 0;
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+}
+.my-account h4 {
+    font-size: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
 }
