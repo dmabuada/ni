@@ -167,10 +167,15 @@ class Command(NoArgsCommand):
         p4.save()
         p5 = PhoneNumber(contact=c4, phone="755-555-1111", type="Fax")
         p5.save()
-        a3 = AddressBook(contact=c4, description="Mailing address",
-                         street1="Receiving Dept",
-                         street2="918 Funky Town St", city="Fishkill",
-                         state="NJ", country=us, postal_code="19010")
+        a3 = AddressBook(
+            contact=c4,
+            description="Mailing address",
+            street1="Receiving Dept",
+            street2="918 Funky Town St",
+            city="Fishkill",
+            state="NJ", country=us,
+            postal_code="19010"
+        )
         a3.save()
 
         print("Creating Categories...")
