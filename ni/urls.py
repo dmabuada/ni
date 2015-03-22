@@ -6,7 +6,8 @@ from ni import views
 
 urlpatterns += patterns('',
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^ping', views.ping, name='health')
+    url(r'^ping', views.ping, name='health'),
+    url(r'^accounts/', include('registration.backends.default.urls')),
 )
 
 # if settings.DEBUG:
