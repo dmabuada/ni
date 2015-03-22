@@ -336,14 +336,7 @@ a.down-arrow:after {
     width: 9em;
     padding: 3px 17px 3px 8px;
     text-decoration: none;
-    color: #fff;
     border-bottom: 1px solid #fff;
-    background-color: #7f7f7f;
-}
-
-#menu_container a:hover {
-    color: #fff;
-    background-color: #b6b6b6;
 }
 
 #menu_container li li a {
@@ -352,9 +345,7 @@ a.down-arrow:after {
     width: 9em;
     padding: 3px 8px 3px 17px;
     text-decoration: none;
-    color: #fff;
     border-bottom: 1px solid #fff;
-    background-color: #c0c0c0;
 }
 
 #menu_container li li li a {
@@ -369,7 +360,10 @@ a.down-arrow:after {
 }
 
 #menu_container a.current:before {
-    content: '\0020 \0020 \0020 \00BB \0020'
+  content: '\0020 \0020 \0020 \00BB \0020';
+  color: purple;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .addressblock {

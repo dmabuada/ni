@@ -7,7 +7,15 @@ import logging
 
 log = logging.getLogger('search listener')
 
-def default_product_search_listener(sender, request=None, category=None, keywords=[], results={}, **kwargs):
+
+def default_product_search_listener(
+        sender,
+        request=None,
+        category=None,
+        keywords=[],
+        results={},
+        **kwargs
+):
     """Performs the base satchmo search.  This is easily overridden by unregistering the listener and creating your own.
     However, it usually won't have to be overridden, since it just adds data to the results dict.  If you are simply
     adding more results, then leave this listener registered and add more objects in your search listener.
@@ -15,7 +23,7 @@ def default_product_search_listener(sender, request=None, category=None, keyword
     log.debug('default product search listener')
     site = Site.objects.get_current()
 
-    show_pv = config_value('PRODUCT','SEARCH_SHOW_PRODUCTVARIATIONS', False)
+    show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
 
     products = Product.objects.active_by_site(variations=show_pv, site=site)
     if category:
@@ -24,7 +32,7 @@ def default_product_search_listener(sender, request=None, category=None, keyword
             categories = categories[0].get_active_children(include_self=True)
         products = products.filter(category__in=categories)
     else:
-        #automatically assumes active categories only
+        # automatically assumes active categories only
         categories = Category.objects.by_site(site=site)
 
     log.debug('initial: %s', list(products))
@@ -41,14 +49,22 @@ def default_product_search_listener(sender, request=None, category=None, keyword
             | Q(short_description__icontains=keyword)
             | Q(description__icontains=keyword)
             | Q(meta__icontains=keyword)
-            | Q(sku__iexact=keyword) )
+            | Q(sku__iexact=keyword))
 
     results.update({
         'categories': categories,
         'products': products
-        })
+    })
 
-def priceband_search_listener(sender, request=None, category=None, keywords=[], results={}, **kwargs):
+
+def priceband_search_listener(
+        sender,
+        request=None,
+        category=None,
+        keywords=[],
+        results={},
+        **kwargs
+):
     """Filter search results by price bands.
 
     If a "priceband" parameter is available, it will be parsed as follows:
@@ -56,7 +72,7 @@ def priceband_search_listener(sender, request=None, category=None, keywords=[], 
         if there is no "-", then it will be parsed as lowval or higher
     """
     log.debug('priceband search listener')
-    if request.method=="GET":
+    if request.method == "GET":
         data = request.GET
     else:
         data = request.POST
@@ -83,14 +99,15 @@ def priceband_search_listener(sender, request=None, category=None, keywords=[], 
     log.debug('priceband pre-filter length=%i', len(products))
     for p in products:
         price = p.unit_price
-        if price>low and price<=high:
+        if low < price <= high:
             priced.append(p)
     log.debug('priceband post-filter length=%i', len(priced))
 
     categories = results['categories']
-    categories = categories.filter(product__in = priced)
+    categories = categories.filter(product__in=priced)
     results['products'] = priced
     results['categories'] = categories
+
 
 def discount_used_listener(sender, order=None, **kwargs):
     """If an order has a discount, increment numUses on it.
