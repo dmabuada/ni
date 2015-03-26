@@ -13,9 +13,24 @@
         <link rel="stylesheet"
               href="{{ STATIC_URL }}css/style.css"/>{% endblock %}
     <script src="{{ STATIC_URL }}js/pickadate.js"></script>
+    <script>
+
+        /* Form on the homepage*/
+
+        $(function () {
+            ['#delivery-date', '#return-date'].forEach(function (dateFormId) {
+                $(dateFormId).pickadate({
+                    onOpen: function () {
+                        scrollIntoView(this.$node);
+                    }
+                });
+            });
+        });
+    </script>
+
     <title>
         {% block title %}{{ shop_name }}{% if pagetitle %}: {{ pagetitle }}
-    {% endif %}{% endblock %}
+        {% endif %}{% endblock %}
     </title>
 
 </head>

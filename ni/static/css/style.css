@@ -1111,3 +1111,8 @@ div.upsell .upselldescription {
 .productreviews form {
     text-align: center;
 }
+
+.errorlist {
+    color: red;
+}
+
