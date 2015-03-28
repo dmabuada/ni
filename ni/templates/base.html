@@ -12,7 +12,9 @@
     {% block stylesheet %}
         <link rel="stylesheet"
               href="{{ STATIC_URL }}css/style.css"/>{% endblock %}
+    {% include "registration/login.html" %}  
     <script src="{{ STATIC_URL }}js/pickadate.js"></script>
+    <script src="{{ STATIC_URL }}js/login.js"></script>
     <title>
         {% block title %}{{ shop_name }}{% if pagetitle %}: {{ pagetitle }}
     {% endif %}{% endblock %}
@@ -55,10 +57,10 @@
                     {% endif %}
                     <li><a href="{{ logout_url }}?next={{ request.path }}">Log
                         out</a></li>
-                {% else %}
+                    {% else %}
                     <li><a href="{% url 'registration_register' %}">Register</a>
                     </li>
-                    <li><a href="{{ login_url }}?next={{ request.path }}">Log
+                    <li><a class="login-window" href="#login-box">Log
                         in</a></li>
                 {% endif %}
                 <li><span></span></li>
