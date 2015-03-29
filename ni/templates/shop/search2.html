@@ -10,15 +10,24 @@
 
 {% block content %}
 
-    <form action="{% url 'ni-search' %}" method="get">
-        {{ form }}
-        <input type="submit" value="Submit"/>
-    </form>
+
+    <div id="sidebar-secondary">
+        {% block sidebar-secondary %}
+
+            <form action="{% url 'ni-search' %}" method="get">
+                {{ form }}
+                <input type="submit" value="Submit"/>
+            </form>
+
+        {% endblock sidebar-secondary %}
+    </div>
+
 
     {% if not results.categories and not results.products %}
         <h4>{% trans "Nothing found" %}</h4>
     {% else %}
 
+        {% comment %}
         {% if category %}
             {% with results.categories.0.translated_name as category_name %}
                 <h4>
@@ -42,42 +51,47 @@
                 </ul>
             {% endif %}
         {% endif %}
-        {% if results.products %}
-            {% if not category %}
-                <h4>{% trans "Products" %}</h4>
-            {% endif %}
 
+{% endcomment %}
 
-            {% for product in results.products %}
-
-                {% if forloop.first %}
-                    <ul>
+        <div id="product_category">
+            {% if results.products %}
+                {% if not category %}
+                    <h4>{% trans "Products" %}</h4>
                 {% endif %}
 
-            <li>
-                {% thumbnail product.main_image.picture "400x400" as image %}
-                    <a class='product-image'
-                       href="{{ product.get_absolute_url }}">
-                        <img src="{{ image.url }}" width="{{ image.width }}"
-                             height="{{ image.height }}"/>
-                    </a>
-                {% endthumbnail %}
-                <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
-                <a href="{{ product.get_absolute_url }}">${{ product.unit_price }}
-                    to rent</a>
-            </li>
+                {% for product in results.products %}
 
-            {% if forloop.last %}
-                </ul>
+                    {% if forloop.first %}
+                        <ul>
+                    {% endif %}
+
+                <li>
+                    {% thumbnail product.main_image.picture "400x400" as image %}
+                        <a class='product-image'
+                           href="{{ product.get_absolute_url }}">
+                            <img src="{{ image.url }}" width="{{ image.width }}"
+                                 height="{{ image.height }}"/>
+                        </a>
+                    {% endthumbnail %}
+                    <a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
+                    <a href="{{ product.get_absolute_url }}">${{ product.unit_price }}
+                        to rent</a>
+                </li>
+
+                {% if forloop.last %}
+                    </ul>
+                {% endif %}
+
+                {% endfor %}
+
+            {% else %}
+                {% if category %}
+                    <p>{% trans "Nothing found" %}</p>
+                {% endif %}
             {% endif %}
+        </div>
 
-            {% endfor %}
-
-        {% else %}
-            {% if category %}
-                <p>{% trans "Nothing found" %}</p>
-            {% endif %}
-        {% endif %}
     {% endif %}
 
 

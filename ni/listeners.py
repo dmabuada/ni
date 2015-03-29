@@ -21,12 +21,20 @@ def product_search_listener(sender, query, **kwargs):
     keywords = query.get('k', '').split()
     size = query.get('size', None)
 
+
     log.debug('default product search listener')
     site = Site.objects.get_current()
 
     show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
+    products = Product.objects.active_by_site(variations=False, site=site)
 
-    products = Product.objects.active_by_site(variations=show_pv, site=site)
+    price_range = query.get('price_range', None)
+    if price_range:
+        min_price, max_price = map(int, price_range.split('-'))
+        products = products.filter(
+            price__price__gt=min_price-1,
+            price__price__lt=max_price+1
+        )
 
     category = query.get('category', None)
     if category:
