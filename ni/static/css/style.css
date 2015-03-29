@@ -71,7 +71,7 @@ h5 {
 
 #sidebar-secondary {
     float: left;
-    width: 210px;
+    width: 240px;
     margin: 0;
     padding: 1em;
 }
@@ -97,7 +97,6 @@ h5 {
 #sidebar-primary .wishlist {
     padding-top: 10px
 }
-
 
 #content .informational {
     width: 80%;
@@ -263,7 +262,7 @@ a.down-arrow:after {
 }
 
 #product_category {
-    margin-left: 210px;
+    margin-left: 240px;
 }
 
 #product_category ul {
@@ -315,7 +314,7 @@ a.down-arrow:after {
 #wishlist ul li a,
 #product_category ul li a {
     display: block;
-    padding: 10px 10px;
+    padding: 10px 0;
     text-align: center;
 }
 
@@ -360,10 +359,10 @@ a.down-arrow:after {
 }
 
 #menu_container a.current:before {
-  content: '\0020 \0020 \0020 \00BB \0020';
-  color: purple;
-  font-weight: 600;
-  font-size: 1rem;
+    content: '\0020 \0020 \0020 \00BB \0020';
+    color: purple;
+    font-weight: 600;
+    font-size: 1rem;
 }
 
 .addressblock {
@@ -490,6 +489,7 @@ img {
 }
 
 #reserve-form input[type=submit] {
+    border-color: #ddd1e7 #bba3d0 #aa8cc5;
     border-color: #ddd1e7 #bba3d0 #aa8cc5;
     background: #ddd1e7;
     background: -o-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
@@ -1116,3 +1116,18 @@ div.upsell .upselldescription {
     color: red;
 }
 
+#id_size label {
+    border: 1px solid #ddd;
+    padding: 4px;
+    border-radius: 100px;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+}
+
+form#search-page label {
+    text-transform: lowercase;
+    display: block;
+    margin-top: 15px;
+}

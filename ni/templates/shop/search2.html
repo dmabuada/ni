@@ -14,7 +14,11 @@
     <div id="sidebar-secondary">
         {% block sidebar-secondary %}
 
-            <form action="{% url 'ni-search' %}" method="get">
+            <form action="{% url 'ni-search' %}"
+                  method="get"
+                  class="ac-custom ac-checkbox ac-checkmark"
+                  autocomplete="off"
+                  id="search-page">
                 {{ form }}
                 <input type="submit" value="Submit"/>
             </form>
