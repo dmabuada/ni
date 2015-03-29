@@ -24,15 +24,8 @@ def _prices():
     return r
 
 
-# class DateRangeSelectWidget(forms.TextInput):
-#     def render(self, name, value, attrs=None):
-#         return super(DateRangeSelectWidget, self).render(
-#             self, name, value, attrs
-#         )
-
-
 class SearchForm(forms.Form):
-    k = forms.CharField(label='', max_length=100, required=False)
+    k = forms.CharField(label='search', max_length=100, required=False)
     category = forms.ModelChoiceField(Category.objects.all(), required=False)
 
     start_date = forms.CharField(
@@ -45,15 +38,17 @@ class SearchForm(forms.Form):
         required=False
     )
 
-
     size = forms.ModelChoiceField(
         Option.objects.values_list('name', flat=True).distinct(),
         required=False,
-        widget=forms.RadioSelect
+        widget=forms.CheckboxSelectMultiple,
+        empty_label=None
     )
 
     price_range = forms.ChoiceField(
         [('{}-{}'.format(*i), '${}-${}'.format(*i)) for i in _prices()],
         required=False,
-        widget=forms.RadioSelect
+        widget=forms.CheckboxSelectMultiple,
     )
+
+
