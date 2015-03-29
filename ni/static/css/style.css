@@ -1131,3 +1131,27 @@ form#search-page label {
     display: block;
     margin-top: 15px;
 }
+
+#id_price_range li {
+    display: block;
+}
+
+form#search-page input[type=submit] {
+    margin-top: 20px;
+    font-family: 'Muli', sans-serif;
+    font-size: .8rem;
+    height: 2.3rem;
+    padding: 0;
+    cursor: pointer;
+    display: block;
+    color: #eee;
+    width: 100%;
+    border: none;
+    border-color: #ddd1e7 #bba3d0 #aa8cc5;
+    background: #ddd1e7;
+    background: -o-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+    background: -ms-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+    background: -moz-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+    background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+}
+
