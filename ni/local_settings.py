@@ -10,6 +10,10 @@ TEMPLATE_DEBUG = DEBUG
 if LOCAL_DEV:
     INTERNAL_IPS = ('127.0.0.1', '0.0.0.0')
 
+ALLOWED_HOSTS = [
+    '*'
+]
+
 DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
 SATCHMO_DIRNAME = DIRNAME

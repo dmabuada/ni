@@ -52,6 +52,12 @@ STATICFILES_DIRS = (
     os.path.join(DIRNAME, 'static/'),
 )
 
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'compressor.finders.CompressorFinder'
+)
+
 # Fixtures directory
 FIXTURES_DIRS = (
     os.path.join(DIRNAME, 'fixtures/')
@@ -203,4 +209,3 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # Load the local settings
 from local_settings import *
-
