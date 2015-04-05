@@ -10,7 +10,7 @@ BASENAME = os.path.dirname(DIRNAME)
 sys.path.append(os.path.join(BASENAME, 'satchmo'))
 
 DJANGO_PROJECT = 'store'
-DJANGO_SETTINGS_MODULE = 'ni.settings'
+DJANGO_SETTINGS_MODULE = 'ni.ci_settings'
 
 ADMINS = (
     ('', ''),
@@ -199,7 +199,7 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 import logging
 
 LOCAL_DEV = False
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
