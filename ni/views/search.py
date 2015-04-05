@@ -11,7 +11,7 @@ def search_view(request, template="shop/search2.html"):
     Perform a search based on keywords and categories in the form submission
     """
 
-    if request.method == "GET":
+    if request.method == "GET" and request.GET.items():
         form = SearchForm(request.GET)
     else:
         form = SearchForm(request.POST)

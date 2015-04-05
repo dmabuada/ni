@@ -9,7 +9,7 @@ from django.utils.functional import curry
 from django.utils.encoding import smart_str
 from django.template import loader, VariableDoesNotExist, Variable, Node
 from django.template import TemplateDoesNotExist, TemplateSyntaxError
-from django.core.cache.backends.locmem import CacheClass as LocalMemCache
+from django.core.cache.backends.locmem import LocMemCache as LocalMemCache
 
 TAG_KEYWORD_ARGUMENT_SEPARATOR = '='
 
