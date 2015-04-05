@@ -1,6 +1,7 @@
 {% load url from future %}
 {% load i18n %}
 {% include "account/password_reset.html" %}  
+{% include "registration/registration_form.html" %}  
 
 {% block content %}
 <div id="login-box" class="login-popup">
@@ -30,7 +31,7 @@
 	{% url 'registration_register' as registration_register %}
 	{% url 'auth_password_reset' as auth_password_reset %}
 	{% if registration_register %}
-	    <p>{% trans "Don't have an account?" %} <a href="{% url 'registration_register' %}">{% trans "Sign up" %}</a>.</p>
+	    <p>{% trans "Don't have an account?" %} <a class="register-window" href="#register-box">{% trans "Sign up" %}</a>.</p>
 	{% endif %}
 	{% if auth_password_reset %}
 	    <p><a class="forgot-window" href="#forgot-box">{% trans "Forgot password?" %}</p>

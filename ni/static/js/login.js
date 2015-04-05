@@ -1,6 +1,6 @@
-/** TODO: clean up this shitty code but get it to work for now*/
+/* TODO: Clean up this shitty code, but get it to work for now */
 
-
+// Open login form modal
 $(document).ready(function() {
 $('a.login-window').click(function() {
     
@@ -21,26 +21,43 @@ $('a.login-window').click(function() {
   // append overlay to body
   $('body').append('<div id="overlay"></div>');
   $('#overlay').fadeIn(300);
-
-  // open forgot password in same modal 
-  $('a.forgot-window').click(function() {
-      $('#login-box').remove();
-
-      var forgotModal = $(this).attr('href');
-
-      $(forgotModal).fadeIn(200);
-  });
+  
     return false;
   });
-  
-  return false;
 });
 
+// Open forgot password modal 
+$(function() {
+  $(document).on('click','a.forgot-window',function() {
+    $('#login-box').remove();
+
+  var forgotModal = $(this).attr('href');
+  //fade in on click
+  $(forgotModal).fadeIn(200);
+
+  });
+    return false;
+});
+
+// Open registration modal 
+$(function() {
+  $(document).on('click','a.register-window',function() {
+    $('#login-box').remove();
+
+  var registrationModal = $(this).attr('href');
+  //fade in on click
+  $(registrationModal).fadeIn(200);
+
+  });
+    return false;
+});
+
+// Close out of all modals if user clicks overlay/close btn
 $(function() {
   $(document).on('click','a.close, #overlay',function() {
-    $('#overlay, #login-box').fadeOut('300',function() {
+    $('#overlay,.login-popup').fadeOut('300',function() {
     $('#overlay').remove();
   });
     return false;
   });
-  });
+});

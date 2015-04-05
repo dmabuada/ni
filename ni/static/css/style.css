@@ -1101,7 +1101,8 @@ div.upsell .upselldescription { padding-bottom: 10px }
 }
 
 .login-popup,
-.forgot-popup {
+.forgot-popup,
+.register-popup {
     display: none;
     background: #fff;
     padding: 2rem;
@@ -1121,7 +1122,8 @@ div.upsell .upselldescription { padding-bottom: 10px }
 }
 
 .login-popup a,
-.forgot-popup a {
+.forgot-popup a,
+.register-popup a {
     color: #8459AB;
 }
 
