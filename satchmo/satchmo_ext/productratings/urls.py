@@ -14,7 +14,7 @@ productpatterns = patterns('satchmo_ext.productratings.views',
 # URLs if you aren't using ratings.
 #(r'^comments/post/$', 'comments.post_rating', {'maxcomments': 1 }, 'satchmo_rating_post'),
 commentpatterns = patterns('',
-    (r'^comments/', include('django_comments.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
 )
 
 def add_product_urls(sender, patterns=(), section="", **kwargs):

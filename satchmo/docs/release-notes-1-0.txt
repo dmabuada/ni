@@ -1,6 +1,0 @@
-Satchmo Development Branch
-==========================
-
-
-Changes
--------

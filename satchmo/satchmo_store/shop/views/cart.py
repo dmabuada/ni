@@ -7,6 +7,8 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext, loader
 from django.utils.datastructures import MultiValueDictKeyError
 from django.utils.safestring import mark_safe
+# from django.utils import simplejson
+import json
 from django.utils.translation import ugettext as _
 from django.views.decorators.cache import never_cache
 from livesettings import config_value
@@ -21,14 +23,20 @@ from satchmo_utils.numbers import RoundedDecimalError, round_decimal
 from satchmo_utils.views import bad_or_missing
 from l10n.utils import moneyfmt
 import logging
-import json
-from json.encoder import JSONEncoder
+
+try:
+    # from django.utils.simplejson.encoder import JSONEncoder
+    from json import JSONEncoder
+except ImportError:
+    from django.utils.simplejson import JSONEncoder
+except ImportError:
+    from simplejson.encoder import JSONEncoder
 
 log = logging.getLogger('shop.views.cart')
 
 
 def _json_response(data, error=False, **kwargs):
-    response = HttpResponse( json.dumps( data ),
+    response = HttpResponse( simplejson.dumps( data ),
                             mimetype = 'application/json')
 
     if error:

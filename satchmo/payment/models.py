@@ -27,7 +27,7 @@ class PaymentOption(models.Model):
     configuration.
     """
     description = models.CharField(_("Description"), max_length=20)
-    active = models.BooleanField(_("Active"), default=False,
+    active = models.BooleanField(_("Active"),
         help_text=_("Should this be displayed as an option for the user?"))
     optionName = models.CharField(_("Option Name"), max_length=20, choices=iterchoices_db(payment.config.labelled_gateway_choices),
         unique=True,
@@ -43,7 +43,7 @@ class CreditCardDetail(models.Model):
     Stores an encrypted CC number, its information, and its
     displayable number.
     """
-    orderpayment = models.ForeignKey('shop.OrderPayment', unique=True,
+    orderpayment = models.OneToOneField('shop.OrderPayment', unique=True,
         related_name="creditcards")
     credit_type = models.CharField(_("Credit Card Type"), max_length=16, choices=iterchoices_db(payment.config.credit_choices))
     display_cc = models.CharField(_("CC Number (Last 4 digits)"),

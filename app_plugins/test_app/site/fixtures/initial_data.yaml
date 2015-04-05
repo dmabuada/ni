@@ -1,0 +1,4 @@
+- fields: {index: 0, label: app_plugins.test_app.site.testpoint, registered: true,
+    status: 0}
+  model: app_plugins.pluginpoint
+  pk: 1

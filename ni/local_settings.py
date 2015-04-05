@@ -78,3 +78,4 @@ logging.getLogger('keyedcache').setLevel(logging.INFO)
 logging.getLogger('l10n').setLevel(logging.INFO)
 logging.getLogger('suds').setLevel(logging.INFO)
 logging.info("Satchmo Started")
+
