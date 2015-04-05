@@ -11,47 +11,62 @@
 {% endblock %}
 
 {% block content %}
-<div id="orderhistory">
-    <h2>{% trans "Order History" %}</h2>
-    {% if orders %}
-        <table class="ordertable">
-            <thead>
-            <tr>
-                <th>{% trans 'Order #' %}</th>
-                <th>{% trans 'Status' %}</th>
-                <th>{% trans 'Date' %}</th>
-                <th>{% trans 'Items' %}</th>
-                <th>{% trans 'Total' %}</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for order in orders %}
-            <tr>
-                <td class="ordernumber">
-                    <a href="{% url satchmo_order_tracking order.id %}">{{ order.id }}</a>
-                </td>
-                <td class="orderstatus">
-                    {{ order.status|status_label }}
-                </td>
-                <td class="orderdate">
-                    {{order.time_stamp|date:"F jS Y H:i"}}
-                </td>
-                <td class="orderitems">
-                    {% for item in order.orderitem_set.all %}
-                    {% if not forloop.first %}<br/>{% endif %}
-                    <span class="orderitemqty">{{ item.quantity|normalize_decimal }}</span> <span class="orderitem">{{ item }}</span>
-                    {% endfor %}
-                </td>
-                <td class="ordertototal">
-                    {{ order.total|currency }}
-                </td>
-            </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-    {% else %}
-        <p>{% trans "You haven't made any orders yet." %}</p>
-    {% endif %}
+<div class="my-account">
+    <div class="account-sidebar">
+        <ul>
+            <li><a href="{{ accounturl }}">{% trans "Account" %}</a></li>
+            <li><a href="{% url 'satchmo_profile_update' %}">{% trans "Update your profile" %}</a></li>
+            <li><a href="{% url 'satchmo_address_create' %}">{% trans "Add address book entry" %}</a></li>
+            <li><a href="{% url 'auth_password_change' %}">{% trans "Change your password" %}</a></li>
+            <li><a href="{% url 'satchmo_order_history' %}">{% trans "Order History" %}</a></li>
+        <ul>
+    </div>
+    <div class="account-primary">
+        <div class="section order-history">
+            <h5>{% trans "Order History" %}</h5>
+            <div id="orderhistory" class="profile">
+                {% if orders %}
+                    <table class="ordertable">
+                        <thead>
+                        <tr>
+                            <th>{% trans 'Order #' %}</th>
+                            <th>{% trans 'Status' %}</th>
+                            <th>{% trans 'Date' %}</th>
+                            <th>{% trans 'Items' %}</th>
+                            <th>{% trans 'Total' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for order in orders %}
+                        <tr>
+                            <td class="ordernumber">
+                                <a href="{% url 'satchmo_order_tracking' order.id %}">{{ order.id }}</a>
+                            </td>
+                            <td class="orderstatus">
+                                {{ order.status|status_label }}
+                            </td>
+                            <td class="orderdate">
+                                {{order.time_stamp|date:"F jS Y H:i"}}
+                            </td>
+                            <td class="orderitems">
+                                {% for item in order.orderitem_set.all %}
+                                {% if not forloop.first %}<br/>{% endif %}
+                                <span class="orderitemqty">{{ item.quantity|normalize_decimal }}</span> <span class="orderitem">{{ item }}</span>
+                                {% endfor %}
+                            </td>
+                            <td class="ordertototal">
+                                {{ order.total|currency }}
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <p>{% trans "You haven't made any orders yet." %}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
 
