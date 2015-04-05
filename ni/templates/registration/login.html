@@ -1,5 +1,6 @@
 {% load url from future %}
 {% load i18n %}
+{% include "account/password_reset.html" %}  
 
 {% block content %}
 <div id="login-box" class="login-popup">
@@ -32,7 +33,7 @@
 	    <p>{% trans "Don't have an account?" %} <a href="{% url 'registration_register' %}">{% trans "Sign up" %}</a>.</p>
 	{% endif %}
 	{% if auth_password_reset %}
-	    <p><a href="{% url 'auth_password_reset' %}">{% trans "Forgot password?" %}</p>
+	    <p><a class="forgot-window" href="#forgot-box">{% trans "Forgot password?" %}</p>
 	{% endif %}
 </div>
 {% endblock %}

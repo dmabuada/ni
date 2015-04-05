@@ -1100,7 +1100,8 @@ div.upsell .upselldescription { padding-bottom: 10px }
     z-index: 999;
 }
 
-.login-popup {
+.login-popup,
+.forgot-popup {
     display: none;
     background: #fff;
     padding: 2rem;
@@ -1119,7 +1120,8 @@ div.upsell .upselldescription { padding-bottom: 10px }
     width: 23rem;
 }
 
-.login-popup a {
+.login-popup a,
+.forgot-popup a {
     color: #8459AB;
 }
 
