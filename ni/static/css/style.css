@@ -1141,10 +1141,50 @@ form#search-page label {
 
 form#search-page input[type=submit] {
     margin-top: 20px;
-    font-family: 'Muli', sans-serif;
-    font-size: .8rem;
-    height: 2.3rem;
-    padding: 0;
+}
+
+/* Registration Pages */
+
+.login-form {
+    background: #fafafc url("http://subtlepatterns.com/patterns/concrete_seamless.png") top center repeat;
+    padding: 2rem;
+    margin-bottom: -2rem;
+}
+
+.login-container {
+    width: 22rem;
+    margin: 0 auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 -1px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 -1px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
+    background-color: #fff;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.login-container h4 {
+    margin-top: 1.2rem;
+    text-align: center;
+}
+
+.login-container input {
+    font-family: sans-serif;
+    font-size: 1em;
+    height: 2.5rem;
+    font-weight: 200;
+    margin: 0.5rem 0 0.5rem 0rem;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #999;
+}
+
+.login-container input[type=submit] {
     cursor: pointer;
     display: block;
     color: #eee;
@@ -1157,4 +1197,3 @@ form#search-page input[type=submit] {
     background: -moz-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
     background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
 }
-
