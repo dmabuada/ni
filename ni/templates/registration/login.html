@@ -3,7 +3,7 @@
 
 {% block content %}
 <div class="login-form">
-	<div class="login-container">
+	<div class="register-container">
 		<h4>{% trans "Log in" %}</h4>
 		{% if form.non_field_errors %}
 		<p class="error">{% for err in form.non_field_errors %}{{ err }}{% if not forloop.last %}<br/>{% endif %}

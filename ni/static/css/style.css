@@ -1145,13 +1145,14 @@ form#search-page input[type=submit] {
 
 /* Registration Pages */
 
-.login-form {
+.login-form,
+.register-form {
     background: #fafafc url("http://subtlepatterns.com/patterns/concrete_seamless.png") top center repeat;
     padding: 2rem;
     margin-bottom: -2rem;
 }
 
-.login-container {
+.register-container {
     width: 22rem;
     margin: 0 auto;
     -webkit-border-radius: 3px;
@@ -1167,12 +1168,12 @@ form#search-page input[type=submit] {
     padding: 0.5rem 1rem;
 }
 
-.login-container h4 {
+.register-container h4 {
     margin-top: 1.2rem;
     text-align: center;
 }
 
-.login-container input {
+.register-container input {
     font-family: sans-serif;
     font-size: 1em;
     height: 2.5rem;
@@ -1183,7 +1184,6 @@ form#search-page input[type=submit] {
     width: 100%;
     border: 1px solid #999;
 }
-
 .login-container input[type=submit] {
     cursor: pointer;
     display: block;
