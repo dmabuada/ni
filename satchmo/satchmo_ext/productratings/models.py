@@ -1,4 +1,4 @@
-from django.contrib.comments.models import Comment
+from django_comments.models import Comment
 from django.db import models
 from django.utils.translation import ugettext, ugettext_lazy as _
 from satchmo_utils.signals import collect_urls
