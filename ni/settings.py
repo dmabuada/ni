@@ -136,11 +136,9 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     'sorl.thumbnail',
     'keyedcache',
     'l10n',
-
     'livesettings',
     'satchmo_utils.thumbnail',
     'satchmo_store.contact',

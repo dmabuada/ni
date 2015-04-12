@@ -132,7 +132,6 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     'sorl.thumbnail',
     'keyedcache',
     'l10n',
