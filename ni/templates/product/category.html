@@ -46,7 +46,7 @@
 
         <li>
             {% thumbnail product.main_image.picture "400x400" as image %}
-                <a class='product-image' href="{{ product.get_absolute_url }}">
+                <a class="product-image" href="{{ product.get_absolute_url }}">
                     <img src="{{ image.url }}" width="{{ image.width }}"
                          height="{{ image.height }}"/>
                 </a>
@@ -74,7 +74,7 @@
                     {% endif %}
                 <li>
                     {% thumbnail product.main_image.picture "400x400" as image %}
-                        <a class='product-image'
+                        <a class="product-image"
                            href="{{ product.get_absolute_url }}">
                             <img src="{{ image.url }}"
                                  width="{{ image.width }}"
