@@ -120,7 +120,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'livesettings',
     'django.contrib.sites',
     'satchmo_store.shop',
     'django.contrib.admin',
@@ -141,6 +140,8 @@ INSTALLED_APPS = (
     'sorl.thumbnail',
     'keyedcache',
     'l10n',
+
+    'livesettings',
     'satchmo_utils.thumbnail',
     'satchmo_store.contact',
     'tax',
@@ -205,7 +206,6 @@ LIVESETTINGS_OPTIONS = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
 
 # Load the local settings
 from local_settings import *

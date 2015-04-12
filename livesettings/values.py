@@ -11,7 +11,10 @@ except ImportError:
 from django import forms
 from django.core.exceptions import ImproperlyConfigured
 from django.db import connection, DatabaseError
-from django.utils.datastructures import SortedDict
+
+# from django.utils.datastructures import SortedDict
+from collections import OrderedDict
+
 from django.utils.encoding import smart_str
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext, ugettext_lazy as _
@@ -41,7 +44,7 @@ log = logging.getLogger('configuration')
 # It leads to to the existing more complicated code of Values classes, hopefully more robust.
 NOTSET = object()
 
-class SortedDotDict(SortedDict):
+class SortedDotDict(OrderedDict):
 
     def __getattr__(self, key):
         try:

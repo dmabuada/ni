@@ -14,3 +14,5 @@ Inappropriate: The keyedcache timeout for the store.
 from functions import *
 from models import *
 from values import *
+
+default_app_config = 'livesettings.apps.LivesettingsAppConfig'
