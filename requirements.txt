@@ -15,4 +15,8 @@ sorl-thumbnail==12.2
 psycopg2==2.6
 django-compressor==1.4
 beautifulsoup4==4.3.2
+<<<<<<< HEAD
 mechanize==0.2.5
+=======
+django-registration-redux==1.1
+>>>>>>> password reset page functional now
