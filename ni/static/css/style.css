@@ -1146,7 +1146,8 @@ form#search-page input[type=submit] {
 /* Registration Pages */
 
 .login-form,
-.register-form {
+.register-form,
+.reset-password-form {
     background: #fafafc url("http://subtlepatterns.com/patterns/concrete_seamless.png") top center repeat;
     padding: 2rem;
     margin-bottom: -2rem;
