@@ -11,9 +11,6 @@ import math
 # from django.forms.extras.widgets import SelectDateWidget
 
 
-
-
-
 class SearchForm(forms.Form):
     k = forms.CharField(label='search', max_length=100, required=False)
     category = forms.ModelChoiceField(Category.objects.all(), required=False)
@@ -28,11 +25,19 @@ class SearchForm(forms.Form):
         required=False
     )
 
-    size = forms.MultipleChoiceField(
-        [(i, i) for i in Option.objects.values_list('name', flat=True).distinct()],
-        required=False,
-        widget=forms.CheckboxSelectMultiple,
-    )
+    # size = forms.MultipleChoiceField(
+    #     [(i, i) for i in Option.objects.values_list('name', flat=True).distinct()],
+    #     required=False,
+    #     widget=forms.CheckboxSelectMultiple,
+    # )
+
+    @property
+    def size(self):
+        return forms.MultipleChoiceField(
+            [(i, i) for i in Option.objects.values_list('name', flat=True).distinct()],
+            required=False,
+            widget=forms.CheckboxSelectMultiple,
+        )
 
     @property
     def price_range(self):
@@ -54,3 +59,4 @@ class SearchForm(forms.Form):
             required=False,
             widget=forms.CheckboxSelectMultiple,
         )
+
