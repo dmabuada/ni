@@ -44,21 +44,21 @@
         <tr><td class="label"><label for="id_password2">Password (again):</label></td><td class="text"> {{ createform.password2 }}</td></tr>
         {% if createform.password2.errors %}<tr><td>&nbsp;</td><td class="warn">*** {{ createform.password2.errors|join:", " }}</td></tr>{% endif %}
 
-	    <tr><td><label for="id_phone">{% trans "Phone number" %}*</label></td><td> {{ createform.phone }}</td></tr>
-	    {% if createform.phone.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.phone.errors|join:", " }}</td></tr>{% endif %}
+        <tr><td><label for="id_phone">{% trans "Phone number" %}*</label></td><td> {{ createform.phone }}</td></tr>
+        {% if createform.phone.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.phone.errors|join:", " }}</td></tr>{% endif %}
 
-	    {% if show_newsletter %}
-	    <tr><td colspan="2">{{ createform.newsletter }} <label for="id_newsletter">{% trans 'Sign me up for Email Updates about new products and special offers!' %}</label>
-	        </td>
-		</tr>
-	    {% if createform.newsletter.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.newsletter.errors|join:", " }}</td></tr>{% endif %}
-	    {% else %}
-	    <input type='hidden' name='newsletter' value="False" />
-	    {% endif %}
+        {% if show_newsletter %}
+        <tr><td colspan="2">{{ createform.newsletter }} <label for="id_newsletter">{% trans 'Sign me up for Email Updates about new products and special offers!' %}</label>
+            </td>
+        </tr>
+        {% if createform.newsletter.errors %}<tr><td>&nbsp;</td><td>*** {{ createform.newsletter.errors|join:", " }}</td></tr>{% endif %}
+        {% else %}
+        <input type='hidden' name='newsletter' value="False" />
+        {% endif %}
 
-	    {% block billing-info %}{% with createform as form %}{% include "contact/_contact_info_form_billing.html" %}{% endwith %}{% endblock %}
+        {% block billing-info %}{% with createform as form %}{% include "contact/_contact_info_form_billing.html" %}{% endwith %}{% endblock %}
 
-	    {% block shipping-info %}{% with createform as form %}{% include "contact/_contact_info_form_shipping.html" %}{% endwith %}{% endblock %}
+        {% block shipping-info %}{% with createform as form %}{% include "contact/_contact_info_form_shipping.html" %}{% endwith %}{% endblock %}
 
         <tr>
             <td colspan="2" class="button">

@@ -36,9 +36,9 @@ satchmo.thumbnails = new Array();
 <h4>{{ product.translated_name }}</h4>
 <p>{{ product.translated_description }}</p>
 {% trans "Price" %}{% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}: <h3>{% spaceless %}
-	{% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
-	<span id="price">{{ product|discount_price:sale|currency }}</span>
-	{% endspaceless %}</h3>
+    {% if sale %}<strike style="display: block;" id="fullprice">{{ product|discount_price:""|currency }}</strike>{% endif %}
+    <span id="price">{{ product|discount_price:sale|currency }}</span>
+    {% endspaceless %}</h3>
 
 <span id="product_images">
 {% for pic in product.productimage_set.all %}

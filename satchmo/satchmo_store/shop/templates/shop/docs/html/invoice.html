@@ -43,7 +43,7 @@
             <td>{{item.product.name|fix_ampersands}}</td>
             <td>{{item.quantity}}</td>
             <td>{{item.unit_price|currency}}</td>
-	        <td>{{item.discount|currency}}</td>
+            <td>{{item.discount|currency}}</td>
             <td>{{item.sub_total|currency}} </td>
           </tr>
           {% empty %}
@@ -57,7 +57,7 @@
           </tr>
           {% if order.discount %}
           <tr class="price">
-	        <td colspan="4">{% trans "Discount" %}</td>
+            <td colspan="4">{% trans "Discount" %}</td>
             <td>- {{order.item_discount|currency}}</td>
           </tr>
           {% endif %}
@@ -68,7 +68,7 @@
       <table class="priced">
         <tbody>
           <tr class="price">
-	        <td colspan="4">
+            <td colspan="4">
               <h5>{{order.shipping_method}}</h5>
               <p class="description">{{order.shipping_description}}</p>
             </td>
@@ -87,19 +87,19 @@
      <table class="priced">
        <tbody>
          <tr class="price">
-	       <td colspan="4">{% trans "Tax" %}</td>
+           <td colspan="4">{% trans "Tax" %}</td>
            <td>{{order.tax|currency}}</td>
          </tr>
          <tr class="price">
-	       <td colspan="4">{% trans "Total" %}</td>
+           <td colspan="4">{% trans "Total" %}</td>
            <td>{{order.total|currency}}</td>
          </tr>
          <tr class="price">
-	       <td colspan="4">{% trans "Payments Made" %}</td>
+           <td colspan="4">{% trans "Payments Made" %}</td>
            <td>- {{order.balance_paid|currency}}</td>
          </tr>
          <tr class="price">
-	       <td colspan="4">{% trans "Balance Due" %}</td>
+           <td colspan="4">{% trans "Balance Due" %}</td>
            <td>{{order.balance|currency}}</td>
          </tr>
         </tbody>

@@ -92,21 +92,21 @@ tr.ConfigurableProduct {
         {% else %}
             {% ifchanged field.field.slug %}
                 {% if not forloop.first %}
-        		</tr>
-        		{% endif %}
+                </tr>
+                {% endif %}
                 <tr class="{{ field.field.subtypes }}">
                     <td><a href="{% url 'admin:product_product_change' field.field.product_id %}">{{ field.label_tag }}</a></td>
                     <td>{{ field.help_text}}</td>
             {% endifchanged %}
                     <td>
-                	    {% if field.errors %}
-                		<span class="error">{{ field.errors }}</span><br/>
-        		        {% endif %}
+                        {% if field.errors %}
+                        <span class="error">{{ field.errors }}</span><br/>
+                        {% endif %}
                         {{ field }}
                     </td>
-    	{% endif %}
+        {% endif %}
     {% endfor %}
-        		</tr>
+                </tr>
     </table>
 <input type="submit" value="Save" class="default" />
 <input type="reset" value="Reset" class="default" />

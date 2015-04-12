@@ -12,17 +12,17 @@
 {% block content %}
 <h2>{% trans "Best Selling Products" %}</h2>
 {% for product in products %}
-	<div class="bestseller">
+    <div class="bestseller">
     <div class = "productImage">    
-   		{% if product.main_image %}
-      	<center>
+        {% if product.main_image %}
+        <center>
             {% thumbnail product.main_image.picture "85x85" as image %}
             <a href="{{ product.get_absolute_url }}"><img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" /></a>
             {% endthumbnail %}
-      	</center>
-   		{% endif %}     
-    	<p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
-	</div>
-	</div>
+        </center>
+        {% endif %}     
+        <p><a href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a></p>
+    </div>
+    </div>
 {% endfor %}
 {% endblock %}

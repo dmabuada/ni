@@ -19,24 +19,24 @@ jquery script should've already been added in admin/base_site.html, so don't add
     <script type="text/javascript">
 {% if form.error_dict %}
 function satchmo_find(inputs, id) {
-	for (var i=0; i<inputs.length; i++) { 
-		var elt = inputs[i];
-		if (elt.id == id) {
-			return elt;
-		}
-	}
-	return null;
+    for (var i=0; i<inputs.length; i++) { 
+        var elt = inputs[i];
+        if (elt.id == id) {
+            return elt;
+        }
+    }
+    return null;
 }
 function satchmo_update(inputs, id, msg) {
-	var elt = satchmo_find(inputs, "id_" + id);
-	if (elt) {
-		$(elt).after("<span class='error'>**" + msg + "</span>");
-	}
+    var elt = satchmo_find(inputs, "id_" + id);
+    if (elt) {
+        $(elt).after("<span class='error'>**" + msg + "</span>");
+    }
 }
 $(function() {
-	var inputs = $('input');
-	{% for key,msg in form.error_dict.items %}
-	satchmo_update(inputs, "{{key}}", "{{msg.0}}");{% endfor %}
+    var inputs = $('input');
+    {% for key,msg in form.error_dict.items %}
+    satchmo_update(inputs, "{{key}}", "{{msg.0}}");{% endfor %}
 });
 {% endif %}
 </script>

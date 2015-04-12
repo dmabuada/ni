@@ -9,13 +9,13 @@
 {% endif %}{% endblock %}
 
 {% block extrahead %}
-	<style type="text/css">
-	form td { padding: 1px;	}
-	form th, form h2 { margin:0; padding:2px 2px 3px 2px; font-size:11px; text-align:left; font-weight:bold; background-color:#7CA0C7; color:white;}
-	#variation_options ul {	margin-left: 5px; padding: 0 4px;}
-	#variation_options li {	list-style: none; }
-	</style>
-	{% blackbird_logging %}
+    <style type="text/css">
+    form td { padding: 1px; }
+    form th, form h2 { margin:0; padding:2px 2px 3px 2px; font-size:11px; text-align:left; font-weight:bold; background-color:#7CA0C7; color:white;}
+    #variation_options ul { margin-left: 5px; padding: 0 4px;}
+    #variation_options li { list-style: none; }
+    </style>
+    {% blackbird_logging %}
     {% include "shop/_jquery.html" %}
     {% include "shop/_jquery_form.html" %}
     <script type="text/javascript">
@@ -107,46 +107,46 @@
         return satchmo.cross_list(opts);
     };
 
-	satchmo.submit_dirty_variations = function() {
-		var ct = 0;
-		var dirty = {};
-		var dirty_ids = []
-		$('form #variation_products input').each(
-			function() {
-				if (this.id != 'id_dirty') {
-					var parts = this.id.split("__");
-					parts.shift();
-		            var key = parts.join("__");
-					if (!dirty[key]) {
-						var oldval = satchmo.initial_vals[this.id];
-						if ($(this).is('input[@type=text]')) {
-							var newval = $(this).fieldValue();
-							var changed = (oldval + "" != newval + "");
-						}
-						else {
-							var newval = this.checked;
-							var changed = (oldval != newval);
-						}
-						if (changed) {
-							try { log.debug('Dirty ' + key); } catch(err) {};		            
-							dirty[key] = true;
-							dirty_ids.push(key);
-						}
-					}
-				}
-			}
-		);
-		
-		if (dirty_ids.length == 0) {
-			alert('nothing has been changed');
-			return false;
-		}
-		else {
-			$('#id_dirty').attr('value', dirty_ids.join(','));
-		}
-		
-		return true;
-	};
+    satchmo.submit_dirty_variations = function() {
+        var ct = 0;
+        var dirty = {};
+        var dirty_ids = []
+        $('form #variation_products input').each(
+            function() {
+                if (this.id != 'id_dirty') {
+                    var parts = this.id.split("__");
+                    parts.shift();
+                    var key = parts.join("__");
+                    if (!dirty[key]) {
+                        var oldval = satchmo.initial_vals[this.id];
+                        if ($(this).is('input[@type=text]')) {
+                            var newval = $(this).fieldValue();
+                            var changed = (oldval + "" != newval + "");
+                        }
+                        else {
+                            var newval = this.checked;
+                            var changed = (oldval != newval);
+                        }
+                        if (changed) {
+                            try { log.debug('Dirty ' + key); } catch(err) {};                   
+                            dirty[key] = true;
+                            dirty_ids.push(key);
+                        }
+                    }
+                }
+            }
+        );
+        
+        if (dirty_ids.length == 0) {
+            alert('nothing has been changed');
+            return false;
+        }
+        else {
+            $('#id_dirty').attr('value', dirty_ids.join(','));
+        }
+        
+        return true;
+    };
 
     satchmo.show_all = function() {
         $('tr.optionrow').each(function() {
@@ -163,18 +163,18 @@
             satchmo.optiongroups[satchmo.optionkeys[i]] = [];
         }
 
-		// Get initial values
-		$('form #variation_products input').each(
-			function() {
-				if ($(this).is('input[@type=text]')) {
-					val = $(this).fieldValue();
-				}
-				else {
-					val = this.checked;
-				}
-				satchmo.initial_vals[this.id] = val;
-			}
-		)
+        // Get initial values
+        $('form #variation_products input').each(
+            function() {
+                if ($(this).is('input[@type=text]')) {
+                    val = $(this).fieldValue();
+                }
+                else {
+                    val = this.checked;
+                }
+                satchmo.initial_vals[this.id] = val;
+            }
+        )
         
         $('#variation_options .checkbox input').each(function() {
             var parts = this.id.split("__");
@@ -219,9 +219,9 @@
             return false;
         });
 
-		$('#id_submit').click(function() {
-			satchmo.submit_dirty_variations();
-		})
+        $('#id_submit').click(function() {
+            satchmo.submit_dirty_variations();
+        })
         
     });
     </script>
@@ -246,7 +246,7 @@
     {% endblocktrans %}
 </div>
 <form name="variations" action="{% url 'satchmo_admin_variation_manager' product.id %}" method="POST">{% csrf_token %}
-	{{ form.dirty }}
+    {{ form.dirty }}
 <div style="float:left;">
     <table id="variation_options" style="border-right: 1px solid #999; margin-right: 3px;">
     <tr>
@@ -254,15 +254,15 @@
     </tr>
     {% for grp in form.optionkeys %}
     {% with form|lookup:grp as field %}
-	<tr>
-		<th>{{ field.label_tag }}</th>
-	</tr>
+    <tr>
+        <th>{{ field.label_tag }}</th>
+    </tr>
     <tr>
         <td class="checkbox">
             {{ field }}
             {% if field.errors %}
-    		<span class="error">{{ field.errors }}</span><br/>
-	        {% endif %}    
+            <span class="error">{{ field.errors }}</span><br/>
+            {% endif %}    
             
         </td>
     </tr>
@@ -274,31 +274,31 @@
         </th>
     </tr>
     <tr>
-		<td>
-			<ul>
-				<li>
-					<a href="#" id="select_these" name="select_these">{% trans 'Select These Options' %}</a>
-				</li>
-				<li>
-					<a href="#" id="select_only_these" name="select_only_these">{% trans 'Select Only These Options' %}</a>
-				</li>
-				<li>
-					<a href="#" id="select_all" name="select_all">{% trans 'Select All' %}</a>
-				</li>
-				<li>
-					<a href="#" id="deselect_these" name="deselect_these">{% trans 'Deselect These Options' %}</a>
-				</li>
-				<li>
-					<a href="#" id="deselect_all" name="deselect_all">{% trans 'Deselect All' %}</a>
-				</li>
-				<li>
-					<a href="#" id="show_all" name="show_all">{% trans 'Show All' %}</a>
-				</li>
-				<li>
-					<a href="#" id="hide_inactive" name="hide_inactive">{% trans 'Hide Inactive Rows' %}</a>
-				</li>
-			</ul>
-		</td>
+        <td>
+            <ul>
+                <li>
+                    <a href="#" id="select_these" name="select_these">{% trans 'Select These Options' %}</a>
+                </li>
+                <li>
+                    <a href="#" id="select_only_these" name="select_only_these">{% trans 'Select Only These Options' %}</a>
+                </li>
+                <li>
+                    <a href="#" id="select_all" name="select_all">{% trans 'Select All' %}</a>
+                </li>
+                <li>
+                    <a href="#" id="deselect_these" name="deselect_these">{% trans 'Deselect These Options' %}</a>
+                </li>
+                <li>
+                    <a href="#" id="deselect_all" name="deselect_all">{% trans 'Deselect All' %}</a>
+                </li>
+                <li>
+                    <a href="#" id="show_all" name="show_all">{% trans 'Show All' %}</a>
+                </li>
+                <li>
+                    <a href="#" id="hide_inactive" name="hide_inactive">{% trans 'Hide Inactive Rows' %}</a>
+                </li>
+            </ul>
+        </td>
     </tr>
     <tr>
         <td colspan="2">
@@ -329,21 +329,21 @@
             {% endif %}
         </td>
         <td>
-	    <img src="{% static 'admin/img/admin/' %}icon-{% if form.existing|lookup:varkey %}yes.gif" alt="{% trans "yes" %}"{% else %}no.gif" alt="{% trans "no" %}"{% endif %} />
+        <img src="{% static 'admin/img/admin/' %}icon-{% if form.existing|lookup:varkey %}yes.gif" alt="{% trans "yes" %}"{% else %}no.gif" alt="{% trans "no" %}"{% endif %} />
         </td>
         <td class="checkbox">
             {{ field }}
             {% if field.errors %}
-    		<span class="error">{{ field.errors }}</span>
-	        {% endif %}
+            <span class="error">{{ field.errors }}</span>
+            {% endif %}
         </td>
         <td>
             {% with form.namedict|lookup:varkey as namekey %}
             {% with form|lookup:namekey as field %}
             {{ field }}
             {% if field.errors %}
-    		<span class="error">{{ field.errors }}</span>
-	        {% endif %}
+            <span class="error">{{ field.errors }}</span>
+            {% endif %}
             {% endwith %}
             {% endwith %}
         </td>
@@ -352,8 +352,8 @@
             {% with form|lookup:skukey as field %}
             {{ field }}
             {% if field.errors %}
-    		<span class="error">{{ field.errors }}</span>
-	        {% endif %}
+            <span class="error">{{ field.errors }}</span>
+            {% endif %}
             {% endwith %}
             {% endwith %}
         </td>
@@ -362,8 +362,8 @@
             {% with form|lookup:slugkey as field %}
             {{ field }}
             {% if field.errors %}
-    		<span class="error">{{ field.errors }}</span>
-	        {% endif %}
+            <span class="error">{{ field.errors }}</span>
+            {% endif %}
             {% endwith %}
             {% endwith %}
         </td>

@@ -91,13 +91,13 @@ tr.ConfigurableProduct {
                         <td>{{ field }}</td>
                         <td><a href="{% url 'admin:product_product_change' field.field.product_id %}">{{ field.label_tag }}</a>
                             {% if field.errors %}
-                    		<span class="error">{{ field.errors }}</span><br/>
-            		        {% endif %}    
+                            <span class="error">{{ field.errors }}</span><br/>
+                            {% endif %}    
                         </td>
                     {% endif %}
                         <td>{{ field.help_text}}</td></tr>
                 {% endifchanged %}
-        	{% endif %}
+            {% endif %}
 
     {% endfor %}
 
