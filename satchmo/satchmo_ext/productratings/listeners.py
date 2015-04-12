@@ -1,4 +1,5 @@
 """Utility functions used by signals to attach Ratings to Comments"""
+
 from django_comments.models import Comment
 from django.contrib.sites.models import Site
 from django.core import urlresolvers

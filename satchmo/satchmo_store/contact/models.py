@@ -109,7 +109,7 @@ class ContactManager(models.Manager):
         else:
             # Don't create a Contact if the user isn't authenticated.
             create = False
-            
+
         if request.session.get(CUSTOMER_ID):
             try:
                 contactBySession = Contact.objects.get(id=request.session[CUSTOMER_ID])
@@ -144,7 +144,7 @@ class Contact(models.Model):
     title = models.CharField(_("Title"), max_length=30, blank=True, null=True)
     first_name = models.CharField(_("First name"), max_length=30, )
     last_name = models.CharField(_("Last name"), max_length=30, )
-    user = models.ForeignKey(User, blank=True, null=True, unique=True)
+    user = models.OneToOneField(User, blank=True, null=True, unique=True)
     role = models.ForeignKey(ContactRole, verbose_name=_("Role"), null=True)
     organization = models.ForeignKey(Organization, verbose_name=_("Organization"), blank=True, null=True)
     dob = models.DateField(_("Date of birth"), blank=True, null=True)
@@ -216,9 +216,9 @@ class Contact(models.Model):
         """ Return all non primary shipping and billing addresses
         """
         return AddressBook.objects.filter(contact=self.pk).exclude(is_default_shipping=True).exclude(is_default_billing=True)
-        
+
     address_book_entries=property(_get_address_book_entries)
-        
+
     class Meta:
         verbose_name = _("Contact")
         verbose_name_plural = _("Contacts")

@@ -11,7 +11,7 @@ from product.models import Category, Product
 from product.modules.configurable.models import ConfigurableProduct, sorted_tuple
 from product.signals import index_prerender
 from product.utils import find_best_auto_discount
-from satchmo_utils.satchmo_json import json_encode
+from satchmo_utils.json import json_encode
 from satchmo_utils.numbers import  RoundedDecimalError, round_decimal
 from satchmo_utils.views import bad_or_missing
 import logging

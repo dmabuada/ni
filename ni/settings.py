@@ -52,6 +52,17 @@ STATICFILES_DIRS = (
     os.path.join(DIRNAME, 'static/'),
 )
 
+STATICFILES_FINDERS = (
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+    'compressor.finders.CompressorFinder'
+)
+
+# Fixtures directory
+FIXTURES_DIRS = (
+    os.path.join(DIRNAME, 'fixtures/')
+)
+
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
@@ -109,7 +120,6 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'livesettings',
     'django.contrib.sites',
     'satchmo_store.shop',
     'django.contrib.admin',
@@ -126,10 +136,10 @@ INSTALLED_APPS = (
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
     'sorl.thumbnail',
     'keyedcache',
     'l10n',
+    'livesettings',
     'satchmo_utils.thumbnail',
     'satchmo_store.contact',
     'tax',
@@ -161,7 +171,8 @@ INSTALLED_APPS = (
     # 'satchmo_ext.tieredpricing',
     'debug_toolbar',
     'app_plugins',
-    'compressor'
+    'compressor',
+    'ni'
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -193,7 +204,6 @@ LIVESETTINGS_OPTIONS = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
-
 
 # Load the local settings
 from local_settings import *
