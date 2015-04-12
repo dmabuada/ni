@@ -9,7 +9,7 @@
         <p class="error">{% for err in form.non_field_errors %}{{ err }}{% if not forloop.last %}<br/>{% endif %}
         {% endfor %}</p>
         {% endif %}
-        <form method="post" action=".">{% csrf_token %}
+        <form method="post">{% csrf_token %}
         <label for="id_username">{% trans 'Email' %}:</label>{{ form.username }}
         {% if form.username.errors %}<tr><td class="error" colspan="2">***{{ form.username.errors|join:", " }}{% endif %}
         <label for="id_password">{% trans 'Password' %}:</label>{{ form.password }}
