@@ -67,7 +67,7 @@
                 {% for product in results.products %}
 
                     {% if forloop.first %}
-                        <ul id='search-results'>
+                        <ul id="search-results">
                     {% endif %}
 
                 <li>
@@ -78,7 +78,7 @@
                                  height="{{ image.height }}"/>
                         </a>
                     {% endthumbnail %}
-                    <a class='name' href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
+                    <a class="name" href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
                     <a href="{{ product.get_absolute_url }}">${{ product.unit_price | floatformat:2 }}
                         to rent</a>
                 </li>
