@@ -32,10 +32,10 @@
         <div class="section address-form">
             {% if editing %}
             <h5>{% trans "Edit an address" %}</h5>
-            <form method="post" class="profile" action="{% url 'satchmo_address_edit' entry.id %}{% if next %}?next={{next}}{% endif%}">{% csrf_token %}
+            <form method="post" class="profile" action="{% url 'satchmo_address_edit' entry.id %}{% if next %}?next={{ next }}{% endif%}">{% csrf_token %}
             {% else %}
             <h5>{% trans "Add an address" %}</h5>
-            <form method="post" class="profile" action="{% url 'satchmo_address_create' %}{% if next %}?next={{next}}{% endif%}">{% csrf_token %}
+            <form method="post" class="profile" action="{% url 'satchmo_address_create' %}{% if next %}?next={{ next }}{% endif%}">{% csrf_token %}
             {% endif %}
             <table>
               <tr><td colspan="2"><h4>{% trans "Address Information" %}</h4></td></tr>
