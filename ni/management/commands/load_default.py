@@ -13,6 +13,7 @@ class Command(NoArgsCommand):
             Contact,
             ContactOrganization,
             ContactOrganizationRole,
+            ContactInteractionType,
             ContactRole,
             Organization,
             PhoneNumber,
@@ -82,7 +83,41 @@ class Command(NoArgsCommand):
         print("Creating Customers...")
         # Import some customers
 
-        customer = ContactRole.objects.get(pk='Customer')
+        customer = ContactRole(name='Customer')
+        supplier = ContactRole(name="Supplier")
+        distributor = ContactRole(name="Distributor")
+
+        customer.save()
+        supplier.save()
+        distributor.save()
+
+        company = ContactOrganization(name="Company")
+        government = ContactOrganization(name="Government")
+        nonprofit = ContactOrganization(name="Non-profit")
+
+        company.save()
+        government.save()
+        nonprofit.save()
+
+        supplier_org_role = ContactOrganizationRole(name='Supplier')
+        distributor_org_role = ContactOrganizationRole(name='Distributor')
+        manufacturer_org_role = ContactOrganizationRole(name='Manufacturer')
+        customer_org_role = ContactOrganizationRole(name='Customer')
+
+        supplier_org_role.save()
+        distributor_org_role .save()
+        manufacturer_org_role.save()
+        customer_org_role.save()
+
+        email_interaction = ContactInteractionType(name='Email')
+        phone_interaction = ContactInteractionType(name='Phone')
+        in_person_interaction = ContactInteractionType(name='In Person')
+
+        email_interaction.save()
+        phone_interaction.save()
+        in_person_interaction.save()
+
+
         c1 = Contact(
             first_name="Chris",
             last_name="Smith",
@@ -145,20 +180,20 @@ class Command(NoArgsCommand):
         print("Creating Suppliers...")
         # Import some suppliers
 
-        supplier = ContactOrganizationRole.objects.get(pk='Supplier')
-        company = ContactOrganization.objects.get(pk='Company')
-        contactsupplier = ContactRole.objects.get(pk='Supplier')
+        # supplier = ContactOrganizationRole.objects.get(pk='Supplier')
+        # company = ContactOrganization.objects.get(pk='Company')
+        # contactsupplier = ContactRole.objects.get(pk='Supplier')
         org1 = Organization(
             name="Rhinestone Ronny",
             type=company,
-            role=supplier
+            role=supplier_org_role
         )
         org1.save()
         c4 = Contact(
             first_name="Fred",
             last_name="Jones",
             email="fj@rr.com",
-            role=contactsupplier,
+            role=supplier,
             organization=org1
         )
         c4.save()
