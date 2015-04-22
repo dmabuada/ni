@@ -23,7 +23,7 @@
     {% if all_products_list %}
         <div class="featured-container container-items">
             <h1>{% trans "Featured Items" %}</h1>
-            {% for product in all_products_list %}
+            {% for product in all_products_list|slice:":6" %}
                 <div class="productImage">
                     {% if product.main_image %}
                         {% thumbnail product.main_image.picture "275x229" as image %}
@@ -46,7 +46,7 @@
     <div class="recommendations-container container-items">
         {% if all_products_list %}
             <h1>Recommendations for you</h1>
-            {% for product in all_products_list %}
+            {% for product in all_products_list|slice:":6" %}
                 <div class="productImage">
                     {% if product.main_image %}
                         {% thumbnail product.main_image.picture "275x229" as image %}
