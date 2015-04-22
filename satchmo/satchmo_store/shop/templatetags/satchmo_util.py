@@ -5,8 +5,9 @@ from django.utils.safestring import mark_safe
 from l10n.l10n_settings import get_l10n_setting
 from product.models import Category
 from satchmo_utils.numbers import trunc_decimal
-from satchmo_utils.json import json_encode
+
 from threaded_multihost import threadlocals
+import json
 import logging
 import math
 
@@ -42,14 +43,14 @@ register.filter('in_list', in_list)
 
 def as_json(value):
     """Return the value as a json encoded object"""
-    return mark_safe(json_encode(value))
+    return mark_safe(json.dumps(value))
 
 register.filter('as_json', as_json)
 
 def blackbird_logging(context):
     return {
         'debug' : settings.DEBUG,
-        'form': context.get('form', None), 
+        'form': context.get('form', None),
         'STATIC_URL': context.get('STATIC_URL', None),
         }
 
