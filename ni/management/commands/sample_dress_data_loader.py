@@ -5,10 +5,11 @@ from __future__ import print_function
 import sys
 import urllib
 import urllib2  # for the timeout err
+import multiprocessing
+
 import mechanize
 from bs4 import BeautifulSoup
 
-import multiprocessing
 # from multiprocessing import dummy as multiprocessing
 
 

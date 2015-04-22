@@ -3,17 +3,17 @@ var satchmo = satchmo || {};
 satchmo.use_sale_prices = true;
 
 // Get the current selected product price.
-satchmo.get_current_price = function(detail, qty, use_sale) {
+satchmo.get_current_price = function (detail, qty, use_sale) {
     var taxed = satchmo.default_view_tax,
         k, prices;
-            
+
     if (use_sale) {
         k = taxed ? "TAXED_SALE" : "SALE";
     }
     else {
         k = taxed ? "TAXED" : "PRICE";
     }
-    
+
     var prices = detail[k];
     if (prices) {
         var best = prices['1'];
@@ -26,46 +26,46 @@ satchmo.get_current_price = function(detail, qty, use_sale) {
                 best = prices[pricekey];
             }
         }
-        return best;        
+        return best;
     }
     else {
         return ""
     }
 };
 
-satchmo.make_optionkey = function() {
+satchmo.make_optionkey = function () {
     var work = Array(satchmo.option_ids.length);
-    for (var ix=0; ix<satchmo.option_ids.length; ix++) {
+    for (var ix = 0; ix < satchmo.option_ids.length; ix++) {
         var k = "#" + satchmo.option_ids[ix];
         var v = $(k).fieldValue()[0];
         work[ix] = v;
     }
     return work.join('::');
 };
-        
+
 // used for sorting numerically
-satchmo.numeric_compare = function(a, b) {
-    return a-b;
+satchmo.numeric_compare = function (a, b) {
+    return a - b;
 };
-   
+
 satchmo.option_ids = "";
-        
+
 // Update the product name
-satchmo.set_name = function(name) {
+satchmo.set_name = function (name) {
     $("#productname").attr('value', name);
 };
 
-satchmo.set_option_ids = function(arr) {
+satchmo.set_option_ids = function (arr) {
     arr.sort(satchmo.numeric_compare);
     satchmo.option_ids = arr;
 };
 
 // Update the product price
-satchmo.set_price = function(price) {
+satchmo.set_price = function (price) {
     $("#price").text(price);
 };
 
-satchmo.show_error = function(msg) {
+satchmo.show_error = function (msg) {
     var section = $('#js_error');
     if (section.length == 0) {
         if (msg != "") {
@@ -83,33 +83,33 @@ satchmo.show_error = function(msg) {
     var disabled = (msg != "");
     $('#addcart').attr('disabled', disabled);
 };
-    
+
 // update name and price based on the current selections
-satchmo.update_price = function() {
+satchmo.update_price = function () {
     var key = satchmo.make_optionkey(),
         detail = satchmo.variations[key],
         msg = "",
         use_sale, sale_price, full_price;
-        
+
     if (detail) {
 
-	// look for images
-	var images_to_stay = $('#product_images').html().split('<!--break-->')[0];
-	images_to_stay = images_to_stay + '<!--break-->';
-	$('#product_images').empty();
+        // look for images
+        var images_to_stay = $('#product_images').html().split('<!--break-->')[0];
+        images_to_stay = images_to_stay + '<!--break-->';
+        $('#product_images').empty();
 
-	if('ADDITIONAL_IMAGES' in detail) {
-	    for (var imgx=0; imgx<detail['ADDITIONAL_IMAGES'].length; imgx++) {
-		images_to_stay = images_to_stay + '<img src="' + satchmo.thumbnails[detail['ADDITIONAL_IMAGES'][imgx]] + '" alt="Product image"></img>';
-	    }         
-	}
+        if ('ADDITIONAL_IMAGES' in detail) {
+            for (var imgx = 0; imgx < detail['ADDITIONAL_IMAGES'].length; imgx++) {
+                images_to_stay = images_to_stay + '<img src="' + satchmo.thumbnails[detail['ADDITIONAL_IMAGES'][imgx]] + '" alt="Product image"></img>';
+            }
+        }
 
-	$('#product_images').html(images_to_stay);
+        $('#product_images').html(images_to_stay);
 
 
         var qty = parseInt($('#quantity').fieldValue()[0]);
         satchmo.set_name(detail['SLUG']);
-        
+
         if (!satchmo.variations['SALE']) {
             use_sale = false;
         }
@@ -133,10 +133,10 @@ satchmo.update_price = function() {
         if (qty && qty > detail['QTY']) {
             if (detail['QTY'] <= 0) {
                 msg = "Sorry, we are out of stock on that combination.";
-             }
-             else {
-                 msg = "Sorry, we only have " + detail['QTY'] + " available in that combination.";
-             }
+            }
+            else {
+                msg = "Sorry, we only have " + detail['QTY'] + " available in that combination.";
+            }
         }
     }
     else {

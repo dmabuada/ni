@@ -34,9 +34,7 @@ class Command(NoArgsCommand):
         from django.contrib.sites.models import Site
         from django.contrib.auth.models import User
         from django.utils.text import slugify
-        from django.core.files import File  # TODO: save files
         from django.core.files.base import ContentFile
-        from django.core.files.temp import NamedTemporaryFile
         # idempotency test
 
         print("Checking for existing sample data.")
@@ -105,7 +103,7 @@ class Command(NoArgsCommand):
         customer_org_role = ContactOrganizationRole(name='Customer')
 
         supplier_org_role.save()
-        distributor_org_role .save()
+        distributor_org_role.save()
         manufacturer_org_role.save()
         customer_org_role.save()
 
@@ -116,7 +114,6 @@ class Command(NoArgsCommand):
         email_interaction.save()
         phone_interaction.save()
         in_person_interaction.save()
-
 
         c1 = Contact(
             first_name="Chris",

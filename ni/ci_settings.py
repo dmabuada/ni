@@ -157,13 +157,13 @@ INSTALLED_APPS = (
     'payment.modules.dummy',
     # 'payment.modules.purchaseorder',
     # 'payment.modules.giftcertificate',
-    #'satchmo_ext.wishlist',
-    #'satchmo_ext.upsell',
+    # 'satchmo_ext.wishlist',
+    # 'satchmo_ext.upsell',
     'satchmo_ext.productratings',
     'satchmo_ext.satchmo_toolbar',
     'satchmo_utils',
-    #'shipping.modules.tieredquantity',
-    #'satchmo_ext.tieredpricing',
+    # 'shipping.modules.tieredquantity',
+    # 'satchmo_ext.tieredpricing',
     'debug_toolbar',
     'app_plugins',
     'compressor',
@@ -249,9 +249,9 @@ DATABASES = {
 # EMAIL_PORT = 587
 # EMAIL_HOST_USER = 'your user here'
 # EMAIL_HOST_PASSWORD = 'your password'
-#EMAIL_USE_TLS = True
+# EMAIL_USE_TLS = True
 
-#These are used when loading the test data
+# These are used when loading the test data
 SITE_DOMAIN = "ci.clowntown.me"
 SITE_NAME = "ni ci"
 
@@ -265,7 +265,7 @@ CACHES = {
 }
 ACCOUNT_ACTIVATION_DAYS = 7
 
-#Configure logging
+# Configure logging
 LOGFILE = "satchmo.log"
 logging.basicConfig(level=logging.DEBUG,
                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',

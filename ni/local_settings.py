@@ -1,7 +1,9 @@
 # this is an extremely simple Satchmo standalone store.
 
 import logging
-import os, os.path
+import os
+import os.path
+
 
 LOCAL_DEV = True
 DEBUG = True

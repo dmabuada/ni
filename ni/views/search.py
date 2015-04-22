@@ -1,7 +1,7 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+
 from product.models import Product
-from satchmo_utils.signals import application_search
 from ni.forms import SearchForm
 from ni.signals import store_search
 

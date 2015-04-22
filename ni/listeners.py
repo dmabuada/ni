@@ -1,13 +1,12 @@
-from product.models import Category
-from product.models import Product, OptionGroup
-from product.modules.configurable.models import ProductVariation
+import logging
+
 from django.db.models import Q
 from django.contrib.sites.models import Site
+
+from product.models import Category
+from product.models import Product
 from livesettings import config_value
 
-from product.models import Option
-
-import logging
 
 log = logging.getLogger('search listener')
 
@@ -21,7 +20,6 @@ def product_search_listener(sender, query, **kwargs):
     keywords = query.get('k', '').split()
     size = query.get('size', None)
 
-
     log.debug('default product search listener')
     site = Site.objects.get_current()
 
@@ -32,8 +30,8 @@ def product_search_listener(sender, query, **kwargs):
     if price_range:
         min_price, max_price = map(int, price_range.split('-'))
         products = products.filter(
-            price__price__gt=min_price-1,
-            price__price__lt=max_price+1
+            price__price__gt=min_price - 1,
+            price__price__lt=max_price + 1
         )
 
     category = query.get('category', None)

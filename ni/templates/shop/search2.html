@@ -78,7 +78,8 @@
                                  height="{{ image.height }}"/>
                         </a>
                     {% endthumbnail %}
-                    <a class="name" href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
+                    <a class="name"
+                       href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
                     <a href="{{ product.get_absolute_url }}">${{ product.unit_price | floatformat:2 }}
                         to rent</a>
                 </li>
