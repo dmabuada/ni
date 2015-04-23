@@ -969,7 +969,7 @@ img {
     width: 7rem;
     height: 4rem;
     margin: .4rem 1rem 0 .4rem;
-    background: url(http://i.imgur.com/hRHFHkE.jpg) no-repeat;
+    background: url(/static/images/hanger.png) no-repeat;
     background-position: center;
 }
 
