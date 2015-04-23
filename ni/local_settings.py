@@ -6,7 +6,7 @@ import os.path
 
 
 LOCAL_DEV = True
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 if LOCAL_DEV:

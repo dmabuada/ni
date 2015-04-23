@@ -205,7 +205,7 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 import logging
 
 LOCAL_DEV = False
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [

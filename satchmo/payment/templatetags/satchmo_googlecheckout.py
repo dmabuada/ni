@@ -50,7 +50,11 @@ def google_checkout_image_url(parser, token):
     """
     args = token.split_contents()
     payment_module = config_get_group('PAYMENT_GOOGLE')
-    merchid = payment_module.MERCHANT_ID
+    if payment_module:
+        merchid = payment_module.MERCHANT_ID
+    else:
+        merchid = 0
+
     sizes = CHECKOUT_BUTTON_SIZES.keys()
 
     imgsize = "MEDIUM"
@@ -69,7 +73,7 @@ def google_checkout_image_url(parser, token):
                 imgsize = k
             else:
                 raise template.TemplateSyntaxError("%r tag got an unexpected argument.  Perhaps a bad size?  Didn't know: %s" % (args[0], arg))
-                
+
     return GoogleCheckoutImageUrlNode(merchid, imgsize, transparent, disabled)
 
 register.tag(google_checkout_image_url)
