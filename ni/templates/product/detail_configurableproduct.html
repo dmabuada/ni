@@ -51,14 +51,14 @@
                     </li>
                 </ul>
                 {# TODO: make this the main product image by targeting the first image in productimage_set.all #}
-      <span id="product_images">
-      {% for pic in product.productimage_set.all %}
-          {% thumbnail pic.picture "280x400" as image %}
-              <img src="{{ image.url }}" width="{{ image.width }}"
-                   height="{{ image.height }}"/>
-          {% endthumbnail %}
-      {% endfor %}
-      </span>
+            <span id="product_images">
+            {% for pic in product.productimage_set.all %}
+                {% thumbnail pic.picture "280x400" as image %}
+                    <img src="{{ image.url }}" width="{{ image.width }}"
+                         height="{{ image.height }}"/>
+                {% endthumbnail %}
+            {% endfor %}
+            </span>
             </div>
 
             <div id="product-right">
@@ -67,8 +67,8 @@
                 <p>{{ product.translated_description }}</p>
                 {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}
                 <h3>{% spaceless %}
-                    {% if sale %}<strike style="display: block;"
-                                         id="fullprice">{{ product|discount_price:""|currency }}</strike>
+                    {% if sale %}
+                        <div id="fullprice">{{ product|discount_price:""|currency }}</div>
                     {% endif %}
                     <span id="price">{{ product|discount_price:sale|currency }}</span>
                     {% trans "Rental" %}
