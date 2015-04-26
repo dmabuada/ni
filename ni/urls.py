@@ -4,7 +4,6 @@ from satchmo_store.urls import urlpatterns
 from ni import views
 
 urlpatterns = patterns('',
-                       url(r'^accounts/', include('allauth.urls')),
                        url(r'^ping', views.ping, name='health'),
                        url(r'^accounts/', include('registration.backends.default.urls')),
                        url(r'^search/', views.search.search_view,
