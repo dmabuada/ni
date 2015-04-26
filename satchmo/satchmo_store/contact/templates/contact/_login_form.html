@@ -13,7 +13,7 @@
     <tbody>
         {% if loginform.non_field_errors %}
             <tr><td class="warn" colspan="2">
-				{{ loginform.non_field_errors }}
+                {{ loginform.non_field_errors }}
             </td></tr>
         {% endif %}
         <tr>
@@ -36,7 +36,7 @@
         {% if loginform.password.errors %}<tr><td colspan="2">{{ loginform.password.errors|join:", " }}</td></tr>{% endif %}
         <tr>
             <td colspan="2" class="button">
-				<input type="submit" name="login" value="{% trans 'Login' %}" />
+                <input type="submit" name="login" value="{% trans 'Login' %}" />
             </td>
         </tr>
     </tbody>

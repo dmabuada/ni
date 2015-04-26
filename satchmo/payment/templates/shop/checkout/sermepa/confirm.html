@@ -25,13 +25,13 @@
 <input type="hidden" name="Ds_Merchant_MerchantURL" value="{{url_callback}}" />
 <input type="hidden" name="Ds_Merchant_UrlOK" value="{{url_ok}}" />
 <input type="hidden" name="Ds_Merchant_UrlKO" value="{{url_ko}}" />
-<input type="hidden" name="Ds_Merchant_TransactionType" value="0" />	{# Autorizacion #}
-<input type="hidden" name="Ds_Merchant_ConsumerLanguage" value="2" />	{# English #}
+<input type="hidden" name="Ds_Merchant_TransactionType" value="0" />    {# Autorizacion #}
+<input type="hidden" name="Ds_Merchant_ConsumerLanguage" value="2" />   {# English #}
 
 {% if order.partially_paid %}
-	<input type="hidden" name="Ds_Merchant_ProductDescription" value="{% blocktrans with order.id as order_id %}Remaining Balance for order #{{ order_id }}{% endblocktrans %}" />
+    <input type="hidden" name="Ds_Merchant_ProductDescription" value="{% blocktrans with order.id as order_id %}Remaining Balance for order #{{ order_id }}{% endblocktrans %}" />
 {% else %}
-	<input type="hidden" name="Ds_Merchant_ProductDescription" value="{% blocktrans with order.id as order_id %}Order #{{ order_id }}{% endblocktrans %}" />
+    <input type="hidden" name="Ds_Merchant_ProductDescription" value="{% blocktrans with order.id as order_id %}Order #{{ order_id }}{% endblocktrans %}" />
 {% endif %}
 
 <input type="hidden" name="Ds_Merchant_Amount" value="{{amount}}" />

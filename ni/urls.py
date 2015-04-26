@@ -7,9 +7,8 @@ urlpatterns = patterns('',
                        url(r'^accounts/', include('allauth.urls')),
                        url(r'^ping', views.ping, name='health'),
                        url(r'^search/', views.search.search_view,
-                           name='ni-search')
-                       ) + urlpatterns
-
+                           name='ni-search')) + urlpatterns,
+                       url(r'^accounts/', include('registration.backends.default.urls'))
 
 # staticfiles testing
 from django.conf import settings
@@ -20,7 +19,6 @@ urlpatterns += patterns('',
                             'path': 'favicon/favicon.ico'
                         })
                         )
-
 # if settings.DEBUG:
 # import debug_toolbar
 #

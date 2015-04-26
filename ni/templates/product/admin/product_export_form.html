@@ -133,6 +133,23 @@
 
                 <h2>{% trans 'Helpers' %}</h2>
 
+            {% if field.is_hidden %}
+                {{ field }}
+            {% else %}
+                {% ifchanged field.field.slug %}
+                    {% if field.field.product_id %}
+                    <tr class="{{ field.field.subtypes }}">
+                        <td>{{ field }}</td>
+                        <td><a href="{% url 'admin:product_product_change' field.field.product_id %}">{{ field.label_tag }}</a>
+                            {% if field.errors %}
+                            <span class="error">{{ field.errors }}</span><br/>
+                            {% endif %}    
+                        </td>
+                    {% endif %}
+                        <td>{{ field.help_text}}</td></tr>
+                {% endifchanged %}
+            {% endif %}
+
                 <p><a href="#" id="mark_all">{% trans 'Check all' %}</p>
 
                 <p><a href="#" id="unmark_all">{% trans 'Uncheck all' %}</p>

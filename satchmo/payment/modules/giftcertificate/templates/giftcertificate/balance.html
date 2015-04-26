@@ -8,26 +8,26 @@
 
 {% block content %}
 <div id="giftcertificate">
-	{% if code %}
-	{% if success} %}
-	<h3>{% trans 'Gift Certificate' %}</h3>
-	<p>
-		{% trans 'Purchased on:' %} {{ giftcertificate.date_added|date:'y-M-d' }}
-		{% if giftcertificate.message %}
-			<p class="message">{{ giftcertificate.message }}</p>
-		{% else %}
-		<br/>
-		{% endif %}
-		{% trans 'Starting Balance:' %} {{ giftcertificate.start_balance|currency }}<br/>
-		{% trans 'Current Balance:' %} {{ giftcertificate.balance|currency }}<br/>
-	</p>
-	{% else %}
-	<p class="warning">{% trans 'No such gift certificate found.' %}</p>
-	{% endif %}
-	{% else %}
-	<form method="GET" action="{% url 'satchmo_giftcertificate_balance' %}">
-	{{ form }}
-	<p><input type="submit" value="{% trans 'Look up balance' %}" /></p>
-	</form>
-	{% endif %}
+    {% if code %}
+    {% if success} %}
+    <h3>{% trans 'Gift Certificate' %}</h3>
+    <p>
+        {% trans 'Purchased on:' %} {{ giftcertificate.date_added|date:'y-M-d' }}
+        {% if giftcertificate.message %}
+            <p class="message">{{ giftcertificate.message }}</p>
+        {% else %}
+        <br/>
+        {% endif %}
+        {% trans 'Starting Balance:' %} {{ giftcertificate.start_balance|currency }}<br/>
+        {% trans 'Current Balance:' %} {{ giftcertificate.balance|currency }}<br/>
+    </p>
+    {% else %}
+    <p class="warning">{% trans 'No such gift certificate found.' %}</p>
+    {% endif %}
+    {% else %}
+    <form method="GET" action="{% url 'satchmo_giftcertificate_balance' %}">
+    {{ form }}
+    <p><input type="submit" value="{% trans 'Look up balance' %}" /></p>
+    </form>
+    {% endif %}
 {% endblock %}

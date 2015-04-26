@@ -15,14 +15,11 @@
             errors:{% endblocktrans %}</h3>
     {% endif %}
 
-    <table>
-        <form method="post" action=".">{% csrf_token %}
-            {{ form.as_table }}
-            <tr>
-                <td></td>
-                <td><input type="submit" value="{% trans "Send Email" %}"/></td>
-            </tr>
-        </form>
-    </table>
+<table>
+<form method="post">{% csrf_token %}
+    {{ form.as_table }}
+<tr><td></td><td><input type="submit" value="{% trans "Send Email" %}"/></td></tr>
+</form>
+</table>
 
 {% endblock %}

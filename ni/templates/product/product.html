@@ -28,22 +28,19 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 {% endblock %}
 
 {% block content %}
-    {% block productdetail %}
-        <h4>{{ product.translated_name }}</h4>
-        <p>{{ product.translated_description }}</p>
-        {% trans "Price" %} {% if default_view_tax %}
-        {% trans '(incl. tax)' %}{% endif %}:
-        <h3>
-            {% if sale %}<strike id="fullprice"
-                                 style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
-            <span id="price">{{ product|discount_price:sale|currency }}</span>
-        </h3>
-        {% for pic in product.productimage_set.all %}
-            {% thumbnail pic.picture "280x280" as image %}
-                <img src="{{ image.url }}" width="{{ image.width }}"
-                     height="{{ image.height }}"/>
-            {% endthumbnail %}
-        {% endfor %}
+{% block productdetail %}
+<h4>{{ product.translated_name }}</h4>
+<p>{{ product.translated_description }}</p>
+{% trans "Price" %} {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}:
+<h3>
+    {% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+    <span id="price">{{ product|discount_price:sale|currency }}</span>
+</h3>
+{% for pic in product.productimage_set.all %}
+    {% thumbnail pic.picture "280x280" as image %}
+    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" />
+    {% endthumbnail %}
+{% endfor %}
 
         {% with product.translated_attributes as atts %}{% if atts %}
             <p class="productattributes">

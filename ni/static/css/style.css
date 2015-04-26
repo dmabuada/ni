@@ -69,6 +69,12 @@ h5 {
     padding: 0;
 }
 
+ul, li {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
 #sidebar-secondary {
     float: left;
     width: 240px;
@@ -1022,6 +1028,105 @@ div.upsell .upselldescription {
     text-decoration: underline;
 }
 
+/* ========== My account ========== */ 
+
+.my-account {
+    width: 71rem;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.my-account .account-sidebar {
+    float: left;
+    width: 11rem;
+    margin: 1rem 0 1rem 0;
+    text-align: left;
+    padding: 1rem;
+    background-color: #f2edf6;
+    -webkit-border-radius: 5px;
+    -mozilla-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.my-account .account-sidebar li {
+    border-top: 1px solid #dadbd6;
+    display: block;
+    padding: 0.5rem;
+}
+
+.my-account .account-sidebar a:hover{
+    color: #999;
+}
+
+.my-account .account-primary {
+    float: left;
+    width: 55rem;
+    margin: 1rem;
+}
+
+.my-account .section {
+    float: left;
+    width: 50.3rem;
+    height: auto;
+    border: 1px solid #dadbd6;
+    border-radius: 5px;
+    background-color: #FFF;
+    margin-bottom: 24px;
+}
+
+.my-account .about-me,
+.my-account .address-book {
+    width: 24rem;
+}
+
+.my-account .about-me {
+    margin-right: 2rem;
+}
+
+.my-account .profile {
+    margin: 1rem;
+    padding: 0.5rem;
+}
+.my-account .profile label {
+    display: block;
+}
+
+.my-account .profile input {
+    width: 14rem;
+    height: 1.5rem;
+}
+
+.my-account h5 {
+    background-color: #f2edf6;
+    border-radius: 4px 4px 0 0;
+    font-size: 1rem;
+    padding: 0.6rem 1.5rem;
+}
+
+.my-account button,
+.my-account input[type="submit"] {
+    border-color: #ddd1e7 #bba3d0 #aa8cc5;
+    background: #aa8cc5;
+    display: inline-block;
+    padding: 7px 15px 8px;
+    border: 1px solid;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 12px;
+    cursor: pointer;
+    line-height: normal;
+    margin: 0;
+}
+
+.my-account h4 {
+    font-size: 1rem;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1rem;
+}
+
 /* ============ Individual Product Page ======= */
 
 #product-individual-wrapper {
@@ -1141,10 +1246,51 @@ form#search-page label {
 
 form#search-page input[type=submit] {
     margin-top: 20px;
-    font-family: 'Muli', sans-serif;
-    font-size: .8rem;
-    height: 2.3rem;
-    padding: 0;
+}
+
+/* Registration Pages */
+
+.login-form,
+.register-form,
+.reset-password-form {
+    background: #fafafc url("http://subtlepatterns.com/patterns/concrete_seamless.png") top center repeat;
+    padding: 2rem;
+    margin-bottom: -2rem;
+}
+
+.register-container {
+    width: 22rem;
+    margin: 0 auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 -1px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 -1px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
+    background-color: #fff;
+    position: relative;
+    padding: 0.5rem 1rem;
+}
+
+.register-container h4 {
+    margin-top: 1.2rem;
+    text-align: center;
+}
+
+.register-container input {
+    font-family: sans-serif;
+    font-size: 1em;
+    height: 2.5rem;
+    font-weight: 200;
+    margin: 0.5rem 0 0.5rem 0rem;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #999;
+}
+.login-container input[type=submit] {
     cursor: pointer;
     display: block;
     color: #eee;
@@ -1157,4 +1303,3 @@ form#search-page input[type=submit] {
     background: -moz-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
     background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
 }
-

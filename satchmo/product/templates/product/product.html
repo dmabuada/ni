@@ -33,8 +33,8 @@ ProductVariations or CustomProducts, look for product/detail_xxx.html
 <p>{{ product.translated_description }}</p>
 {% trans "Price" %} {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}:
 <h3>
-	{% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
-	<span id="price">{{ product|discount_price:sale|currency }}</span>
+    {% if sale %}<strike id="fullprice" style="display: block;">{{ product|discount_price:""|currency }}</strike>{% endif %}
+    <span id="price">{{ product|discount_price:sale|currency }}</span>
 </h3>
 {% for pic in product.productimage_set.all %}
     {% thumbnail pic.picture "280x280" as image %}
