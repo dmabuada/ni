@@ -13,6 +13,6 @@ requests==2.6.0
 requests-oauthlib==0.4.2
 sorl-thumbnail==12.2
 psycopg2==2.6
-django-compressor==1.4
+django-compressor==1.5
 beautifulsoup4==4.3.2
 django-registration-redux==1.1
