@@ -1,0 +1,37 @@
+{% extends "boilerplate.html" %}
+
+{% load i18n compress %}
+
+{% block title %}Something went wrong{% endblock %}
+
+
+{% block compressed-head-css %}
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/component.css"/>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css"/>
+{% endblock %}
+
+{% block head %}
+    {% block additional-head %}{% endblock %}
+{% endblock %}
+
+{% block compressed-head-js %}
+{% endblock %}
+
+{% comment %}
+    The content that will show up in the body
+{% endcomment %}
+
+{% block header %}{% endblock %}
+
+{% block body %}
+    {% block content %}
+        <p>There doesn't seem to be anything here...</p>
+        <div class="clear">&nbsp;</div>
+    {% endblock %}
+
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block compressed-footer-scripts %}{% endblock %}
+{% block footer-scripts %}{% endblock %}
