@@ -4,20 +4,20 @@ from satchmo_store.urls import urlpatterns
 from ni import views
 
 urlpatterns = patterns('',
-                       url(r'^ping', views.ping, name='health'),
-                       url(r'^accounts/', include('registration.backends.default.urls')),
-                       url(r'^search/', views.search.search_view,
-                           name='ni-search')) + urlpatterns
+    url(r'^ping', views.ping, name='health'),
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^search/', views.search.search_view, name='ni-search')
+) + urlpatterns
 
 # staticfiles testing
 from django.conf import settings
 
 urlpatterns += patterns('',
-                        url(r'^favicon\.ico$', 'django.views.static.serve', {
-                            'document_root': settings.STATIC_ROOT,
-                            'path': 'favicon/favicon.ico'
-                        })
-                        )
+    url(r'^favicon\.ico$', 'django.views.static.serve', {
+        'document_root': settings.STATIC_ROOT,
+        'path': 'favicon/favicon.ico'
+    })
+)
 # if settings.DEBUG:
 # import debug_toolbar
 #

@@ -4,43 +4,15 @@
 
 {% block content %}
 
-<div class="register-form">
-    <div class="register-container">
-        <h4>{% trans "Sign up" %}</h4>
-        <form method="post">{% csrf_token %}
-        {% if allow_nickname %}
-            {{ form.username.label }}{{ form.username }}
-            {% if form.username.errors %}*** {{ form.username.errors|join:", " }}{% endif %}
-        {% endif %}
-            <label for="id_email">Email address:</label>
-            <input id="id_email" maxlength="75" name="email" type="email">
-            {% if form.email.errors %}*** {{ form.email.errors|join:", " }}{% endif %}
+    <div class="register-form">
+        <div class="register-container">
+            <h4>{% trans "Sign up" %}</h4>
 
-            <label for="id_first_name">First name:</label>
-            <input id="id_first_name" maxlength="30" name="first_name" type="text">
-            {% if form.first_name.errors %}*** {{ form.first_name.errors|join:", " }}{% endif %}
-              
-            <label for="id_last_name">First name:</label>
-            <input id="id_last_name" maxlength="30" name="last_name" type="text">
-            {% if form.last_name.errors %}*** {{ form.last_name.errors|join:", " }}{% endif %}
-
-
-            <label for="id_password1">Password:</label>
-            <input id="id_password1" maxlength="30" name="password1" type="password">
-            {% if form.password1.errors %}*** {{ form.password1.errors|join:", " }}{% endif %}
-
-            <label for="id_password2">Password (again):</label>
-            <input id="id_password2" maxlength="30" name="password2" type="password">
-            {% if form.password2.errors %}*** {{ form.password2.errors|join:", " }}{% endif %}
-
-            {% if show_newsletter %}
-            {{ form.newsletter.label_tag }}: {{ form.newsletter }}
-            {% if form.newsletter.errors %}*** {{ form.newsletter.errors|join:", " }}{% endif %}
-            {% else %}
-            <input type='hidden' name='newsletter' value="False" />
-            {% endif %}
-            <input type="submit" value="{% trans "Create Account" %}"/>
-        </form>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <input type="submit" value="{% trans "Create Account" %}"/>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}

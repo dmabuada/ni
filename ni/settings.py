@@ -131,11 +131,45 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
-    # 'registration',
+
+
     # Authentication here
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # ... include the providers you want to enable:
+    # '# allauth.socialaccount.providers.amazon',
+    # 'allauth.socialaccount.providers.angellist',
+    # 'allauth.socialaccount.providers.bitbucket',
+    # 'allauth.socialaccount.providers.bitly',
+    # 'allauth.socialaccount.providers.coinbase',
+    # 'allauth.socialaccount.providers.dropbox',
+    # 'allauth.socialaccount.providers.dropbox_oauth2',
+    # 'allauth.socialaccount.providers.evernote',
+    # 'allauth.socialaccount.providers.facebook',
+    # 'allauth.socialaccount.providers.flickr',
+    # 'allauth.socialaccount.providers.feedly',
+    # 'allauth.socialaccount.providers.fxa',
+    # 'allauth.socialaccount.providers.github',
+    # 'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.hubic',
+    # 'allauth.socialaccount.providers.instagram',
+    # 'allauth.socialaccount.providers.linkedin',
+    # 'allauth.socialaccount.providers.linkedin_oauth2',
+    # 'allauth.socialaccount.providers.odnoklassniki',
+    # 'allauth.socialaccount.providers.openid',
+    # 'allauth.socialaccount.providers.persona',
+    # 'allauth.socialaccount.providers.soundcloud',
+    # 'allauth.socialaccount.providers.spotify',
+    # 'allauth.socialaccount.providers.stackexchange',
+    # 'allauth.socialaccount.providers.tumblr',
+    # 'allauth.socialaccount.providers.twitch',
+    # 'allauth.socialaccount.providers.twitter',
+    # 'allauth.socialaccount.providers.vimeo',
+    # 'allauth.socialaccount.providers.vk',
+    # 'allauth.socialaccount.providers.weibo',
+    # 'allauth.socialaccount.providers.xing',
+
     'sorl.thumbnail',
     'keyedcache',
     'l10n',
@@ -204,6 +238,9 @@ LIVESETTINGS_OPTIONS = {
 }
 
 TEST_RUNNER = 'django.test.runner.DiscoverRunner'
+
+
+ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 
 # Load the local settings
 from local_settings import *
