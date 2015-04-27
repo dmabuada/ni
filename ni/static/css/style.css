@@ -268,7 +268,7 @@ a.down-arrow:after {
 }
 
 #product_category {
-    margin-left: 240px;
+    margin: 2rem 0 0 15rem
 }
 
 #product_category ul {
@@ -1235,7 +1235,6 @@ div.upsell .upselldescription {
 }
 
 form#search-page label {
-    text-transform: lowercase;
     display: block;
     margin-top: 15px;
 }
