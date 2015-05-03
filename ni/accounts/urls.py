@@ -11,7 +11,7 @@ from livesettings import config_value
 
 from ni.accounts.views import RegistrationComplete
 # extending the urls in contacts
-from satchmo_store.contact.urls import urlpatterns
+# from satchmo_store.contact.urls import urlpatterns
 from satchmo_utils.signals import collect_urls
 from ni import accounts
 # The following import of satchmo_store.contact.config should not be removed
@@ -23,10 +23,10 @@ import satchmo_store.contact.config
 # [a-fA-F0-9]+ because a bad activation key should still get to the view;
 # that way it can return a sensible "invalid key" message instead of a
 # confusing 404.
-urlpatterns += patterns('',
+urlpatterns = patterns('ni.accounts.views',
     (r'^activate/(?P<activation_key>\w+)/$', 'activate', {}, 'registration_activate'),
     (r'^login/$', 'emaillogin', {'template_name': 'registration/login.html'}, 'auth_login'),
-    (r'^register/$', 'register', {}, 'registration_register'),
+    (r'^register/$', 'register', { }, 'registration_register'),
     (r'^secure/login/$', 'emaillogin', {'SSL' : True, 'template_name': 'registration/login.html'}, 'auth_secure_login'),
 )
 

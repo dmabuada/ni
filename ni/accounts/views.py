@@ -26,7 +26,7 @@ YESNO = (
     (0, _('No'))
 )
 
-def emaillogin(request, template_name='templates/registration/login.html',
+def emaillogin(request, template_name='registration/login.html',
     auth_form=EmailAuthenticationForm, redirect_field_name=REDIRECT_FIELD_NAME):
     "Displays the login form and handles the login action. Altered to use the EmailAuthenticationForm"
 
@@ -262,7 +262,7 @@ def activate(request, activation_key):
 
 
 def login_signup(request,
-                 template_name="templates/contact/login_signup.html",
+                 template_name="contact/login_signup.html",
                  registration_handler=register_handle_form,
                  handler_kwargs = {}):
     """Display/handle a combined login and create account form"""
@@ -345,7 +345,7 @@ def login_signup(request,
     return render_to_response(template_name, context_instance=context)
 
 
-def login_signup_address(request, template_name="templates/contact/login_signup_address.html"):
+def login_signup_address(request, template_name="contact/login_signup_address.html"):
     """
     View which allows a user to login or else fill out a full address form.
     """
@@ -355,7 +355,7 @@ def login_signup_address(request, template_name="templates/contact/login_signup_
                         handler_kwargs={'action_required' : 'create'})
 
 
-def register(request, redirect=None, template='templates/registration/registration_form.html'):
+def register(request, redirect=None, template='registration/registration_form.html'):
     """
     Allows a new user to register an account.
     """
