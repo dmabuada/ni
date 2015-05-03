@@ -126,13 +126,12 @@ class RegistrationForm(forms.Form):
         data = self.cleaned_data
         password = data['password1']
         email = data['email']
-        first_name = data['first_name']
-        last_name = data['last_name']
+
         allow_nickname = config_value('SHOP', 'ALLOW_NICKNAME_USERNAME')
         if allow_nickname and data['username']:
             username = data['username']
         else:
-            username = generate_id(first_name, last_name, email)
+            username = email
         verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
 
         if verify:
@@ -144,8 +143,6 @@ class RegistrationForm(forms.Form):
         else:
             user = User.objects.create_user(username, email, password)
 
-        user.first_name = first_name
-        user.last_name = last_name
         user.save()
 
         # If the user already has a contact, retrieve it.
@@ -161,8 +158,6 @@ class RegistrationForm(forms.Form):
             contact = Contact()
 
         contact.user = user
-        contact.first_name = first_name
-        contact.last_name = last_name
         contact.email = email
         contact.role = ContactRole.objects.get(pk='Customer')
         contact.title = data.get('title', '')
@@ -183,7 +178,7 @@ class RegistrationForm(forms.Form):
         if not verify:
             user = authenticate(username=username, password=password)
             login(request, user)
-            send_welcome_email(email, first_name, last_name)
+            send_welcome_email(email)
             signals.satchmo_registration_verified.send(self, contact=contact)
 
         self.contact = contact
