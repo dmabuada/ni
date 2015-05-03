@@ -1,4 +1,7 @@
-{% load i18n %}{% blocktrans %}Dear {{ first_name }} {{ last_name }},{% endblocktrans %}
+{% load i18n %}
+{% blocktrans %}
+Dear user,
+{% endblocktrans %}
 
 {% blocktrans %}Thank you for signing up with {{ shop_name }}.{% endblocktrans %}
 

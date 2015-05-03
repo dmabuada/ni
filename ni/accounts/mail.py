@@ -10,12 +10,14 @@ import logging
 log = logging.getLogger('satchmo_store.accounts.mail')
 
 # TODO add html email template
-def send_welcome_email(email):
+def send_welcome_email(email, first_name, last_name):
     """Send a store new account welcome mail to `email`."""
 
     shop_config = Config.objects.get_current()
     subject = ugettext("Welcome to %(shop_name)s")
     c = {
+        'first_name': first_name,
+        'last_name': last_name,
         'site_url': shop_config.site and shop_config.site.domain or 'localhost',
         'login_url': settings.LOGIN_URL,
     }
