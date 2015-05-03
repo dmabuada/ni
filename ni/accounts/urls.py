@@ -25,33 +25,33 @@ import satchmo_store.contact.config
 # confusing 404.
 urlpatterns += patterns('',
     (r'^activate/(?P<activation_key>\w+)/$', 'activate', {}, 'registration_activate'),
-    (r'^login/$', 'emaillogin', {'template_name': 'templates/registration/login.html'}, 'auth_login'),
+    (r'^login/$', 'emaillogin', {'template_name': 'registration/login.html'}, 'auth_login'),
     (r'^register/$', 'register', {}, 'registration_register'),
-    (r'^secure/login/$', 'emaillogin', {'SSL' : True, 'template_name': 'templates/registration/login.html'}, 'auth_secure_login'),
+    (r'^secure/login/$', 'emaillogin', {'SSL' : True, 'template_name': 'registration/login.html'}, 'auth_secure_login'),
 )
 
 urlpatterns += patterns('',
-    ('^logout/$','django.contrib.auth.views.logout', {'template_name': 'templates/registration/logout.html'}, 'auth_logout'),
+    ('^logout/$','django.contrib.auth.views.logout', {'template_name': 'registration/logout.html'}, 'auth_logout'),
     )
 
 urlpatterns += patterns('',
     (r'^register/complete/$',
-        RegistrationComplete.as_view(template_name='templates/registration/registration_complete.html'), {},
+        RegistrationComplete.as_view(template_name='registration/registration_complete.html'), {},
         'registration_complete'),
 )
 
 #Dictionary for authentication views
 password_reset_dict = {
-    'template_name': 'templates/registration/password_reset_form.html',
-    'email_template_name': 'templates/registration/password_reset.txt',
+    'template_name': 'registration/password_reset_form.html',
+    'email_template_name': 'registration/password_reset.txt',
 }
 
 # the "from email" in password reset is problematic... it is hard coded as None
 urlpatterns += patterns('django.contrib.auth.views',
     (r'^password_reset/$', 'password_reset', password_reset_dict, 'auth_password_reset'),
-    (r'^password_reset/done/$', 'password_reset_done', {'template_name':'templates/registration/password_reset_done.html'}, 'auth_password_reset_done'),
-    (r'^password_change/$', 'password_change', {'template_name':'templates/registration/password_change_form.html'}, 'auth_password_change'),
-    (r'^password_change/done/$', 'password_change_done', {'template_name':'templates/registration/password_change_done.html'}, 'auth_change_done'),
+    (r'^password_reset/done/$', 'password_reset_done', {'template_name':'registration/password_reset_done.html'}, 'auth_password_reset_done'),
+    (r'^password_change/$', 'password_change', {'template_name':'registration/password_change_form.html'}, 'auth_password_change'),
+    (r'^password_change/done/$', 'password_change_done', {'template_name':'registration/password_change_done.html'}, 'auth_change_done'),
     (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 'password_reset_confirm'),
     (r'^reset/done/$', 'password_reset_complete'),
 )
