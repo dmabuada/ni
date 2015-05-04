@@ -1,5 +1,8 @@
 import datetime
+from django.contrib.sites.models import Site
+
 from haystack import indexes
+
 from product.models import Product
 
 
@@ -17,4 +20,10 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
 
     def index_queryset(self, using=None):
         """Used when the entire index for model is updated."""
-        return self.get_model().objects.filter(date_added__lte=datetime.datetime.now())
+
+        site = Site.objects.get_current()
+
+        P = self.get_model()
+        products = P.objects.active_by_site(variations=False, site=site)
+
+        return products.filter(date_added__lte=datetime.datetime.now())
