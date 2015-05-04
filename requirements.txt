@@ -17,3 +17,6 @@ django-compressor==1.5
 beautifulsoup4==4.3.2
 django-registration-redux==1.1
 python-logstash==0.4.5
+django-haystack==2.3.1
+pysolr==3.3.0
+
