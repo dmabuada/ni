@@ -244,4 +244,3 @@ ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 
 # Load the local settings
 from local_settings import *
-

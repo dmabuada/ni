@@ -75,5 +75,4 @@ logging.basicConfig(level=logging.DEBUG,
                     datefmt='%a, %d %b %Y %H:%M:%S',
                     filename=os.path.join(DIRNAME, LOGFILE),
                     filemode='w')
-
 logging.info("Satchmo Started")

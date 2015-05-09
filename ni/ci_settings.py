@@ -85,6 +85,7 @@ MIDDLEWARE_CLASSES = (
     "satchmo_store.shop.SSLMiddleware.SSLRedirect",
     # "satchmo_ext.recentlist.middleware.RecentProductMiddleware",
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'ni.middleware.LoggingMiddleware'
 )
 
 # this is used to add additional config variables to each request
@@ -201,8 +202,6 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 
 # this is an extremely simple Satchmo standalone store.
 
-import logging
-
 LOCAL_DEV = False
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -265,40 +264,45 @@ CACHES = {
 ACCOUNT_ACTIVATION_DAYS = 7
 
 # Configure logging
-LOGFILE = "satchmo.log"
-logging.basicConfig(level=logging.DEBUG,
-                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-                    datefmt='%a, %d %b %Y %H:%M:%S',
-                    filename=os.path.join(DIRNAME, LOGFILE),
-                    filemode='w')
-
-logging.getLogger('django.db.backends').setLevel(logging.INFO)
-logging.getLogger('keyedcache').setLevel(logging.INFO)
-logging.getLogger('l10n').setLevel(logging.INFO)
-logging.getLogger('suds').setLevel(logging.INFO)
-logging.info("Satchmo Started")
+# LOGFILE = "satchmo.log"
+# logging.basicConfig(level=logging.DEBUG,
+#                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+#                     datefmt='%a, %d %b %Y %H:%M:%S',
+#                     filename=os.path.join(DIRNAME, LOGFILE),
+#                     filemode='w')
+#
+# logging.getLogger('django.db.backends').setLevel(logging.INFO)
+# logging.getLogger('keyedcache').setLevel(logging.INFO)
+# logging.getLogger('l10n').setLevel(logging.INFO)
+# logging.getLogger('suds').setLevel(logging.INFO)
+# logging.info("Satchmo Started")
 
 
 LOGGING = {
-  'version': 1,
-  'handlers': {
-      'logstash': {
-          'level': 'DEBUG',
-          'class': 'logstash.LogstashHandler',
-          'host': 'ec2-52-7-147-163.compute-1.amazonaws.com',
-          'port': 5959, # Default value: 5959
-          'version': 1, # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
-          'message_type': 'logstash',  # 'type' field in logstash message. Default value: 'logstash'.
-          'fqdn': False, # Fully qualified domain name. Default value: false.
-          'tags': ['tag1', 'tag2'], # list of tags. Default: None.
-      },
-  },
-  'loggers': {
-      'django.request': {
-          'handlers': ['logstash'],
-          'level': 'DEBUG',
-          'propagate': True,
-      },
-  }
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'logstash': {
+            'level': 'INFO',
+            'class': 'logstash.TCPLogstashHandler',
+            'host': 'ec2-52-7-147-163.compute-1.amazonaws.com',
+            'port': 5959,  # Default value: 5959
+            'version': 1,  # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
+            # 'message_type': 'ni',  # 'type' field in logstash message. Default value: 'logstash'.
+            # 'fqdn': False, # Fully qualified domain name. Default value: false.
+            # 'tags': ['tag1', 'tag2'], # list of tags. Default: None.
+        },
+    },
+    'loggers': {
+        'django.request': {
+            'handlers': ['logstash'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'ni': {
+            'handlers': ['logstash'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+    }
 }
-
