@@ -280,6 +280,7 @@ logging.info("Satchmo Started")
 
 
 LOGGING = {
+  'version': 1,
   'handlers': {
       'logstash': {
           'level': 'DEBUG',
