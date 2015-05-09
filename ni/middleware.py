@@ -24,7 +24,7 @@ class LoggingMiddleware(object):
             'execution_time': time() - request.timer,
             'method': request.method,
             'path': request.get_full_path(),
-            'user_agent': request.META['HTTP_USER_AGENT'],
+            'user_agent': request.META.get('HTTP_USER_AGENT'),
             'resolver_match': request.resolver_match._func_path,
             'url_name': request.resolver_match.url_name,
             'user': str(request.user),
