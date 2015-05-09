@@ -277,3 +277,27 @@ logging.getLogger('keyedcache').setLevel(logging.INFO)
 logging.getLogger('l10n').setLevel(logging.INFO)
 logging.getLogger('suds').setLevel(logging.INFO)
 logging.info("Satchmo Started")
+
+
+LOGGING = {
+  'handlers': {
+      'logstash': {
+          'level': 'DEBUG',
+          'class': 'logstash.LogstashHandler',
+          'host': 'ec2-52-7-147-163.compute-1.amazonaws.com',
+          'port': 5959, # Default value: 5959
+          'version': 1, # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
+          'message_type': 'logstash',  # 'type' field in logstash message. Default value: 'logstash'.
+          'fqdn': False, # Fully qualified domain name. Default value: false.
+          'tags': ['tag1', 'tag2'], # list of tags. Default: None.
+      },
+  },
+  'loggers': {
+      'django.request': {
+          'handlers': ['logstash'],
+          'level': 'DEBUG',
+          'propagate': True,
+      },
+  }
+}
+
