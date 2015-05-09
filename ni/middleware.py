@@ -2,6 +2,14 @@ from time import time
 from logging import getLogger
 
 
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
+
 class LoggingMiddleware(object):
     def __init__(self):
         self.logger = getLogger('ni')
@@ -20,6 +28,7 @@ class LoggingMiddleware(object):
             'resolver_match': request.resolver_match._func_path,
             'url_name': request.resolver_match.url_name,
             'user': str(request.user),
+            'remote_address': request.META['REMOTE_ADDR']
         }
 
         self.logger.info(
