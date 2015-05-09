@@ -28,7 +28,9 @@ class LoggingMiddleware(object):
             'resolver_match': request.resolver_match._func_path,
             'url_name': request.resolver_match.url_name,
             'user': str(request.user),
-            'remote_address': request.META['REMOTE_ADDR']
+            'remote_address': request.META.get('REMOTE_ADDR'),
+            'x-forwarded-for': request.META.get('HTTP_X_FORWARDED_FOR'),
+            'session_id': request.session._session_key
         }
 
         self.logger.info(
