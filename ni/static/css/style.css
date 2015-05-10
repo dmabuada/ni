@@ -1252,12 +1252,14 @@ form#search-page input[type=submit] {
 
 .login-form,
 .register-form,
-.reset-password-form {
+.reset-password-form,
+.checkout-form {
     background: #fafafc url("http://subtlepatterns.com/patterns/concrete_seamless.png") top center repeat;
     padding: 2rem;
 }
 
-.register-container {
+.register-container,
+.checkout-container {
     width: 22rem;
     margin: 0 auto;
     -webkit-border-radius: 3px;
@@ -1271,6 +1273,10 @@ form#search-page input[type=submit] {
     background-color: #fff;
     position: relative;
     padding: 0.5rem 1rem;
+}
+
+.checkout-container {
+    width: 50rem;
 }
 
 .register-container h4 {
@@ -1289,6 +1295,7 @@ form#search-page input[type=submit] {
     width: 100%;
     border: 1px solid #999;
 }
+
 .login-container input[type=submit] {
     cursor: pointer;
     display: block;
@@ -1301,4 +1308,111 @@ form#search-page input[type=submit] {
     background: -ms-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
     background: -moz-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
     background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
+}
+
+/* Checkout Pages */
+
+.item-desc {
+    display: table;
+}
+
+.item-image {
+    display: table-cell;
+    width: 7em;
+    padding: 0;
+    border-right: 1px solid rgba(221, 221, 221, 0.35);
+    border-bottom: 0;
+}
+
+.item-image img {
+    display: block;
+    width: 60%;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+    -webkit-backface-visibility: hidden;
+}
+
+.item-desc {
+    display: table-cell;
+    width: 23em;
+    padding: 0.75em 1em;
+    border-right: 1px solid rgba(221, 221, 221, 0.35);
+}
+
+.item-price {
+    display: table-cell;
+    width: 5em;
+    padding: 0;
+    text-align: center;
+    background-color: #fcfcfc;
+}
+
+.item-interactions {
+    display: block;
+    width: 100%;
+    padding: 1.5em;
+    color: #666;
+    font-size: 0.8em;
+    border-top: 1px solid rgba(221, 221, 221, 0.35);
+}
+
+.item-quantity {
+    margin-top: 0;
+    margin-bottom: 0;
+    float: left;
+}
+
+.item-remove {
+    transform: translate3d(0, 0, 0);
+    display: inline-block;
+    width: 3em;
+    padding: 0.5em;
+    background-color: #eaeaea;
+}
+
+.cart-summary {
+    width: 35em;
+    margin: 0 auto;
+}
+
+.checkout {
+    float: left;
+    width: 16.75em;
+}
+
+.checkout li {
+    padding: 1em;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.35);
+}
+
+.button {
+    display: block;
+    padding: 1em;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+    background-color: #e66b1e;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.steps {
+    margin-right: 1.5em;
+    margin-bottom: 0;
+    float: left;
+    width: 16.75em;
+}
+
+.steps li {
+    padding: 1em;
+    border-bottom: 1px solid rgba(221, 221, 221, 0.35);
+}
+
+.cart-item:after, 
+.item-interactions:after, 
+.summary:after {
+  content: "";
+  display: table;
+  clear: both;
 }
