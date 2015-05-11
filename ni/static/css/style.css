@@ -1253,13 +1253,14 @@ form#search-page input[type=submit] {
 .login-form,
 .register-form,
 .reset-password-form,
-.checkout-form {
+.checkout-form,
+.ship-form {
     background: #fafafc url("http://subtlepatterns.com/patterns/concrete_seamless.png") top center repeat;
     padding: 2rem;
 }
 
 .register-container,
-.checkout-container {
+.ship-container {
     width: 22rem;
     margin: 0 auto;
     -webkit-border-radius: 3px;
@@ -1275,9 +1276,8 @@ form#search-page input[type=submit] {
     padding: 0.5rem 1rem;
 }
 
-.checkout-container {
-    width: 35rem;
-    padding: 0;
+.ship-container {
+    width: 60rem;
 }
 
 .register-container h4 {
@@ -1285,7 +1285,8 @@ form#search-page input[type=submit] {
     text-align: center;
 }
 
-.register-container input {
+.register-container input,
+.ship-container input {
     font-family: sans-serif;
     font-size: 1em;
     height: 2.5rem;
@@ -1311,10 +1312,32 @@ form#search-page input[type=submit] {
     background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
 }
 
-/* Checkout Pages */
+/* Checkout Pages... normalize this after done, it's ugly */ 
+
+.checkout-container {
+    width: 35rem;
+    padding: 0;
+    margin: 0 auto;
+}
+
+.checkout-container li {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+}
+
+.checkout-ship {
+    width: 45rem;
+    margin: 2rem auto;
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0px 1px 6px rgba(0, 0, 0, 0.25);
+    margin-bottom: 2rem;
+    padding: 2rem;
+}
 
 .cart-item {
-    transform: translate3d(0, 0, 0);
     width: 100%;
 }
 
@@ -1337,7 +1360,6 @@ form#search-page input[type=submit] {
     margin: 0 auto;
     border-radius: 5px;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-    -webkit-backface-visibility: hidden;
 }
 
 .item-desc {
@@ -1385,7 +1407,7 @@ form#search-page input[type=submit] {
 }
 
 .cart-summary {
-    width: 35em;
+    width: 35rem;
     margin: 2rem auto;
     overflow: hidden;
 }
@@ -1398,13 +1420,12 @@ form#search-page input[type=submit] {
     background: -moz-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
     background: -webkit-linear-gradient(top, #ddd1e7 2%, #bba3d0 8%, #aa8cc5 58%, #9975b9 95%, #885ead);
     display: block;
-    padding: 1em;
+    padding: 1rem;
     color: #fff;
     font-weight: bold;
     text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
     background-color: #e66b1e;
     box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
-    transition: background-color 0.25s ease-in-out;
     text-align: center;
     border-radius: 3px;
     cursor: pointer;
@@ -1420,7 +1441,7 @@ form#search-page input[type=submit] {
 }
 
 .steps {
-    margin-right: 1.5em;
+    margin-right: 1.5rem;
     margin-bottom: 0;
 }
 
