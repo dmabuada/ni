@@ -127,10 +127,14 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
     'django.contrib.messages',
+
+    'haystack',
+
     # Authentication here
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+
     'sorl.thumbnail',
     'keyedcache',
     'l10n',
@@ -169,6 +173,15 @@ INSTALLED_APPS = (
     'compressor',
     'ni'
 )
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://solr.clowntown.me:8983/solr/ni'
+        # ...or for multicore...
+        # 'URL': 'http://127.0.0.1:8983/solr/mysite',
+    },
+}
 
 AUTHENTICATION_BACKENDS = (
     'satchmo_store.accounts.email-auth.EmailBackend',
