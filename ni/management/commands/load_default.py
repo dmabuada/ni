@@ -260,6 +260,21 @@ class Command(NoArgsCommand):
         party_dresses_category.save()
 
         print("Creating Products...")
+        size_option_group = OptionGroup(
+            site=site,
+            name="size",
+            sort_order=1
+        )
+        size_option_group.save()
+
+        for j, size in enumerate([str(n) for n in range(0, 18, 2)]):
+            variation = Option(
+                name=size,
+                value=size,
+                sort_order=j,
+                option_group=size_option_group
+            )
+            variation.save()
 
         def populate_category(src_category_name, category):
             sample_data = load_sample_data(src_category_name)
@@ -292,22 +307,6 @@ class Command(NoArgsCommand):
                 dress_image.save()
 
                 # Create variations
-                size_option_group = OptionGroup(
-                    site=site,
-                    name="size",
-                    sort_order=1
-                )
-                size_option_group.save()
-
-                for j, size in enumerate([str(n) for n in range(0, 18, 2)]):
-                    variation = Option(
-                        name=size,
-                        value=size,
-                        sort_order=j,
-                        option_group=size_option_group
-                    )
-                    variation.save()
-
                 dress_variation = ConfigurableProduct(product=this_dress)
                 dress_variation.save()
                 dress_variation.option_group.add(size_option_group)

@@ -5,6 +5,7 @@ from django.contrib.sites.models import Site
 
 from product.models import Category
 from product.models import Product
+from product.modules.configurable.models import ConfigurableProduct
 from livesettings import config_value
 
 
@@ -18,7 +19,7 @@ def product_search_listener(sender, query, **kwargs):
     """
 
     keywords = query.get('k', '').split()
-    size = query.get('size', None)
+    sizes = query.get('size', None)
 
     log.debug('default product search listener')
     site = Site.objects.get_current()
@@ -63,16 +64,12 @@ def product_search_listener(sender, query, **kwargs):
             | Q(sku__iexact=keyword)
         )
 
-    if size:
-        # size_options = OptionGroup.objects.filter(name='size')
-        # products = products.filter(
-        #     Q(option_group__name='size')
-        # )
-        pass
+    if sizes:
+        variations = ConfigurableProduct.objects.filter(option_group__name='size').filter(product__in=products.all())
+        products = [i.product for i in variations if i.get_product_from_options(sizes)]  # TODO: does this return parents
+
 
     return {
         'categories': categories,
         'products': products
     }
-
-
