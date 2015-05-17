@@ -12,9 +12,13 @@ from product.models import Price
 # from django.forms.extras.widgets import SelectDateWidget
 
 
-class SearchForm(forms.Form):
-    k = forms.CharField(label='search', max_length=100, required=False)
-    category = forms.ModelChoiceField(Category.objects.all(), required=False)
+class SearchForm(forms.Form): 
+
+    occasion = forms.ModelMultipleChoiceField(
+        queryset=Category.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
 
     start_date = forms.CharField(
         widget=forms.TextInput(attrs={'id': 'delivery-date'}),
