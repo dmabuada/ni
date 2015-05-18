@@ -3,7 +3,13 @@
 {% load satchmo_currency satchmo_discounts %}
 {% load thumbnail %}
 
+
+{% block navbar %}
+    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
+{% endblock %}
+
 {% block content %}
+
 
     <div id="sidebar-secondary">
         {% block sidebar-secondary %}
@@ -54,6 +60,9 @@
 
         <div id="product_category">
             {% if results.products %}
+                {% if not category %}
+                    <h4>{% trans "Products" %}</h4>
+                {% endif %}
 
                 {% for product in results.products %}
 
