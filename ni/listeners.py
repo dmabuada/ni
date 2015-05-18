@@ -8,7 +8,6 @@ from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
 from livesettings import config_value
 
-
 log = logging.getLogger('search listener')
 
 
@@ -65,9 +64,10 @@ def product_search_listener(sender, query, **kwargs):
         )
 
     if sizes:
-        variations = ConfigurableProduct.objects.filter(option_group__name='size').filter(product__in=products.all())
-        products = [i.product for i in variations if i.get_product_from_options(sizes)]  # TODO: does this return parents
-
+        variations = ConfigurableProduct.objects.filter(
+            option_group__name='size').filter(product__in=products.all())
+        products = [i.product for i in variations if i.get_product_from_options(
+            sizes)]  # TODO: does this return parents
 
     return {
         'categories': categories,
