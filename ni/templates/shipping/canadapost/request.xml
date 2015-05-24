@@ -2,7 +2,7 @@
 {% load satchmo_product %}<?xml version="1.0" encoding="UTF-8" ?>
 {% spaceless %}
 <eparcel>
-	<language>en</language>
+    <language>en</language>
 	<ratesAndServicesRequest>
 		<merchantCPCID>{{config.cpcid}}</merchantCPCID>
 		<fromPostalCode>{{config.shop_details.postal_code}}</fromPostalCode>
