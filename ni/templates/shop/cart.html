@@ -7,13 +7,8 @@
 {% load satchmo_discounts %}
 {% load normalize_decimal %}
 
-{% block navbar %}
-    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
-    <li>{% trans "Cart" %}</li>
-{% endblock %}
-
 {% block content %}
-
+<div class="checkout-form">
     {% if error_message %}
         <div class="error">{{ error_message }}</div>
     {% endif %}
@@ -43,67 +38,67 @@
             <div><img src="http://i.imgur.com/i5TT6tj.jpg"></div>
         </div>
     {% else %}
-        <h4>{% trans "Your Cart" %}</h4>
-        <table>
-            <tr>
-                <th></th>
-                <th align="left">{% trans "Quantity" %}</th>
-                <th>{% trans "Item" %}</th>
-                {% if sale %}
-                    <th>{% trans "Regular Price" %}</th>
-                    <th>{% trans "Sale Price" %}
-                        {% else %}
-                    <th>{% trans "Price" %}</th>
-                {% endif %}
-                <th align="center">{% if default_view_tax %}
-                    {% trans "Total<br/>(incl.&nbsp;tax)" %}{% else %}
-                    {% trans "Total" %}{% endif %}</th>
-            </tr>
-
+            <ul class="checkout-container"> 
             {% for cartitem in cart %}
-                <tr>
-                    <td>
-                        <form action="{% url 'satchmo_cart_remove' %}"
-                              method="post">{% csrf_token %}
-                            <input type="hidden" name="cartitem"
-                                   value="{{ cartitem.id }}"/>
-                            <input type="submit" value="{% trans 'Remove' %}"/>
-                        </form>
-                    </td>
-                    <td align="center">
-                        <form class="qtyform" id="form-{{ cartitem.id }}"
-                              action="{% url 'satchmo_cart_set_qty' %}"
-                              method="post">{% csrf_token %}
-                            <input type="hidden" name="cartitem"
-                                   value="{{ cartitem.id }}"/>
-                            <input type="text" name="quantity" id="id_quantity"
-                                   value="{{ cartitem.quantity|normalize_decimal }}"/>
-                            <input type="submit" id="id_update_submit"
-                                   value="{% trans 'update amount' %}"/>
-                        </form>
-                    </td>
-                    <td>
-                        <a href="{{ cartitem.product.get_absolute_url }}">{{ cartitem.description }}</a>
-                    </td>
-                    {% if sale %}
-                        <td align="center">{{ cartitem.unit_price|currency }}</td>{% endif %}
-                    <td align="center">{{ cartitem|discount_line_unit_price:sale|currency }}</td>
-                    <td align="center">{{ cartitem|discount_line_total:sale|currency }}</td>
-                </tr>
-                {% cartitem_custom_details cartitem %}
-                {% cartitem_subscription_details cartitem %}
+                <li>
+                    <div class="item-info">
+                        {# assign this to product images, example for now below #}
+                        <div class="item-image">
+                            <img src="http://upload.wikimedia.org/wikipedia/en/a/a7/Random_Access_Memories.jpg">
+                        </div>
+                        <div class="item-desc">
+                            <a href="{{ cartitem.product.get_absolute_url }}">{{ cartitem.description }}</a>
+                            <p>{{ cartitem.translated_description }}</p>
+                        </div>
+                        <div class="item-price">
+                        {% if sale %}
+                            {{ cartitem.unit_price|currency }}
+                        {% endif %}
+                            {{ cartitem|discount_line_unit_price:sale|currency }}
+                        </div>
+                    </div>
+                    <div class="item-interactions">
+                        <div class="item-quantity">
+                            <form class="qtyform" id="form-{{ cartitem.id }}"
+                            action="{% url 'satchmo_cart_set_qty' %}"
+                            method="post">{% csrf_token %}
+                                <input type="hidden" name="cartitem"
+                                value="{{ cartitem.id }}"/>
+                                <input type="text" name="quantity" id="id_quantity"
+                                value="{{ cartitem.quantity|normalize_decimal }}"/>
+                                <input type="submit" id="id_update_submit"
+                                value="{% trans 'update' %}"/>
+                            </form>
+                        </div>
+                        <div class="item-remove">
+                            <form action="{% url 'satchmo_cart_remove' %}"
+                            method="post">{% csrf_token %}
+                                <input type="hidden" name="cartitem"
+                                value="{{ cartitem.id }}"/>
+                                <input type="submit" value="{% trans 'x' %}"/>
+                            </form>
+                        </div>
+                    </div>
+                </li>
             {% endfor %}
-            <tr>
-                <td colspan="{% if sale %}5{% else %}4{% endif %}"
-                    align="right">{% trans "Cart Total" %}:
-                </td>
-                <td>{{ cart|discount_cart_total:sale|currency }}</td>
-            </tr>
-        </table>
-        {% if sale %}
-            {% include "product/some_discount_eligible.html" %}
-        {% endif %}
-
-        <a href="{% url 'satchmo_checkout-step1' %}">{% trans "Check out" %}</a>
+            </ul>
+        <div class="cart-summary">
+            <ul class="steps">
+                <li>
+                    <b>{% trans "Cart Stuff Here" %}::</b>
+                    <span>{{ cart|discount_cart_total:sale|currency }}</span>
+                </li>
+            </ul>
+            <ul class="checkout">
+                <li>
+                    <b>{% trans "Cart Total" %}::</b>
+                    <span>{{ cart|discount_cart_total:sale|currency }}</span>
+                </li>
+                <li>
+                    <a class="button" href="{% url 'satchmo_checkout-step1' %}">{% trans "Checkout" %}</a>
+                </li>
+            </ul>
+        </div>
     {% endif %}
+</div>
 {% endblock %}
