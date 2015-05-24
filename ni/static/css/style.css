@@ -1453,7 +1453,7 @@ form#search-page input[type=submit] {
 .cart-item:after, 
 .item-interactions:after, 
 .summary:after {
-  content: "";
-  display: table;
-  clear: both;
+    content: "";
+    display: table;
+    clear: both;
 }
