@@ -7,8 +7,9 @@ def get_client_ip(request):
     if x_forwarded_for:
         ip = x_forwarded_for.split(',')[0]
     else:
-        ip = request.META.get('REMOTE_ADDR')
+        ip = request.META.get('REMOTE_ADDR', None)
     return ip
+
 
 class LoggingMiddleware(object):
     def __init__(self):
@@ -19,19 +20,28 @@ class LoggingMiddleware(object):
         return None
 
     def process_response(self, request, response):
+        # return response
         # TODO: more data here
         extra = {
             'execution_time': time() - request.timer,
             'method': request.method,
             'path': request.get_full_path(),
             'user_agent': request.META.get('HTTP_USER_AGENT'),
-            'resolver_match': request.resolver_match._func_path,
-            'url_name': request.resolver_match.url_name,
-            'user': str(request.user),
             'remote_address': request.META.get('REMOTE_ADDR'),
             'x-forwarded-for': request.META.get('HTTP_X_FORWARDED_FOR'),
-            'session_id': request.session._session_key
         }
+
+        if hasattr(request.resolver_match, '_func_path'):
+            extra['resolver_match'] = request.resolver_match._func_path,
+
+        if hasattr(request.resolver_match, 'url_name'):
+            extra['resolver_match'] = request.resolver_match.url_name,
+
+        if hasattr(request, 'user'):
+            extra['user'] = str(request.user)
+
+        if hasattr(request, 'session'):
+            extra['session_id'] = request.session._session_key
 
         self.logger.info(
             '[%s] %s (%.1fs)',

@@ -1,4 +1,6 @@
 from __future__ import print_function
+
+from django.core.management import call_command
 from django.core.management.base import NoArgsCommand
 
 
@@ -6,6 +8,9 @@ class Command(NoArgsCommand):
     help = "Load basic data for ni."
 
     def handle_noargs(self, **options):
+        call_command('loaddata', 'l10n_data.xml', interactive=True)
+        # call_command('loaddata', 'us_tax.yaml', interactive=True)
+
         from sample_dress_data_loader import load_sample_data, category_url
 
         from satchmo_store.contact.models import (
@@ -81,9 +86,9 @@ class Command(NoArgsCommand):
         print("Creating Customers...")
         # Import some customers
 
-        customer = ContactRole(name='Customer')
-        supplier = ContactRole(name="Supplier")
-        distributor = ContactRole(name="Distributor")
+        customer = ContactRole(key='Customer', name='Customer')
+        supplier = ContactRole(key='Supplier', name="Supplier")
+        distributor = ContactRole(key='Distributor', name="Distributor")
 
         customer.save()
         supplier.save()

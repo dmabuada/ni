@@ -79,6 +79,7 @@ TEMPLATE_LOADERS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'ni.middleware.LoggingMiddleware',
     "django.middleware.common.CommonMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -90,7 +91,6 @@ MIDDLEWARE_CLASSES = (
     "satchmo_store.shop.SSLMiddleware.SSLRedirect",
     # "satchmo_ext.recentlist.middleware.RecentProductMiddleware",
     'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'ni.middleware.LoggingMiddleware'
 
 )
 
