@@ -803,8 +803,11 @@ class Order(models.Model):
         from payment.models import CreditCardDetail
         for payment in self.payments.order_by('-time_stamp'):
             try:
-                if payment.creditcards.count() > 0:
-                    return payment.creditcards.get()
+                cards = CreditCardDetail.objects.filter(orderpayment=payment)
+                if cards.count() > 0:
+                    return cards.all()
+                #if payment.creditcards.count() > 0:
+                    #return payment.creditcards.get()
             except CreditCardDetail.DoesNotExist:
                 pass
         return None
@@ -1285,9 +1288,16 @@ class OrderPaymentBase(models.Model):
 
     def _credit_card(self):
         """Return the credit card associated with this payment."""
+        # try:
+        #     return self.creditcards.get()
+        # except self.creditcards.model.DoesNotExist:
+        #     return None
+
+        from payment.models import CreditCardDetail
+
         try:
-            return self.creditcards.get()
-        except self.creditcards.model.DoesNotExist:
+            return CreditCardDetail.objects.filter(orderpayment=self)
+        except CreditCardDetail.DoesNotExist:
             return None
     credit_card = property(_credit_card)
 
