@@ -221,6 +221,7 @@ TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
     '.clowntown.me',
+    '*'
 ]
 
 if LOCAL_DEV:
