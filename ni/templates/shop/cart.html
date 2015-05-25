@@ -8,7 +8,7 @@
 {% load normalize_decimal %}
 
 {% block content %}
-<div class="checkout-form">
+<div class="checkout-form form-bg">
     {% if error_message %}
         <div class="error">{{ error_message }}</div>
     {% endif %}
@@ -38,7 +38,7 @@
             <div><img src="http://i.imgur.com/i5TT6tj.jpg"></div>
         </div>
     {% else %}
-            <ul class="checkout-container"> 
+            <ul class="form-container"> 
             {% for cartitem in cart %}
                 <li>
                     <div class="item-info">

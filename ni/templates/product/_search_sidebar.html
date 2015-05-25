@@ -1,8 +1,6 @@
 {% load i18n %}
 {% load satchmo_util %}
 
-{% load satchmo_category %}
-
 {% load app_plugins %}
 
 
@@ -11,35 +9,6 @@
         <div>
             {% satchmo_search_form %}
         </div>
-        <div>
-            {% block sidebar %}
-                <h3>{% trans "Shop Categories" %}</h3>
-                {% block sidebar-categories %}
-                    <div id="menu_container">
-                        {% if category.id %}
-                            {% category_tree category.id %}
-                        {% else %}
-                            {% if product.get_category %}
-                                {% category_tree product.get_category.id %}
-                            {% else %}
-                                {% category_tree %}
-                            {% endif %}
-                        {% endif %}
-                    </div>
-                {% endblock sidebar-categories %}
-
-                {% block sidebar-secondary-bottom %}
-                    {% plugin_point "sidebar_secondary_bottom" %}
-                {% endblock %}
-            {% endblock sidebar %}
-        </div>
     {% endblock sidebar-secondary %}
 </div>
 
-<div id="sidebar-secondary-2">
-    {% block sidebar-secondary2 %}
-
-
-
-    {% endblock %}
-</div>

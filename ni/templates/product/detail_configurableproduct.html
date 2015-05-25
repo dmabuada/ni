@@ -36,10 +36,10 @@
 {% endblock %}
 
 {% block content %}
-    <div id="product-individual-wrapper">
-        <div id="product-individual">
-            <div id="product-left">
-                <ul id="product-image-thumbnails">
+    <div class="product-individual-wrapper">
+        <div class="product-individual">
+            <div class="product-left">
+                <ul class="product-image-thumbnails">
                     <li>
                         {% for pic in product.productimage_set.all %}
                             {% thumbnail pic.picture "40x55" as image %}
@@ -61,7 +61,7 @@
             </span>
             </div>
 
-            <div id="product-right">
+            <div class="product-right">
                 <h2>{{ product.translated_name }}</h2>
 
                 <p>{{ product.translated_description }}</p>
@@ -73,7 +73,7 @@
                     <span id="price">{{ product|discount_price:sale|currency }}</span>
                     {% trans "Rental" %}
                     {% with product|product_rating_average_string as rating %}
-                        <p class="averagerating">{% blocktrans %}--Average
+                        <p class="averagerating">{% blocktrans %}Average
                             rating: {{ rating }}{% endblocktrans %}</p>
                     {% endwith %}
                 {% endspaceless %}</h3>
@@ -88,7 +88,7 @@
 
                 {% if error_message %}
                     <p><strong>{{ error_message }}</strong></p>{% endif %}
-                <div id="options-checkout">
+                <div class="options-checkout">
                     <form id="options" action="{% url 'satchmo_smart_add' %}"
                           method="post">{% csrf_token %}
 
