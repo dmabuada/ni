@@ -24,7 +24,7 @@
     {% if not cart|length %}
         <div class="empty-cart">
             <div>
-                <h4>{% trans "Your bag is empty." %}</h4>
+                <h2>{% trans "Your bag is empty." %}</h2>
                 {% if popularurl %}
                     <p><a href="{{ popularurl }}">Shop our most popular
                         items</a></p>
@@ -35,7 +35,7 @@
                 {% endif %}
             </div>
             {# assign this as a bg image when we get a real image for it #}
-            <div><img src="http://i.imgur.com/i5TT6tj.jpg"></div>
+            <div><img src="/static/images/empty-cart.png"></div>
         </div>
     {% else %}
             <ul class="form-container"> 
