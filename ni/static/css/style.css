@@ -360,7 +360,6 @@ input[type=submit] {
 #product-category ul li {
     background-color: white;
     display: inline-block;
-    list-style: none;
     margin: 0 0 0.9em;
     vertical-align: middle;
 }
@@ -530,6 +529,22 @@ input[type=submit] {
 
 /* =============== END: Login/Registration/Checkout ===================== */
 
+/* =============== BEGIN: Featured/Recommended Products ===================== */
+
+
+.brandImage,
+.productImage {
+    border-radius: 2px;
+    border: solid 1px #e4e4e2;
+    display: inline-block;
+    text-align: center;
+}
+ 
+.productImage p {
+    display: none;
+    font-size: 10pt;
+    text-align: center;
+}
 
 #featured-image {
     height: 600px;
@@ -574,9 +589,6 @@ input[type=submit] {
 }
  
 .featured-container {
-    -moz-box-shadow: 0 -3px 5px rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .2);
-    -ms-box-shadow: 0 -3px 5px rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .2);
-    -webkit-box-shadow: 0 -3px 5px rgba(0, 0, 0, .1), 0 1px 2px 0 rgba(0, 0, 0, .2);
     background: #fff;
     box-shadow: 0 -3px 5px rgba(0, 0, 0, .1), 0 2px 5px 0 rgba(0, 0, 0, .2);
     margin: -5em 3em 0;
@@ -591,17 +603,11 @@ input[type=submit] {
 }
  
 .container-items div:not(:last-of-type) {margin-right: 2em}
-  
-.recentview h3 {padding-bottom: 10px}
- 
-.recentitem {padding-bottom: 10px}
- 
-div.recentlyadded {display: block}
- 
+   
 .qtyform #id_quantity {width: 5em}
- 
-#payment ul li {list-style-type: none}
- 
+
+/* =============== END: Featured/Recommended Products ===================== */
+  
 /* ============ Upsell section ============== */
 div.upsell {padding-top: 10px}
  
@@ -749,7 +755,6 @@ div.upsell .upselldescription {padding-bottom: 10px}
     padding-top: .5em;
 }
  
-.profile li {list-style-type: none}
  
 table.ordertable {
     font-size: 13px;
@@ -773,19 +778,6 @@ img {border: none}
 
 .brandcategories {clear: both}
  
-.brandImage,
-.productImage {
-    -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, .1);
-    border-radius: 2px;
-    border: solid 1px #e4e4e2;
-    display: inline-block;
-    text-align: center;
-}
- 
-.productImage p {
-    display: none;
-    font-size: 10pt;
-    text-align: center;
-}
+
 
 /* =============== END: MISCELLANEOUS ===================== */
