@@ -1,5 +1,7 @@
-# Django settings for satchmo project.
-# This is a recommended base setting for further customization, default for clonesatchmo.py
+"""
+Base settings for local development.
+TODO: use this for common settings
+"""
 
 import os
 import sys
@@ -216,7 +218,7 @@ INSTALLED_APPS = (
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://solr.clowntown.me:8983/solr/ni'
+        'URL': 'http://solr.clowntown.me:8983/solr/ni',
         # ...or for multicore...
         # 'URL': 'http://127.0.0.1:8983/solr/mysite',
     },
@@ -256,4 +258,5 @@ TEST_RUNNER = 'django.test.runner.DiscoverRunner'
 ACCOUNT_LOGIN_ON_EMAIL_CONFIRMATION = False
 
 # Load the local settings
-from local_settings import *
+# pylint: disable=wildcard-import, unused-wildcard-import
+from ni.local_settings import *

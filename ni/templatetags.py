@@ -1,5 +1,10 @@
+"""
+Template tags for ni
+"""
+
 from django.template import Library, Node, resolve_variable
 
+# pylint: disable=invalid-name
 register = Library()
 
 """
@@ -29,11 +34,16 @@ Original version's URL: http://django.mar.lt/2010/07/add-get-parameter-tag.html
 
 
 class AddGetParameter(Node):
+    """
+    Turns current request query parameters and generates a url with them
+    Used for search
+    """
     def __init__(self, values):
         self.values = values
 
     def render(self, context):
         req = resolve_variable('request', context)
+        # pylint: disable=no-member
         params = req.GET.copy()
         for key, value in self.values.items():
             params[key] = value.resolve(context)
@@ -42,9 +52,12 @@ class AddGetParameter(Node):
 
 @register.tag
 def add_get(parser, token):
+    """
+    outputs a querystring
+    """
     pairs = token.split_contents()[1:]
     values = {}
     for pair in pairs:
-        s = pair.split('=', 1)
-        values[s[0]] = parser.compile_filter(s[1])
+        key, val = pair.split('=', 1)
+        values[key] = parser.compile_filter(val)
     return AddGetParameter(values)

@@ -1,5 +1,7 @@
-# Django settings for satchmo project.
-# This is a recommended base setting for further customization, default for clonesatchmo.py
+"""
+Django settings for ni project.
+"""
+
 
 import os
 import sys
@@ -177,7 +179,7 @@ INSTALLED_APPS = (
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
-        'URL': 'http://solr.clowntown.me:8983/solr/ni'
+        'URL': 'http://solr.clowntown.me:8983/solr/ni',
         # ...or for multicore...
         # 'URL': 'http://127.0.0.1:8983/solr/mysite',
     },
@@ -231,7 +233,9 @@ DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
 SATCHMO_DIRNAME = DIRNAME
 
-gettext_noop = lambda s: s
+def gettext_noop(string):
+    """noop for gettext"""
+    return string
 
 LANGUAGES = (
     ('en', gettext_noop('English')),
@@ -279,11 +283,13 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 # Configure logging
 # LOGFILE = "satchmo.log"
-# logging.basicConfig(level=logging.DEBUG,
-#                     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
-#                     datefmt='%a, %d %b %Y %H:%M:%S',
-#                     filename=os.path.join(DIRNAME, LOGFILE),
-#                     filemode='w')
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+#     datefmt='%a, %d %b %Y %H:%M:%S',
+#     filename=os.path.join(DIRNAME, LOGFILE),
+#     filemode='w'
+# )
 #
 # logging.getLogger('django.db.backends').setLevel(logging.INFO)
 # logging.getLogger('keyedcache').setLevel(logging.INFO)
@@ -301,10 +307,19 @@ LOGGING = {
             'class': 'logstash.TCPLogstashHandler',
             'host': 'ec2-52-7-147-163.compute-1.amazonaws.com',
             'port': 5959,  # Default value: 5959
-            'version': 1,  # Version of logstash event schema. Default value: 0 (for backward compatibility of the library)
-            # 'message_type': 'ni',  # 'type' field in logstash message. Default value: 'logstash'.
-            # 'fqdn': False, # Fully qualified domain name. Default value: false.
-            # 'tags': ['tag1', 'tag2'], # list of tags. Default: None.
+
+            # Version of logstash event schema. Default value: 0 (for backward
+            # compatibility of the library)
+            'version': 1,
+
+            # 'type' field in logstash message. Default value: 'logstash'
+            # 'message_type': 'ni',
+
+            # Fully qualified domain name. Default value: false
+            # 'fqdn': False,
+
+            # list of tags. Default: None.
+            # 'tags': ['tag1', 'tag2'],
         },
     },
     'loggers': {

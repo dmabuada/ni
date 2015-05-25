@@ -1,3 +1,7 @@
+"""
+Signal registration
+"""
+
 import django.dispatch
 
 #: Sent after a user has registered an account with the store.
@@ -14,6 +18,8 @@ import django.dispatch
 #:   :default: False
 #:
 #: :param data: The ``cleaned_data`` dictionary of the submitted form.
+
+# pylint: disable=invalid-name
 satchmo_registration = django.dispatch.Signal()
 
 #: Sent after a user account has been verified. This signal is also sent right
@@ -26,4 +32,6 @@ satchmo_registration = django.dispatch.Signal()
 #:
 #: :param contact: The contact that was registered.
 #: :type contact: ``satchmo_store.models.Contact``
+
+# pylint: disable=invalid-name
 satchmo_registration_verified = django.dispatch.Signal()

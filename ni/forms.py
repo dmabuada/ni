@@ -1,23 +1,22 @@
-import math
+"""form that powers search"""
 
 from django import forms
-from django.db.models import Min, Max
 
 from product.models import Category
 from product.models import Option
-from product.models import Price
-
-
-# TODO: use the one from the homepage correctly
-# from django.forms.extras.widgets import SelectDateWidget
 
 
 class SizeModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+    """
+    Class to override the label generator so that "size" shows up as `1'
+    instead of `size: 1' or something
+    """
     def label_from_instance(self, obj):
         return obj.value
 
 
 class SearchForm(forms.Form):
+    """The form that powers the search page"""
     occasion = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),
         widget=forms.CheckboxSelectMultiple,

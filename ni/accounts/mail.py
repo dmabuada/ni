@@ -7,6 +7,7 @@ from satchmo_store.shop.models import Config
 from satchmo_store.shop.signals import registration_sender
 
 import logging
+# pylint: disable=invalid-name
 log = logging.getLogger('satchmo_store.accounts.mail')
 
 # TODO add html email template
@@ -15,11 +16,11 @@ def send_welcome_email(email, first_name, last_name):
 
     shop_config = Config.objects.get_current()
     subject = ugettext("Welcome to %(shop_name)s")
-    c = {
+    email_context = {
         'first_name': first_name,
         'last_name': last_name,
         'site_url': shop_config.site and shop_config.site.domain or 'localhost',
         'login_url': settings.LOGIN_URL,
     }
-    send_store_mail(subject, c, 'registration/welcome.txt', [email],
+    send_store_mail(subject, email_context, 'registration/welcome.txt', [email],
                     format_subject=True, sender=registration_sender)

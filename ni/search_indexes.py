@@ -1,3 +1,7 @@
+"""
+solr index configuration
+"""
+
 import datetime
 from django.contrib.sites.models import Site
 
@@ -7,6 +11,10 @@ from product.models import Product
 
 
 class ProductIndex(indexes.SearchIndex, indexes.Indexable):
+    """
+    index for the Product model
+    """
+
     # text = indexes.CharField(document=True, use_template=True)
     # author = indexes.CharField(model_attr='user')
     # pub_date = indexes.DateTimeField(model_attr='pub_date')
@@ -23,7 +31,7 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
 
         site = Site.objects.get_current()
 
-        P = self.get_model()
-        products = P.objects.active_by_site(variations=False, site=site)
+        product = self.get_model()
+        products = product.objects.active_by_site(variations=False, site=site)
 
         return products.filter(date_added__lte=datetime.datetime.now())
