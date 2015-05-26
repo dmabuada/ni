@@ -476,6 +476,24 @@ input[type=submit] {
 
 /* =============== END: Accounts ===================== */
 
+/* =============== BEGIN: Login/Registration ===================== */
+
+.register-form li,
+.login-form li {
+    font-size: 0.8em;
+}
+
+.register-form h1,
+.login-form h1 {
+    text-align: center;
+}
+
+.login-form label {
+    font-size: 0.8em;
+}
+
+/* =============== END: Login/Registration ===================== */
+
 /* =============== BEGIN: Checkout/Shipping ===================== */
  
 .ship-form .form-container {
