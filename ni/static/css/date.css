@@ -286,7 +286,7 @@
  
 .picker__button--clear:before {
     color: #e20;
-    content: 'D7';
+    content: '\D7';
     font-size: 1.1em;
     margin-right: .35em;
     top: -.1em;

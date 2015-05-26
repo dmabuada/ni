@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <AccessRequest xml:lang="en-US">
-    <AccessLicenseNumber>{{config.xml_key}}</AccessLicenseNumber>
-    <UserId>{{config.userid}}</UserId>
-    <Password>{{config.password}}</Password>
+    <AccessLicenseNumber>{{ config.xml_key }}</AccessLicenseNumber>
+    <UserId>{{ config.userid }}</UserId>
+    <Password>{{ config.password }}</Password>
 </AccessRequest>
 <?xml version="1.0"?>
 <TimeInTransitRequest xml:lang="un-US">
@@ -17,7 +17,7 @@
         <AddressArtifactFormat>
             <PostcodePrimaryHigh>{{ shipping_address.postal_code }}</PostcodePrimaryHigh>
             <PostcodePrimaryLow>{{ shipping_address.postal_code }}</PostcodePrimaryLow>
-            <CountryCode>{{shipping_country_code}}</CountryCode>
+            <CountryCode>{{ shipping_country_code }}</CountryCode>
         </AddressArtifactFormat>
     </TransitFrom>
     <TransitTo>
