@@ -1,19 +1,30 @@
+"""
+Custom urls for ni
+"""
+
 from django.conf.urls import patterns, include, url
 
 from satchmo_store.urls import urlpatterns
 from ni import views
 
-urlpatterns = patterns('',
+# pylint: disable=invalid-name
+urlpatterns = patterns(
+    '',
     url(r'^ping', views.ping, name='health'),
+
     url(r'^accounts/', include('ni.accounts.urls')),
+
     url(r'^search/', views.search.search_view, name='ni-search')
+
     # url(r'^search/', include('haystack.urls')),
+
 ) + urlpatterns
 
 # staticfiles testing
 from django.conf import settings
 
-urlpatterns += patterns('',
+urlpatterns += patterns(
+    '',
     url(r'^favicon\.ico$', 'django.views.static.serve', {
         'document_root': settings.STATIC_ROOT,
         'path': 'favicon/favicon.ico'

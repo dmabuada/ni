@@ -83,4 +83,4 @@ target/
 /static/
 /media/
 *.db
-
+*.bak

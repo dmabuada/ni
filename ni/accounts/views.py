@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from django.contrib.auth import login, REDIRECT_FIELD_NAME
 from django.contrib.sites.models import Site, RequestSite
@@ -8,7 +10,8 @@ from django.template import RequestContext
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import never_cache
 from django.views.generic.base import TemplateView
-from forms import RegistrationAddressForm, RegistrationForm, EmailAuthenticationForm
+
+from ni.accounts.forms import RegistrationAddressForm, RegistrationForm, EmailAuthenticationForm
 from l10n.models import Country
 from livesettings import config_get_group, config_value
 from satchmo_store.accounts.mail import send_welcome_email
@@ -17,8 +20,7 @@ from satchmo_store.contact import CUSTOMER_ID
 from satchmo_store.contact.models import Contact
 from satchmo_store.shop.models import Config, Cart
 
-import logging
-
+# pylint: disable=invalid-name
 log = logging.getLogger('satchmo_store.accounts.views')
 
 YESNO = (
@@ -26,9 +28,14 @@ YESNO = (
     (0, _('No'))
 )
 
+
 def emaillogin(request, template_name='registration/login.html',
-    auth_form=EmailAuthenticationForm, redirect_field_name=REDIRECT_FIELD_NAME):
-    "Displays the login form and handles the login action. Altered to use the EmailAuthenticationForm"
+               auth_form=EmailAuthenticationForm,
+               redirect_field_name=REDIRECT_FIELD_NAME):
+    """
+    Displays the login form and handles the login action.
+    Altered to use the EmailAuthenticationForm
+    """
 
     redirect_to = request.REQUEST.get(redirect_field_name, '')
 
@@ -45,6 +52,7 @@ def emaillogin(request, template_name='registration/login.html',
         form = todo
 
     request.session.set_test_cookie()
+    # pylint: disable=no-member, protected-access
     if Site._meta.installed:
         current_site = Site.objects.get_current()
     else:
@@ -55,7 +63,10 @@ def emaillogin(request, template_name='registration/login.html',
         redirect_field_name: redirect_to,
         'site_name': current_site.name,
     }, context_instance=RequestContext(request))
+
+
 emaillogin = never_cache(emaillogin)
+
 
 def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
     """"Altered version of the default login, intended to be called by `combined_login`.
@@ -73,7 +84,7 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
             login(request, form.get_user())
             # Now that we've logged in, assign this cart to our user
             _assign_cart(request)
-            if config_value('SHOP','PERSISTENT_CART'):
+            if config_value('SHOP', 'PERSISTENT_CART'):
                 _get_prev_cart(request)
             return (True, HttpResponseRedirect(redirect_to))
         else:
@@ -83,6 +94,7 @@ def _login(request, redirect_to, auth_form=EmailAuthenticationForm):
 
     return (False, form)
 
+
 def _assign_cart(request):
     """
     If there is a current cart and it is unassigned, assign it to this user.
@@ -91,15 +103,17 @@ def _assign_cart(request):
         if 'cart' in request.session:
             existing_cart = Cart.objects.from_request(request, create=False)
             contact = Contact.objects.from_request(request)
-            if existing_cart.customer == None:
+            if existing_cart.customer is None:
                 # No currently assigned contact: Up for grabs!
-                log.debug("Assigning Cart (id: %r) to %r (id: %r)" % (existing_cart.id, contact.full_name, contact.id))
+                log.debug("Assigning Cart (id: %r) to %r (id: %r)" % (
+                    existing_cart.id, contact.full_name, contact.id))
                 existing_cart.customer = contact
                 existing_cart.save()
         else:
             log.debug("The user has no cart in the current session.")
-    except:
+    except Exception as E:  # TODO: too broad an exception clause
         log.debug("Unable to assign cart user during login")
+
 
 def _get_prev_cart(request):
     try:
@@ -111,7 +125,9 @@ def _get_prev_cart(request):
         if saved_cart and len(saved_cart):
             if 'cart' in request.session:
                 existing_cart = Cart.objects.from_request(request, create=False)
-                if existing_cart.pk != saved_cart.pk and ( (len(existing_cart) == 0) or config_value('SHOP','PERSISTENT_CART_MERGE') ):
+                if existing_cart.pk != saved_cart.pk and (
+                            (len(existing_cart) == 0) or config_value('SHOP',
+                                                                      'PERSISTENT_CART_MERGE')):
                     # Merge the two carts together
                     saved_cart.merge_carts(existing_cart)
 
@@ -122,10 +138,11 @@ def _get_prev_cart(request):
     except Exception:
         return None
 
+
 def register_handle_address_form(request, redirect=None, action_required=''):
     """
-    Handle all registration logic.  This is broken out from "register" to allow easy overriding/hooks
-    such as a combined login/register page.
+    Handle all registration logic.  This is broken out from "register" to allow
+    easy overriding/hooks such as a combined login/register page.
 
     This handler allows a login or a full registration including address.
 
@@ -141,7 +158,8 @@ def register_handle_address_form(request, redirect=None, action_required=''):
     except Contact.DoesNotExist:
         contact = None
 
-    if request.method == 'POST' and request.POST.get('action', '') == action_required:
+    if request.method == 'POST' and request.POST.get('action',
+                                                     '') == action_required:
 
         form = RegistrationAddressForm(request.POST, shop=shop, contact=contact)
 
@@ -160,7 +178,7 @@ def register_handle_address_form(request, redirect=None, action_required=''):
             initial_data = {
                 'email': contact.email,
                 'first_name': contact.first_name,
-                'last_name': contact.last_name }
+                'last_name': contact.last_name}
             address = contact.billing_address
             if address:
                 initial_data['street1'] = address.street1
@@ -174,18 +192,19 @@ def register_handle_address_form(request, redirect=None, action_required=''):
                     USA = Country.objects.get(iso2_code__exact="US")
                     initial_data['country'] = USA
 
-        form = RegistrationAddressForm(initial=initial_data, shop=shop, contact=contact)
+        form = RegistrationAddressForm(initial=initial_data, shop=shop,
+                                       contact=contact)
 
-    return (False, form, {'country' : shop.in_country_only})
+    return (False, form, {'country': shop.in_country_only})
 
 
 def register_handle_form(request, redirect=None):
     """
-    Handle all registration logic.  This is broken out from "register" to allow easy overriding/hooks
-    such as a combined login/register page.
+    Handle all registration logic.  This is broken out from "register" to allow
+    easy overriding/hooks such as a combined login/register page.
 
-    This method only presents a typical login or register form, not a full address form
-    (see register_handle_address_form for that one.)
+    This method only presents a typical login or register form, not a full
+    address form (see register_handle_address_form for that one.)
 
     Returns:
     - Success flag
@@ -226,8 +245,7 @@ def register_handle_form(request, redirect=None):
     return (False, form)
 
 
-
-#---- Views
+# ---- Views
 
 def activate(request, activation_key):
     """
@@ -235,19 +253,23 @@ def activate(request, activation_key):
     expired.
     """
     from registration.models import RegistrationProfile
+
     activation_key = activation_key.lower()
     account = RegistrationProfile.objects.activate_user(activation_key)
 
     if account:
         # ** hack for logging in the user **
-        # when the login form is posted, user = authenticate(username=data['username'], password=data['password'])
+        # when the login form is posted,
+        # user = authenticate(username=data['username'], password=data['password'])
         # ...but we cannot authenticate without password... so we work-around authentication
+
         account.backend = settings.AUTHENTICATION_BACKENDS[0]
         _login(request, account)
         try:
             contact = Contact.objects.get(user=account)
             request.session[CUSTOMER_ID] = contact.id
-            send_welcome_email(contact.email, contact.first_name, contact.last_name)
+            send_welcome_email(contact.email, contact.first_name,
+                               contact.last_name)
             signals.satchmo_registration_verified.send(contact, contact=contact)
         except Contact.DoesNotExist:
             # Treated for better compatibility with registation tests without error
@@ -264,7 +286,7 @@ def activate(request, activation_key):
 def login_signup(request,
                  template_name="contact/login_signup.html",
                  registration_handler=register_handle_form,
-                 handler_kwargs = {}):
+                 handler_kwargs={}):
     """Display/handle a combined login and create account form"""
 
     redirect_to = request.REQUEST.get(REDIRECT_FIELD_NAME, '')
@@ -277,7 +299,7 @@ def login_signup(request,
     if request.POST:
         action = request.POST.get('action', 'login')
         if action == 'create':
-            #log.debug('Signup form')
+            # log.debug('Signup form')
             ret = registration_handler(request, **handler_kwargs)
             success = ret[0]
             todo = ret[1]
@@ -285,7 +307,7 @@ def login_signup(request,
                 extra_context = ret[2]
 
             if success:
-                #log.debug('Successful %s form submit, sending to reg complete page')
+                # log.debug('Successful %s form submit, sending to reg complete page')
                 if redirect_to:
                     return HttpResponseRedirect(redirect_to)
                 else:
@@ -293,13 +315,14 @@ def login_signup(request,
                         REDIRECT_FIELD_NAME: redirect_to,
                     })
 
-                    return render_to_response('registration/registration_complete.html',
-                                              context_instance=ctx)
+                    return render_to_response(
+                        'registration/registration_complete.html',
+                        context_instance=ctx)
             else:
                 createform = todo
 
         else:
-            #log.debug('Login form')
+            # log.debug('Login form')
             success, todo = _login(request, redirect_to)
             if success:
                 return todo
@@ -328,13 +351,12 @@ def login_signup(request,
     else:
         show_newsletter = False
 
-
     ctx = {
         'loginform': loginform,
-        'createform' : createform,
+        'createform': createform,
         REDIRECT_FIELD_NAME: redirect_to,
         'site_name': site.name,
-        'show_newsletter' : show_newsletter,
+        'show_newsletter': show_newsletter,
     }
 
     if extra_context:
@@ -345,17 +367,19 @@ def login_signup(request,
     return render_to_response(template_name, context_instance=context)
 
 
-def login_signup_address(request, template_name="contact/login_signup_address.html"):
+def login_signup_address(request,
+                         template_name="contact/login_signup_address.html"):
     """
     View which allows a user to login or else fill out a full address form.
     """
     return login_signup(request,
                         template_name=template_name,
                         registration_handler=register_handle_address_form,
-                        handler_kwargs={'action_required' : 'create'})
+                        handler_kwargs={'action_required': 'create'})
 
 
-def register(request, redirect=None, template='registration/registration_form.html'):
+def register(request, redirect=None,
+             template='registration/registration_form.html'):
     """
     Allows a new user to register an account.
     """
@@ -378,9 +402,9 @@ def register(request, redirect=None, template='registration/registration_form.ht
 
         ctx = {
             'form': todo,
-            'title' : _('Registration Form'),
-            'show_newsletter' : show_newsletter,
-            'allow_nickname' : config_value('SHOP', 'ALLOW_NICKNAME_USERNAME')
+            'title': _('Registration Form'),
+            'show_newsletter': show_newsletter,
+            'allow_nickname': config_value('SHOP', 'ALLOW_NICKNAME_USERNAME')
         }
 
         if extra_context:
@@ -391,10 +415,8 @@ def register(request, redirect=None, template='registration/registration_form.ht
 
 
 class RegistrationComplete(TemplateView):
-
     def get_context_data(self, **kwargs):
         context = super(RegistrationComplete, self).get_context_data(**kwargs)
         verify = (config_value('SHOP', 'ACCOUNT_VERIFICATION') == 'EMAIL')
         context.update(verify=verify)
         return context
-

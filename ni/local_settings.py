@@ -1,4 +1,6 @@
-# this is an extremely simple Satchmo standalone store.
+"""
+local settings for development, imported by settings.py
+"""
 
 import logging
 import os
@@ -20,7 +22,12 @@ DIRNAME = os.path.dirname(os.path.abspath(__file__))
 
 SATCHMO_DIRNAME = DIRNAME
 
-gettext_noop = lambda s: s
+def gettext_noop(string):
+    """
+    :param string: any string
+    :return: that same string
+    """
+    return string
 
 LANGUAGE_CODE = 'en-us'
 LANGUAGES = (

@@ -29,3 +29,4 @@ def search_view(request, template="shop/search2.html"):
     })
 
     return render_to_response(template, context_instance=context)
+

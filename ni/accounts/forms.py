@@ -1,3 +1,7 @@
+"""
+User authentication related forms, like signin and register
+"""
+
 import logging
 
 from django import forms
@@ -11,9 +15,9 @@ from satchmo_store.accounts.mail import send_welcome_email
 from livesettings import config_value
 from satchmo_store.contact.forms import ContactInfoForm
 from satchmo_store.contact.models import Contact, ContactRole
-from satchmo_utils.unique_id import generate_id
+# from satchmo_utils.unique_id import generate_id
 from satchmo_utils.signals import form_init, form_initialdata
-import signals
+from ni.accounts import signals
 
 
 # I put this on all required fields, because it's easier to pick up
@@ -21,8 +25,7 @@ import signals
 # in the HTML. Your mileage may vary. If/when Django ticket #3515
 # lands in trunk, this will no longer be necessary.
 
-attrs_dict = {'class': 'required'}
-log = logging.getLogger('ni.accounts.forms')
+# attrs_dict = {'class': 'required'}
 
 
 class EmailAuthenticationForm(AuthenticationForm):
@@ -59,6 +62,8 @@ class RegistrationForm(forms.Form):
     )
 
     def __init__(self, *args, **kwargs):
+        self.log = logging.getLogger('ni.accounts.forms')
+
         contact = kwargs.get('contact', None)
         initial = kwargs.get('initial', {})
         self.contact = contact
@@ -79,21 +84,27 @@ class RegistrationForm(forms.Form):
 
     def clean_password2(self):
         """Enforce that password and password2 are the same."""
-        p1 = self.cleaned_data.get('password1')
-        p2 = self.cleaned_data.get('password2')
+        password_first_box = self.cleaned_data.get('password1')
+        password_second_box = self.cleaned_data.get('password2')
 
-        if not (p1 and p2 and p1 == p2):
+        if not (
+            password_first_box and
+            password_second_box and
+            password_first_box == password_second_box
+        ):
             raise forms.ValidationError(
                 ugettext("The two passwords do not match."))
 
         # note, here is where we'd put some kind of custom
         # validator to enforce "hard" passwords.
-        return p1
+        return password_first_box
 
     def clean_username(self):
         """Validate username is unique
         """
         username = self.cleaned_data.get('username', None)
+
+        # pylint: disable=no-member
         if username and User.objects.filter(
                 username__iexact=username).count() > 0:
             raise forms.ValidationError(
@@ -103,6 +114,8 @@ class RegistrationForm(forms.Form):
     def clean_email(self):
         """Prevent account hijacking by disallowing duplicate emails."""
         email = self.cleaned_data.get('email', None)
+
+        # pylint: disable=no-member
         if email and User.objects.filter(email__iexact=email).count() > 0:
             raise forms.ValidationError(
                 ugettext("That email address is already in use.")
@@ -110,19 +123,23 @@ class RegistrationForm(forms.Form):
 
         return email
 
+    # pylint: disable=unused-argument
     def save(self, request=None, force_new=False, **kwargs):
         """Create the contact and user described on the form.  Returns the
         `contact`.
         """
         if self.contact:
-            log.debug('skipping save, already done')
+            self.log.debug('skipping save, already done')
         else:
             self.save_contact(request, force_new_contact=force_new)
 
         return self.contact
 
     def save_contact(self, request, force_new_contact=False):
-        log.debug("Saving contact")
+        """
+        Create a new user
+        """
+        self.log.debug("Saving contact")
         data = self.cleaned_data
         password = data['password1']
         email = data['email']
@@ -196,7 +213,7 @@ class RegistrationAddressForm(RegistrationForm, ContactInfoForm):
         contact = self.save_contact(request)
         kwargs['contact'] = contact
 
-        log.debug('Saving address for %s', contact)
+        self.log.debug('Saving address for %s', contact)
         self.save_info(**kwargs)
 
         return contact
