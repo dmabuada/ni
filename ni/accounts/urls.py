@@ -17,6 +17,8 @@ from ni import accounts
 # because it is sometimes indirectly important for loading
 # config_value('SHOP', 'ACCOUNT_VERIFICATION')
 
+# pylint: disable=unused-import
+import satchmo_store.contact.config
 
 # Activation keys get matched by \w+ instead of the more specific
 # [a-fA-F0-9]+ because a bad activation key should still get to the view;

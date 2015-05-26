@@ -1,4 +1,4 @@
-"""form that powers search"""
+"""forms for ni"""
 
 from django import forms
 

@@ -39,7 +39,7 @@ class LoggingMiddleware(object):
 
     # pylint: disable=no-self-use
     def process_response(self, request, response):
-       """
+        """
         :param request:
         :param response:
         :return: Logs some basic data on the request and returns the response
