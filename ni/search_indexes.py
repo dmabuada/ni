@@ -35,3 +35,4 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
         products = product.objects.active_by_site(variations=False, site=site)
 
         return products.filter(date_added__lte=datetime.datetime.now())
+

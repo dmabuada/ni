@@ -14,7 +14,7 @@ from product.modules.configurable.models import ConfigurableProduct
 
 
 # pylint: disable=unused-argument
-def product_search_listener(sender, query, **kwargs):  # sender, query, **kwargs
+def product_search_listener(sender, query, **kwargs):
     """
     TODO: just use a function call because this isn't the right way to use
     signals
@@ -76,4 +76,11 @@ def product_search_listener(sender, query, **kwargs):  # sender, query, **kwargs
     return {
         'categories': categories,
         'products': products
+    }
+
+
+def solr_search_listener(sender, query, **kwargs):
+    return {
+        'categories': None,
+        'products': None
     }
