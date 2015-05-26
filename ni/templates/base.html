@@ -23,8 +23,8 @@
     <div id="container">
 
     <div id="navbar">
-        <a href="/"><div id="logo"></div></a>
-        <ul id="primary-nav">
+        <a href="/"><div class="logo"></div></a>
+        <ul class="primary-nav">
             <li><a class="down-arrow" href="">Designers</a></li>
             <li><span></span></li>
             <li><a href="">Ocassion</a></li>
@@ -39,7 +39,7 @@
             {% endif %}
         </ul>
         {% satchmo_search_form %}
-        <ul id="secondary-nav">
+        <ul class="secondary-nav">
             {% if user.is_staff %}
                 <li><a href="{% url 'admin:index' %}"
                        target="blank">Admin</a></li>
@@ -62,7 +62,7 @@
             <li><span></span></li>
             {% url 'satchmo_cart' as carturl %}
             {% if carturl %}
-                <li><a id="cart" href="{{ carturl }}"></a></li>
+                <li><a class="cart" href="{{ carturl }}"></a></li>
             {% endif %}
         </ul>
     </div>

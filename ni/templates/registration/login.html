@@ -2,8 +2,8 @@
 {% load i18n %}
 
 {% block content %}
-<div class="login-form">
-    <div class="register-container">
+<div class="login-form form-bg">
+    <div class="form-container">
         <h4>{% trans "Log in" %}</h4>
         {% if form.non_field_errors %}
         <p class="error">{% for err in form.non_field_errors %}{{ err }}{% if not forloop.last %}<br/>{% endif %}
