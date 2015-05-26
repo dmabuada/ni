@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_currency satchmo_discounts %}
+{% load thumbnail %}
+
+
+{% block content %}
+
+    <div id="sidebar-secondary">
+        {% block sidebar-secondary %}
+
+            <form action="."
+                  method="get"
+                  class="ac-custom ac-checkbox ac-checkmark"
+                  autocomplete="off"
+                  id="search-page">
+                {{ form }}
+                <input type="submit" value="Submit"/>
+            </form>
+
+        {% endblock sidebar-secondary %}
+    </div>
+
+    {% if not results.categories and not results.products %}
+        <h4>{% trans "Nothing found" %}</h4>
+    {% else %}
+
+        {% comment %}
+        {% if category %}
+            {% with results.categories.0.translated_name as category_name %}
+                <h4>
+                    {% blocktrans %}
+                        Search results for {{ category_name }}
+                    {% endblocktrans %}
+                </h4>
+            {% endwith %}
+        {% else %}
+
+            {% if results.categories %}
+                <h4>{% trans "Categories" %}</h4>
+                <ul>
+                    {% for category in results.categories %}
+                        {% ifchanged %}
+                            <li>
+                                <a href="{{ category.get_absolute_url }}">{{ category.translated_name }}</a>
+                            </li>
+                        {% endifchanged %}
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endif %}
+        {% endcomment %}
+
+        <div id="product-category">
+            {% if results.products %}
+      
+                {% for product in results.products %}
+
+                    {% if forloop.first %}
+                        <ul id="search-results">
+                    {% endif %}
+
+                <li>
+                    {% thumbnail product.main_image.picture "400x400" as image %}
+                        <a class='product-image'
+                           href="{{ product.get_absolute_url }}">
+                            <img src="{{ image.url }}" width="{{ image.width }}"
+                                 height="{{ image.height }}"/>
+                        </a>
+                    {% endthumbnail %}
+                    <a class="name"
+                       href="{{ product.get_absolute_url }}">{{ product.translated_name }}</a>
+                    <a href="{{ product.get_absolute_url }}">${{ product.unit_price | floatformat:2 }}
+                        to rent</a>
+                </li>
+
+                {% if forloop.last %}
+                    </ul>
+                {% endif %}
+
+                {% endfor %}
+
+            {% else %}
+                {% if category %}
+                    <p>{% trans "Nothing found" %}</p>
+                {% endif %}
+            {% endif %}
+        </div>
+
+    {% endif %}
+
+{% endblock %}
+

@@ -8,7 +8,7 @@ from django.conf import settings
 
 from ni.signals import store_search
 from ni.listeners import product_search_listener
-
+from ni.listeners import solr_search_listener
 
 class NiAppConfig(AppConfig):
     """AppConfig for django"""

@@ -10,6 +10,8 @@ from django.contrib.sites.models import Site
 from product.models import Category
 from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
+
+from haystack.query import SearchQuerySet
 # from livesettings import config_value
 
 
@@ -81,6 +83,15 @@ def product_search_listener(sender, query, **kwargs):
 
 def solr_search_listener(sender, query, **kwargs):
     return {
-        'categories': None,
-        'products': None
+        'categories': SearchQuerySet().categories,
+        'products': SearchQuerySet().products
     }
+
+    # queryset = []
+    #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
+     #   queryset.append(result.object)
+    #return queryset
+
+
+ 
+
