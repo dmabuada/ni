@@ -78,10 +78,7 @@ def product_search_listener(sender, query, **kwargs):
         products = [i.product for i in variations if i.get_product_from_options(
             sizes)]  # TODO: does this return parents
 
-    return {
-        'categories': categories,
-        'products': products
-    }
+    return products
 
 
 def solr_search_listener(sender, query, **kwargs):
