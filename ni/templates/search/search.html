@@ -5,7 +5,6 @@
 
 
 {% block content %}
-
     <div id="sidebar-secondary">
         {% block sidebar-secondary %}
             <form class="ac-custom ac-checkbox ac-checkmark"
@@ -20,7 +19,7 @@
     </div>
 
     <div id="product-category">
-        {% if query %}
+    {% if query %}
         <ul id="search-results">
             {% for result in page.object_list %}
                 {% include 'search/_search_results.html' %}
@@ -51,8 +50,6 @@
     {% endif %}
 
     {% else %}
- 
     {% endif %}
-
 {% endblock %}
 

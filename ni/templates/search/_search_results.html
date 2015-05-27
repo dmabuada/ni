@@ -3,7 +3,6 @@
 {% load thumbnail %}
 
 {% with product=result.object %}
-
 	<li>
 		{% thumbnail product.main_image.picture "400x400" as image %}
 			<a class='product-image'
@@ -17,5 +16,4 @@
 	    <a href="{{ product.get_absolute_url }}">${{ product.unit_price | floatformat:2 }}
 	        to rent</a>
 	</li>
-
 {% endwith %}
