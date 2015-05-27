@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_currency satchmo_discounts %}
+{% load thumbnail %}
+
+
+{% block content %}
+    <div id="sidebar-secondary">
+        {% block sidebar-secondary %}
+            <form class="ac-custom ac-checkbox ac-checkmark"
+                  autocomplete="off"
+                  id="search-page"
+                  action="."
+                  method="get">
+                    {{ form }}
+                <input type="submit" value="Search" />
+            </form>
+        {% endblock sidebar-secondary %}
+    </div>
+
+    <div id="product-category">
+    {% if not query %}
+        <ul id="search-results">
+            {% for result in page.object_list %}
+                {% include 'shop/search/_search_results.html' with product=result %}
+            {% empty %}
+                <p>{% trans "No Results" %}</p>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% if page.has_previous or page.has_next %}
+        <div class="product-pagination">
+            {% if page.has_previous %}
+                <a href="?q={{ query }}&page={{ page.previous_page_number }}">
+            {% endif %}
+                <p>{% trans "&laquo Previous" %}</p>
+            {% if page.has_previous %}
+                </a>
+            {% endif %}
+                <p>|</p>
+            {% if page.has_next %}
+                <a href="?q={{ query }}&page={{ page.next_page_number }}">
+            {% endif %}
+                <p>{% trans "Next &raquo" %}</p>
+            {% if page.has_next %}
+                </a>
+            {% endif %}
+        </div>
+    {% endif %}
+
+    {% else %}
+    {% endif %}
+{% endblock %}
+

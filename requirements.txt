@@ -15,7 +15,7 @@ django-compressor==1.5
 beautifulsoup4==4.3.2
 python-logstash==0.4.5
 django-haystack==2.3.1
-pysolr==3.3.1
 requests-oauthlib==0.5.0
 django-allauth==0.20.0
 django-registration-redux==1.2
+pysolr==3.3.2

@@ -1,3 +1,5 @@
 {{ object.name }}
 {{ object.short_description }}
 {{ object.description }}
+{{ object.unit_price }}
+

@@ -8,6 +8,7 @@ from django.contrib.sites.models import Site
 from haystack import indexes
 
 from product.models import Product
+from product.modules.configurable.models import ConfigurableProduct
 
 
 class ProductIndex(indexes.SearchIndex, indexes.Indexable):
@@ -22,6 +23,14 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     name = indexes.CharField(model_attr='name')
     date_added = indexes.DateTimeField(model_attr='date_added')
+
+    sizes = indexes.MultiValueField()
+
+    def prepare_sizes(self, obj):
+        configured = ConfigurableProduct.objects.filter(option_group__name='size').filter(product=obj).first()
+        if configured is None:
+            return []
+        return [int(i[0].value) for i in configured.get_all_options()]
 
     def get_model(self):
         return Product

@@ -10,11 +10,16 @@ from django.contrib.sites.models import Site
 from product.models import Category
 from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
+
+from haystack.query import SearchQuerySet
 # from livesettings import config_value
+
+from haystack.query import SQ
+from haystack.query import SearchQuerySet
 
 
 # pylint: disable=unused-argument
-def product_search_listener(sender, query, **kwargs):  # sender, query, **kwargs
+def product_search_listener(sender, query, **kwargs):
     """
     TODO: just use a function call because this isn't the right way to use
     signals
@@ -77,3 +82,41 @@ def product_search_listener(sender, query, **kwargs):  # sender, query, **kwargs
         'categories': categories,
         'products': products
     }
+
+
+def solr_search_listener(sender, query, **kwargs):
+    """
+    search with solr
+    """
+
+    sqs = SearchQuerySet()
+
+    size_filter = query.get('size', [])
+    if size_filter:
+        sq = SQ()
+
+        for desired_size in size_filter:
+            sq.add(SQ(sizes=desired_size), SQ.OR)
+
+        sqs.filter(sq)
+
+    keywords = query.get('q', '')
+    if keywords:
+        sqs = sqs.filter(text=keywords)
+
+    # price_range = query.get('price_range', None)
+
+    # TODO: don't return all, just return the queryset
+    # which would mean it needs
+
+    def return_obj(result_set):
+        for result in result_set:
+            yield result_set.object
+
+    return [i.object for i in sqs.all()]
+
+    # queryset = []
+    #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
+     #   queryset.append(result.object)
+    #return queryset
+
