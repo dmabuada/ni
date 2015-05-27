@@ -2,19 +2,19 @@
 {% load satchmo_currency satchmo_discounts %}
 {% load thumbnail %}
 
-{% with obj=result.object %}
+{% with product=result.object %}
 
 	<li>
-		{% thumbnail obj.main_image.picture "400x400" as image %}
+		{% thumbnail product.main_image.picture "400x400" as image %}
 			<a class='product-image'
-				href="{{ obj.get_absolute_url }}">
+				href="{{ product.get_absolute_url }}">
 			<img src="{{ image.url }}" width="{{ image.width }}"
 				height="{{ image.height }}"/>
 			</a>
 		{% endthumbnail %}
 	    <a class="name"
-	       href="{{ obj.get_absolute_url }}">{{ obj.name }}</a>
-	    <a href="{{ obj.get_absolute_url }}">${{ obj.price }}
+	       href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+	    <a href="{{ product.get_absolute_url }}">${{ product.unit_price | floatformat:2 }}
 	        to rent</a>
 	</li>
 
