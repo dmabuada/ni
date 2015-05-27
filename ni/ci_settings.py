@@ -185,6 +185,8 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 
+USE_SOLR = True
+
 AUTHENTICATION_BACKENDS = (
     'satchmo_store.accounts.email-auth.EmailBackend',
     "allauth.account.auth_backends.AuthenticationBackend",

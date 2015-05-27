@@ -8,7 +8,7 @@ from django.db.models import Q
 from django.contrib.sites.models import Site
 
 from product.models import Category
-from product.models import Product
+from product.models import Product, Option, OptionGroup
 from product.modules.configurable.models import ConfigurableProduct
 
 from haystack.query import SearchQuerySet
@@ -81,9 +81,25 @@ def product_search_listener(sender, query, **kwargs):
     }
 
 
+from haystack.query import SearchQuerySet
+
+
 def solr_search_listener(sender, query, **kwargs):
+    print query
+    log = logging.getLogger('search listener')
+
+    keywords = query.get('k', '').split()
+    sizes = query.get('size', None)
+
+    log.debug('default product search listener')
+    site = Site.objects.get_current()
+
+    # show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
+    products = Product.objects.active_by_site(variations=False, site=site)
+
+    price_range = query.get('price_range', None)
+
     return {
-        # TODO: add categories
         'products': SearchQuerySet().all()
     }
 
@@ -91,7 +107,4 @@ def solr_search_listener(sender, query, **kwargs):
     #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
      #   queryset.append(result.object)
     #return queryset
-
-
- 
 

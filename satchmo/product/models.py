@@ -814,7 +814,6 @@ class ProductManager(models.Manager):
             site = Site.objects.get_current()
         return self.get(site = site, **kwargs)
 
-
     def recent_by_site(self, **kwargs):
         query = self.active_by_site(**kwargs)
         if query.count() == 0:
