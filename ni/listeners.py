@@ -93,13 +93,22 @@ def solr_search_listener(sender, query, **kwargs):
         sq = SQ()
 
         for desired_size in size_filter:
-            sq.add(SQ(sizes=desired_size), SQ.OR)
+            sq.add(SQ(sizes=str(desired_size.value)), SQ.OR)
 
-        sqs.filter(sq)
+        sqs = sqs.filter(sq)
 
     keywords = query.get('q', '')
     if keywords:
         sqs = sqs.filter(text=keywords)
+
+    category_filter = query.get('category', [])
+    if category_filter:
+        sq = SQ()
+
+        for desired_category in category_filter:
+            sq.add(SQ(categories=desired_category.name.lower()), SQ.OR)
+
+        sqs = sqs.filter(sq)
 
     # price_range = query.get('price_range', None)
 
@@ -114,6 +123,6 @@ def solr_search_listener(sender, query, **kwargs):
 
     # queryset = []
     #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
-     #   queryset.append(result.object)
+    #   queryset.append(result.object)
     #return queryset
 

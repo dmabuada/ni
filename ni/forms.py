@@ -15,19 +15,27 @@ class SizeModelMultipleChoiceField(forms.ModelMultipleChoiceField):
         return obj.value
 
 
+class CategoryModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+    """
+    Class to override the label generator so that "category" shows up as
+    'Formal dresses' instead of 'Dresses :: Formal dresses'
+    """
+    def label_from_instance(self, obj):
+        return obj.name
+
+
+
 class SearchForm(forms.Form):
     """The form that powers the search page"""
     q = forms.CharField(widget=forms.HiddenInput(), required=False)
 
     page = forms.IntegerField(widget=forms.HiddenInput(), required=False)
 
-    occasion = forms.ModelMultipleChoiceField(
-        queryset=Category.objects.all(),
+    category = CategoryModelMultipleChoiceField(
+        queryset=Category.objects.filter(parent__name='Dresses').all(),
         widget=forms.CheckboxSelectMultiple,
         required=False
     )
-
-    category = forms.ModelChoiceField(Category.objects.all(), required=False)
 
     start_date = forms.CharField(
         widget=forms.TextInput(attrs={'id': 'delivery-date'}),
