@@ -14,6 +14,9 @@ from product.modules.configurable.models import ConfigurableProduct
 from haystack.query import SearchQuerySet
 # from livesettings import config_value
 
+from haystack.query import SQ, SearchQuerySet
+
+
 
 # pylint: disable=unused-argument
 def product_search_listener(sender, query, **kwargs):
@@ -81,26 +84,31 @@ def product_search_listener(sender, query, **kwargs):
     }
 
 
-from haystack.query import SearchQuerySet
-
 
 def solr_search_listener(sender, query, **kwargs):
-    print query
-    log = logging.getLogger('search listener')
+    """
+    search with solr
+    """
 
-    keywords = query.get('k', '').split()
-    sizes = query.get('size', None)
+    sqs = SearchQuerySet()
 
-    log.debug('default product search listener')
-    site = Site.objects.get_current()
+    size_filter = query.get('size', [])
+    if size_filter:
+        sq = SQ()
 
-    # show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
-    products = Product.objects.active_by_site(variations=False, site=site)
+        for desired_size in size_filter:
+            sq.add(SQ(sizes=desired_size), SQ.OR)
 
-    price_range = query.get('price_range', None)
+        sqs.filter(sq)
+
+    keywords = query.get('q', '')
+    if keywords:
+        sqs = sqs.filter(text=keywords)
+
+    # price_range = query.get('price_range', None)
 
     return {
-        'products': SearchQuerySet().all()
+        'products': [i.object for i in sqs.all()]
     }
 
     # queryset = []

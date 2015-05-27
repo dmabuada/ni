@@ -17,6 +17,8 @@ class SizeModelMultipleChoiceField(forms.ModelMultipleChoiceField):
 
 class SearchForm(forms.Form):
     """The form that powers the search page"""
+    q = forms.CharField(widget=forms.HiddenInput())
+
     occasion = forms.ModelMultipleChoiceField(
         queryset=Category.objects.all(),
         widget=forms.CheckboxSelectMultiple,
@@ -40,4 +42,3 @@ class SearchForm(forms.Form):
         widget=forms.CheckboxSelectMultiple,
         queryset=Option.objects.filter(option_group__name='size').all(),
     )
-
