@@ -89,7 +89,7 @@ class SearchTestCase(TestCase):
         resp = self.client.get('/search/?size=30')
         soup = BeautifulSoup(resp.content)
 
-        self.assertEqual(soup.find(id='search-results'), None)
+        self.assertEqual(soup.find(id='search-results').text.strip().lower(), 'no results')
 
         resp = self.client.get('/search/?size=2')
         soup = BeautifulSoup(resp.content)
