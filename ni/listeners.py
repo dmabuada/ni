@@ -83,8 +83,8 @@ def product_search_listener(sender, query, **kwargs):
 
 def solr_search_listener(sender, query, **kwargs):
     return {
-        'categories': SearchQuerySet().categories,
-        'products': SearchQuerySet().products
+        # TODO: add categories
+        'products': SearchQuerySet().all()
     }
 
     # queryset = []

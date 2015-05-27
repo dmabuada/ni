@@ -329,7 +329,6 @@ input[type=submit] {
     float: right;
     width: 60%;
 } 
- 
 /* =============== END: Products ===================== */
 
 
@@ -408,6 +407,19 @@ input[type=submit] {
  
 #wishlist form {display: inline}
  
+.product-pagination {
+    margin: 0 auto;
+    position: relative;
+    text-align: center;
+    width: 25em;
+} 
+
+.product-pagination a,
+.product-pagination p {
+    display: inline-block;
+} 
+
+
 /* =============== END: Product Categories ===================== */
 
 /* =============== BEGIN: Accounts ===================== */
