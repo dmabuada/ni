@@ -10,19 +10,19 @@
             <form class="ac-custom ac-checkbox ac-checkmark"
                   autocomplete="off"
                   id="search-page"
-                  action="." 
+                  action="."
                   method="get">
-                    {{ form.as_ul }}
+                    {{ form }}
                 <input type="submit" value="Search" />
             </form>
         {% endblock sidebar-secondary %}
     </div>
 
     <div id="product-category">
-    {% if query %}
+    {% if not query %}
         <ul id="search-results">
             {% for result in page.object_list %}
-                {% include 'search/_search_results.html' %}
+                {% include 'shop/search/_search_results.html' with product=result %}
             {% empty %}
                 <p>{% trans "No Results" %}</p>
             {% endfor %}
@@ -37,7 +37,7 @@
                 <p>{% trans "&laquo Previous" %}</p>
             {% if page.has_previous %}
                 </a>
-            {% endif %} 
+            {% endif %}
                 <p>|</p>
             {% if page.has_next %}
                 <a href="?q={{ query }}&page={{ page.next_page_number }}">

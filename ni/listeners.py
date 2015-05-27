@@ -106,9 +106,14 @@ def solr_search_listener(sender, query, **kwargs):
 
     # price_range = query.get('price_range', None)
 
-    return {
-        'products': [i.object for i in sqs.all()]
-    }
+    # TODO: don't return all, just return the queryset
+    # which would mean it needs
+
+    def return_obj(result_set):
+        for result in result_set:
+            yield result_set.object
+
+    return [i.object for i in sqs.all()]
 
     # queryset = []
     #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
