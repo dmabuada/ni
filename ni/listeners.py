@@ -8,14 +8,14 @@ from django.db.models import Q
 from django.contrib.sites.models import Site
 
 from product.models import Category
-from product.models import Product, Option, OptionGroup
+from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
 
 from haystack.query import SearchQuerySet
 # from livesettings import config_value
 
-from haystack.query import SQ, SearchQuerySet
-
+from haystack.query import SQ
+from haystack.query import SearchQuerySet
 
 
 # pylint: disable=unused-argument
@@ -82,7 +82,6 @@ def product_search_listener(sender, query, **kwargs):
         'categories': categories,
         'products': products
     }
-
 
 
 def solr_search_listener(sender, query, **kwargs):
