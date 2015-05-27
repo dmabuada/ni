@@ -32,6 +32,11 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
             return []
         return [int(i[0].value) for i in configured.get_all_options()]
 
+    categories = indexes.MultiValueField()
+
+    def prepare_categories(self, obj):
+        return [category.name.lower() for category in obj.category.all()]
+
     def get_model(self):
         return Product
 
