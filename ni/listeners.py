@@ -86,7 +86,6 @@ def solr_search_listener(sender, query, **kwargs):
     search with solr
     """
 
-    print query
     sqs = SearchQuerySet()
 
     size_filter = query.get('size', [])
@@ -105,8 +104,8 @@ def solr_search_listener(sender, query, **kwargs):
     category_filter = query.get('category', [])
     if category_filter:
         sq = SQ()
+
         for desired_category in category_filter:
-            print desired_category.name.lower()
             sq.add(SQ(categories=desired_category.name.lower()), SQ.OR)
 
         sqs = sqs.filter(sq)

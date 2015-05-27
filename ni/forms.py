@@ -14,6 +14,7 @@ class SizeModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     def label_from_instance(self, obj):
         return obj.value
 
+
 class CategoryModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     """
     Class to override the label generator so that "category" shows up as
