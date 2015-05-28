@@ -11,7 +11,6 @@ from product.models import Category
 from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
 
-from haystack.query import SearchQuerySet
 # from livesettings import config_value
 
 from haystack.query import SQ
@@ -110,19 +109,19 @@ def solr_search_listener(sender, query, **kwargs):
 
         sqs = sqs.filter(sq)
 
-    # price_range = query.get('price_range', None)
+    price_range = query.get('price_range', [])
+    if price_range:
+        sq = SQ()
+
+        ranges = [i.split('-') for i in price_range]
+        ranges = [(int(i), int(j)) for i, j in ranges]
+
+        for lower, upper in ranges:
+            sq.add(SQ(price__gte=lower) & SQ(price__lte=upper), SQ.OR)
+
+        sqs = sqs.filter(sq)
 
     # TODO: don't return all, just return the queryset
-    # which would mean it needs
-
-    def return_obj(result_set):
-        for result in result_set:
-            yield result_set.object
+    # which would mean it needs to be a generator that returns the object
 
     return [i.object for i in sqs.all()]
-
-    # queryset = []
-    #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
-    #   queryset.append(result.object)
-    #return queryset
-

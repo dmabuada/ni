@@ -37,6 +37,11 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     def prepare_categories(self, obj):
         return [category.name.lower() for category in obj.category.all()]
 
+    price = indexes.IntegerField()
+
+    def prepare_price(self, obj):
+        return int(obj.price_set.first().price)
+
     def get_model(self):
         return Product
 
