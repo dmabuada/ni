@@ -4,9 +4,9 @@ from django import forms
 
 from product.models import Category
 from product.models import Option
+from product.models import Product
 
-
-class SizeModelMultipleChoiceField(forms.ModelMultipleChoiceField):
+class OverrideMultipleLabel(forms.ModelMultipleChoiceField):
     """
     Class to override the label generator so that "size" shows up as `1'
     instead of `size: 1' or something
@@ -47,8 +47,14 @@ class SearchForm(forms.Form):
         required=False
     )
 
-    size = SizeModelMultipleChoiceField(
+    size = OverrideMultipleLabel(
         required=False,
         widget=forms.CheckboxSelectMultiple,
         queryset=Option.objects.filter(option_group__name='size').all(),
+    )
+
+    color = forms.ModelMultipleChoiceField(
+        queryset=Product.objects.filter(total_sold=0).all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
     )

@@ -24,6 +24,7 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     name = indexes.CharField(model_attr='name')
     date_added = indexes.DateTimeField(model_attr='date_added')
 
+    colors = indexes.MultiValueField()
     sizes = indexes.MultiValueField()
 
     def prepare_sizes(self, obj):
