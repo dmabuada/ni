@@ -34,7 +34,6 @@ def product_search_listener(sender, query, **kwargs):
     # show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
     products = Product.objects.active_by_site(variations=False, site=site)
 
-
     price_range = query.get('price_range', [])
 
     if price_range:
@@ -121,4 +120,3 @@ def solr_search_listener(sender, query, **kwargs):
     # which would mean it needs to be a generator that returns the object
 
     return [i.object for i in sqs.all()]
-
