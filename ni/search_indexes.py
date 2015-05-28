@@ -40,6 +40,8 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     price = indexes.IntegerField()
 
     def prepare_price(self, obj):
+        # Technically a product can have more than one price. Shouldn't be too
+        # hard to fix when the time comes
         return int(obj.price_set.first().price)
 
     def get_model(self):
