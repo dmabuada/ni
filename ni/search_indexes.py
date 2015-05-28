@@ -9,7 +9,7 @@ from haystack import indexes
 
 from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
-
+from ni.configuration import get_colors
 
 class ProductIndex(indexes.SearchIndex, indexes.Indexable):
     """
@@ -32,6 +32,10 @@ class ProductIndex(indexes.SearchIndex, indexes.Indexable):
         if configured is None:
             return []
         return [int(i[0].value) for i in configured.get_all_options()]
+
+    def prepare_colors(self, obj):
+        image_path = obj.main_image.picture.path
+        return get_colors.colorz(image_path, n=3)
 
     categories = indexes.MultiValueField()
 
