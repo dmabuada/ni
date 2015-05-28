@@ -34,15 +34,30 @@ def product_search_listener(sender, query, **kwargs):
     # show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
     products = Product.objects.active_by_site(variations=False, site=site)
 
-    price_range = query.get('price_range', None)
-    if price_range:
-        min_price, max_price = [int(i) for i in price_range.split('-')]
-        products = products.filter(
-            price__price__gt=min_price - 1,
-            price__price__lt=max_price + 1
-        )
 
-    category = query.get('category', None)
+    price_range = query.get('price_range', [])
+
+    if price_range:
+        q_list = []
+
+        ranges = [i.split('-') for i in price_range]
+        ranges = [(int(i), int(j)) for i, j in ranges]
+
+        for lower, upper in ranges:
+            q_list.append(Q(price__price__gte=lower) & Q(price__price__lte=upper))
+
+        price_q = q_list.pop()
+
+        for q in q_list:
+            price_q = price_q | q
+
+        print products.all()
+        print price_q
+        products = products.filter(price_q)
+        print products.all()
+        print products.query
+
+    category = query.get('category', [])
     if category:
         categories = Category.objects.active(site=site, slug=category.slug)
         if categories:
@@ -52,7 +67,7 @@ def product_search_listener(sender, query, **kwargs):
         # automatically assumes active categories only
         categories = Category.objects.by_site(site=site)
 
-    log.debug('initial: %s', list(products))
+    # log.debug('initial: %s', list(products))
 
     # TODO: actually filter on size
     for keyword in keywords:
