@@ -56,7 +56,8 @@ class SearchForm(forms.Form):
     category = CategoryModelMultipleChoiceField(
         queryset=Category.objects.filter(parent__name='Dresses').all(),
         widget=forms.CheckboxSelectMultiple,
-        required=False
+        required=False,
+        to_field_name='slug'
     )
 
     start_date = forms.CharField(
@@ -72,7 +73,7 @@ class SearchForm(forms.Form):
     size = SizeModelMultipleChoiceField(
         required=False,
         widget=forms.CheckboxSelectMultiple,
-        queryset=Option.objects.filter(option_group__name='size').all(),
+        queryset=Option.objects.filter(option_group__name='size').all()
     )
 
     price_range = forms.MultipleChoiceField(

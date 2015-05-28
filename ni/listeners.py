@@ -59,14 +59,7 @@ def product_search_listener(sender, query, **kwargs):
 
     # TODO: actually filter on size
     for keyword in keywords:
-        if not category:
-            categories = categories.filter(
-                Q(name__icontains=keyword) |
-                Q(meta__icontains=keyword) |
-                Q(description__icontains=keyword)
-            )
-
-        products = products.filter(
+       products = products.filter(
             Q(name__icontains=keyword)
             | Q(short_description__icontains=keyword)
             | Q(description__icontains=keyword)
@@ -128,3 +121,4 @@ def solr_search_listener(sender, query, **kwargs):
     # which would mean it needs to be a generator that returns the object
 
     return [i.object for i in sqs.all()]
+
