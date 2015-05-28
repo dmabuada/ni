@@ -25,8 +25,8 @@ def product_search_listener(sender, query, **kwargs):
     """
     log = logging.getLogger('search listener')
 
-    keywords = query.get('k', '').split()
-    sizes = query.get('size', None)
+    keywords = query.get('q', '').split()
+    sizes = query.get('size', [])
 
     log.debug('default product search listener')
     site = Site.objects.get_current()
