@@ -51,23 +51,11 @@ def product_search_listener(sender, query, **kwargs):
         for q in q_list:
             price_q = price_q | q
 
-        print products.all()
-        print price_q
         products = products.filter(price_q)
-        print products.all()
-        print products.query
 
-    category = query.get('category', [])
-    if category:
-        categories = Category.objects.active(site=site, slug=category.slug)
-        if categories:
-            categories = categories[0].get_active_children(include_self=True)
-        products = products.filter(category__in=categories)
-    else:
-        # automatically assumes active categories only
-        categories = Category.objects.by_site(site=site)
-
-    # log.debug('initial: %s', list(products))
+    category_filter = query.get('category', [])
+    if category_filter:
+        products = products.filter(category__in=category_filter)
 
     # TODO: actually filter on size
     for keyword in keywords:
