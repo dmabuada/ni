@@ -201,7 +201,7 @@ INSTALLED_APPS = (
     'payment.modules.dummy',
     # 'payment.modules.purchaseorder',
     # 'payment.modules.giftcertificate',
-    # 'satchmo_ext.wishlist',
+    'satchmo_ext.wishlist',
     # 'satchmo_ext.upsell',
     'satchmo_ext.productratings',
     'satchmo_ext.satchmo_toolbar',

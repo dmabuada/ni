@@ -95,9 +95,10 @@ ul, li {
     padding: .4em;
 }
 
-/* Submit Buttons */ 
+/* Buttons w/ purple backgrounds */ 
 
-#container input[type=submit] {
+#container input[type=submit],
+.btn-2 {
     background: #ab8ec5;
     border-color: #ddd1e7 #bba3d0 #aa8cc5;
     border: none;
@@ -135,7 +136,7 @@ ul, li {
 }
 
 .form-bg {
-    background: #fafafc url('/static/images/form-bg.png') top center repeat;
+    background: #fbfbfb;
     padding: 2em;
 }
 
@@ -768,6 +769,21 @@ ul, li {
  
 /* =============== END: Reserve Form ===================== */
 
+/* =============== BEGIN: Request Login/Other Info Pages; ===================== */
+
+.request-info {
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    text-align: center;
+}
+
+.request-info .btn-2 {
+  padding: 0.5rem 2rem;
+  border-radius: 3px;
+}
+
+/* =============== END: Request Login/Other Info Pages; ===================== */
 
 /* ====BEGIN: MISCELLANEOUS - all of these are satchmo defaults, so remove/add if necessary ====*/
 
