@@ -9,32 +9,7 @@
 {% load app_plugins %}
 {% load satchmo_thumbnail %}
 
-{% block compressed-head-js %}
-    {% include "shop/_jquery_form.html" %}
-    <script type="text/javascript"
-            src="{{ STATIC_URL }}js/satchmo_product.js"></script>
-    {% blackbird_logging %}
-    <script type="text/javascript">{# Javascript which is generated uniquely for each page #}
-    satchmo.default_view_tax =
-            {% if default_view_tax %}true{% else %}false{% endif %};
-
-    satchmo.set_option_ids([{% for option_group in options %}{{ option_group.id }}{% if not forloop.last %}, {% endif %}{% endfor %}]);
-
-    $(function () {
-        satchmo.update_price();
-        $('.priced').change(function () {
-            satchmo.update_price()
-        });
-    });
-
-    // generate thumbnails for all alternate images
-    satchmo.thumbnails = [];
-    {{ details|js_thumbnail_array:"width=280,height=280" }}
-    </script>
-{% endblock %}
-
 {% block content %}
-
 
     <div class="product-individual-wrapper">
         <div class="product-individual">
