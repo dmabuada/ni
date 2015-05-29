@@ -18,8 +18,6 @@
     satchmo.default_view_tax =
             {% if default_view_tax %}true{% else %}false{% endif %};
 
-    satchmo.variations = {{ details|as_json }};
-
     satchmo.set_option_ids([{% for option_group in options %}{{ option_group.id }}{% if not forloop.last %}, {% endif %}{% endfor %}]);
 
     $(function () {
@@ -36,85 +34,101 @@
 {% endblock %}
 
 {% block content %}
-    <div class="product-individual-wrapper">
-        <div class="product-individual">
-            <div class="product-left">
-                <ul class="product-image-thumbnails">
-                    <li>
-                        {% for pic in product.productimage_set.all %}
-                            {% thumbnail pic.picture "40x55" as image %}
-                                <img src="{{ image.url }}"
-                                     width="{{ image.width }}"
-                                     height="{{ image.height }}"/>
-                            {% endthumbnail %}
-                        {% endfor %}
-                    </li>
-                </ul>
-                {# TODO: make this the main product image by targeting the first image in productimage_set.all #}
-            <span id="product_images">
-            {% for pic in product.productimage_set.all %}
-                {% thumbnail pic.picture "280x400" as image %}
-                    <img src="{{ image.url }}" width="{{ image.width }}"
-                         height="{{ image.height }}"/>
-                {% endthumbnail %}
-            {% endfor %}
-            </span>
+
+
+<div class="product-individual-wrapper">
+	<div class="product-individual">
+		<div class="product-left">
+			<div class="main-image">
+				{% for pic in product.productimage_set.all %}
+        			{% if forloop.first %}
+	                    {% thumbnail pic.picture "400x400" as image %}
+					      	<img src="{{ image.url }}"
+	                             width="{{ image.width }}"
+	                             height="{{ image.height }}"
+	                             class="custom"/>
+					    {% endthumbnail %}
+				   	{% endif %}
+                {% endfor %}		
             </div>
+ 
+			<ul class="thumbnails">
+				<li>
+				{% for pic in product.productimage_set.all %}
+                    {% thumbnail pic.picture "400x400" as image %}
+				        <a href="{{ image.url }}">
+				    {% endthumbnail %}
+                    {% thumbnail pic.picture "100x100" as image %}
+                        <img src="{{ image.url }}"
+                             width="{{ image.width }}"
+                             height="{{ image.height }}"/>
+                    {% endthumbnail %}
+                {% endfor %}
+				</li>
+			</ul>   
+		</div>
 
-            <div class="product-right">
-                <h2>{{ product.translated_name }}</h2>
+        <div class="product-right">
+            <h2>{{ product.translated_name }}</h2>
 
-                <p>{{ product.translated_description }}</p>
-                {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}
-                <h3>{% spaceless %}
-                    {% if sale %}
-                        <div id="fullprice">{{ product|discount_price:""|currency }}</div>
-                    {% endif %}
-                    <span id="price">{{ product|discount_price:sale|currency }}</span>
-                    {% trans "Rental" %}
-                    {% with product|product_rating_average_string as rating %}
-                        <p class="averagerating">{% blocktrans %}Average
-                            rating: {{ rating }}{% endblocktrans %}</p>
-                    {% endwith %}
-                {% endspaceless %}</h3>
+            <p>{{ product.translated_description }}</p>
+            {% if default_view_tax %} {% trans '(incl. tax)' %}{% endif %}
+            <h3>{% spaceless %}
+                {% if sale %}
+                    <div id="fullprice">{{ product|discount_price:""|currency }}</div>
+                {% endif %}
+                <span id="price">{{ product|discount_price:sale|currency }}</span>
+                {% trans "Rental" %}
+                {% with product|product_rating_average_string as rating %}
+                    <p class="averagerating">{% blocktrans %}Average
+                        rating: {{ rating }}{% endblocktrans %}</p>
+                {% endwith %}
+            {% endspaceless %}</h3>
 
-                {% with product.translated_attributes as atts %}{% if atts %}
-                    <p class="productattributes">
-                        {% for att in product.translated_attributes %}
-                            {{ att.description }}: {{ att.value }}<br/>
-                        {% endfor %}
-                    </p>
-                {% endif %}{% endwith %}
+            {% with product.translated_attributes as atts %}{% if atts %}
+                <p class="productattributes">
+                    {% for att in product.translated_attributes %}
+                        {{ att.description }}: {{ att.value }}<br/>
+                    {% endfor %}
+                </p>
+            {% endif %}{% endwith %}
 
-                {% if error_message %}
-                    <p><strong>{{ error_message }}</strong></p>{% endif %}
-                <div class="options-checkout">
-                    <form id="options" action="{% url 'satchmo_smart_add' %}"
-                          method="post">{% csrf_token %}
+            {% if error_message %}
+                <p><strong>{{ error_message }}</strong></p>{% endif %}
+            <div class="options-checkout">
+                <form id="options" action="{% url 'satchmo_smart_add' %}"
+                      method="post">{% csrf_token %}
 
-                        {% for option_group in options %}
-                            {{ option_group.name }}
-                            <select name="{{ option_group.id }}"
-                                    id="{{ option_group.id }}" class="priced">
-                                {% for choice in option_group.items %}
-                                    <option value="{{ choice.value }}"
-                                            {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
-                                        {% if choice.price_change %}
-                                            {% option_price choice %}
-                                        {% endif %}
-                                    </option>
-                                {% endfor %}
-                            </select>
-                        {% endfor %}
-                        <input type="hidden" size="2" name="quantity"
-                               id="quantity" value="1" class="priced"/>
-                        <input type="hidden" name="productname" id="productname"
-                               value="{{ product.slug }}"/>
-                        <input id="addcart" type="submit" name="addcart"
-                               value="{% trans "Reserve" %}"/>
-                    </form>
-                </div>
+                    {% for option_group in options %}
+                        {{ option_group.name }}
+                        <select name="{{ option_group.id }}"
+                                id="{{ option_group.id }}" class="priced">
+                            {% for choice in option_group.items %}
+                                <option value="{{ choice.value }}"
+                                        {% if choice.selected %}selected="selected"{% endif %}>{{ choice.translated_name }}
+                                    {% if choice.price_change %}
+                                        {% option_price choice %}
+                                    {% endif %}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    {% endfor %}
+                    <input type="hidden" size="2" name="quantity"
+                           id="quantity" value="1" class="priced"/>
+                    <input type="hidden" name="productname" id="productname"
+                           value="{{ product.slug }}"/>
+                    <input id="addcart" type="submit" name="addcart"
+                           value="{% trans "Reserve" %}"/>
+                </form>
             </div>
         </div>
-    </div>
+	</div>
+</div>
+
+{% endblock %}
+
+{% block compressed-footer-scripts %}
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}js/vendor/jquery-2.1.3.min.js"></script>
+    <script src="{{ STATIC_URL }}js/product_gallery.js"></script>
 {% endblock %}
