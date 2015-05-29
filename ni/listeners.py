@@ -11,7 +11,6 @@ from product.models import Category
 from product.models import Product
 from product.modules.configurable.models import ConfigurableProduct
 
-from haystack.query import SearchQuerySet
 # from livesettings import config_value
 
 from haystack.query import SQ
@@ -26,8 +25,8 @@ def product_search_listener(sender, query, **kwargs):
     """
     log = logging.getLogger('search listener')
 
-    keywords = query.get('k', '').split()
-    sizes = query.get('size', None)
+    keywords = query.get('q', '').split()
+    sizes = query.get('size', [])
 
     log.debug('default product search listener')
     site = Site.objects.get_current()
@@ -35,36 +34,31 @@ def product_search_listener(sender, query, **kwargs):
     # show_pv = config_value('PRODUCT', 'SEARCH_SHOW_PRODUCTVARIATIONS', False)
     products = Product.objects.active_by_site(variations=False, site=site)
 
-    price_range = query.get('price_range', None)
+    price_range = query.get('price_range', [])
+
     if price_range:
-        min_price, max_price = [int(i) for i in price_range.split('-')]
-        products = products.filter(
-            price__price__gt=min_price - 1,
-            price__price__lt=max_price + 1
-        )
+        q_list = []
 
-    category = query.get('category', None)
-    if category:
-        categories = Category.objects.active(site=site, slug=category.slug)
-        if categories:
-            categories = categories[0].get_active_children(include_self=True)
-        products = products.filter(category__in=categories)
-    else:
-        # automatically assumes active categories only
-        categories = Category.objects.by_site(site=site)
+        ranges = [i.split('-') for i in price_range]
+        ranges = [(int(i), int(j)) for i, j in ranges]
 
-    log.debug('initial: %s', list(products))
+        for lower, upper in ranges:
+            q_list.append(Q(price__price__gte=lower) & Q(price__price__lte=upper))
+
+        price_q = q_list.pop()
+
+        for q in q_list:
+            price_q = price_q | q
+
+        products = products.filter(price_q)
+
+    category_filter = query.get('category', [])
+    if category_filter:
+        products = products.filter(category__in=category_filter)
 
     # TODO: actually filter on size
     for keyword in keywords:
-        if not category:
-            categories = categories.filter(
-                Q(name__icontains=keyword) |
-                Q(meta__icontains=keyword) |
-                Q(description__icontains=keyword)
-            )
-
-        products = products.filter(
+       products = products.filter(
             Q(name__icontains=keyword)
             | Q(short_description__icontains=keyword)
             | Q(description__icontains=keyword)
@@ -110,19 +104,19 @@ def solr_search_listener(sender, query, **kwargs):
 
         sqs = sqs.filter(sq)
 
-    # price_range = query.get('price_range', None)
+    price_range = query.get('price_range', [])
+    if price_range:
+        sq = SQ()
+
+        ranges = [i.split('-') for i in price_range]
+        ranges = [(int(i), int(j)) for i, j in ranges]
+
+        for lower, upper in ranges:
+            sq.add(SQ(price__gte=lower) & SQ(price__lte=upper), SQ.OR)
+
+        sqs = sqs.filter(sq)
 
     # TODO: don't return all, just return the queryset
-    # which would mean it needs
-
-    def return_obj(result_set):
-        for result in result_set:
-            yield result_set.object
+    # which would mean it needs to be a generator that returns the object
 
     return [i.object for i in sqs.all()]
-
-    # queryset = []
-    #for result in SearchQuerySet().models(Product).filter((request.QUERY_PARAMS.get('q', ''))):
-    #   queryset.append(result.object)
-    #return queryset
-
