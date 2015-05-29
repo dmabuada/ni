@@ -50,7 +50,7 @@ ul, li {
     padding: 0;
 }
 
-input {
+#container input {
     background: #f9f9f8;
     border-radius: 3px;
     border: 1px solid #eee;
@@ -62,7 +62,7 @@ input {
     width: 100%;
 }
 
-input:focus {
+#container input:focus {
     border: 1px solid #bba3d0;
     box-shadow: 0 0 0 500px #fff inset;
     outline: none;
@@ -97,7 +97,7 @@ input:focus {
 
 /* Submit Buttons */ 
 
-input[type=submit] {
+#container input[type=submit] {
     background: #ab8ec5;
     border-color: #ddd1e7 #bba3d0 #aa8cc5;
     border: none;
