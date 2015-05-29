@@ -316,7 +316,7 @@ input[type=submit] {
 
 .product-individual .product-left {
     float: left;
-    width: 40%;
+    width: 50%;
 }
 
 .product-individual .product-left ul {
@@ -327,8 +327,38 @@ input[type=submit] {
 
 .product-individual .product-right {
     float: right;
-    width: 60%;
+    width: 50%;
 } 
+
+.product-individual .main-image {
+    max-width: 25em;
+    width: 100%;
+    margin-bottom: 0.75em;
+}
+
+.product-individual .thumbnails img, .main-image img {
+    max-width: 100%;
+    padding: 0.3em;
+    border: 1px solid #ccc;
+    height: auto;
+    background: #fff;
+}
+
+.product-individual .thumbnails {
+    padding: 0;
+}
+
+.product-individual .thumbnails li {
+    display: inline;
+    margin: 0 10px 0 0;
+    width: 2.5em;
+}
+
+.product-individual .thumbnails li img {
+    width: 5em;
+
+}
+
 /* =============== END: Products ===================== */
 
 
