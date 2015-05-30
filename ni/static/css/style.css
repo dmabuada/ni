@@ -316,7 +316,7 @@ ul, li {
 
 .product-individual .product-left {
     float: left;
-    width: 50%;
+    width: 35%;
 }
 
 .product-individual .product-left ul {
@@ -327,11 +327,10 @@ ul, li {
 
 .product-individual .product-right {
     float: right;
-    width: 50%;
+    width: 65%;
 } 
 
 .product-individual .main-image {
-    max-width: 25em;
     width: 100%;
     margin-bottom: 0.75em;
 }
