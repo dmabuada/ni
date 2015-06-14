@@ -31,12 +31,13 @@
                     <li>
                         {% for pic in product.productimage_set.all %}
                             {% thumbnail pic.picture "400x400" as image %}
-                                <a href="{{ image.url }}"></a>
+                                <a href="{{ image.url }}">
                             {% endthumbnail %}
                             {% thumbnail pic.picture "100x100" as image %}
                                 <img src="{{ image.url }}"
                                     width="{{ image.width }}"
                                     height="{{ image.height }}"/>
+                                </a>
                             {% endthumbnail %}
                         {% endfor %}
                     </li>
