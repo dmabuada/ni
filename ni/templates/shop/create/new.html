@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load satchmo_currency satchmo_discounts %}
+{% load thumbnail %}
+
+{% block content %}
+    <div class="create-form form-bg">
+        <div class="form-container">
+            <h1>{% trans "Create A Shop" %}</h1>
+
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_ul }}
+                <input type="submit" value="{% trans "Create Shop" %}"/>
+            </form>
+        </div>
+    </div>
+{% endblock %}
