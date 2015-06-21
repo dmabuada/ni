@@ -176,6 +176,9 @@ INSTALLED_APPS = (
     'ni'
 )
 
+COMMENTS_ALLOW_PROFANITIES = True
+
+
 COMPRESS_CSS_FILTERS = [
     'compressor.filters.css_default.CssAbsoluteFilter',
     'compressor.filters.cssmin.CSSMinFilter'
