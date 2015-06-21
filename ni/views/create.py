@@ -1,5 +1,6 @@
 from django.http import HttpResponseRedirect
 from django.core import urlresolvers
+from django.template import RequestContext
 
 from django.shortcuts import render_to_response
 
@@ -41,5 +42,6 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
         initial_data['next'] = request.GET.get('next', '')
 
         form = ShopForm(initial=initial_data)
+        context = RequestContext(request)
 
-    return render_to_response(template, {'form': form})
+    return render_to_response(template, {'form': form}, context_instance=context)
