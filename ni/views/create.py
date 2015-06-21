@@ -8,6 +8,7 @@ from django.shortcuts import render_to_response
 from ni.forms import ShopForm
 from ni.models import Shop
 
+from django.contrib.sites.models import Site
 
 def create_view(request, redirect=None, template="shop/create/new.html"):
     """
@@ -17,7 +18,13 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
     if request.method == 'POST':
         form = ShopForm(request.POST)
         if form.is_valid():
-            shop = form.save(request, force_new=True)
+            # shop = form.save(request, force_new=True)
+            new_shop = Shop(
+                name=form.cleaned_data['name'],
+                owner=request.user,
+                site=Site.objects.get_current()
+                )
+            new_shop.save()
 
             # look for explicit "next"
             next = request.POST.get('next', None)
@@ -25,23 +32,10 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
                 if redirect:
                     next = redirect
                 else:
-                    next = urlresolvers.reverse('shop_creation_complete')
+                    next = '/'
             return HttpResponseRedirect(next)
 
-    else:
-        initial_data = {}
-        try:
-            shop = Shop.objects.all()[0]
-            initial_data = {
-                'shop': shop.name
-            }
-        except Shop.DoesNotExist:
-            #log here for debugging
-            shop = None
-
-        initial_data['next'] = request.GET.get('next', '')
-
-        form = ShopForm(initial=initial_data)
-        context = RequestContext(request)
+    form = ShopForm()
+    context = RequestContext(request)
 
     return render_to_response(template, {'form': form}, context_instance=context)
