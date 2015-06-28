@@ -7,6 +7,7 @@
     {% if user_data %}
     {# TODO: create a block for the sidebar #}
     <div class="account-sidebar">
+        <h3>Account Settings</h3>
         <ul>
             <li><a href="{{ accounturl }}">{% trans "Account" %}</a></li>
             <li><a href="{% url 'satchmo_profile_update' %}">{% trans "Update your profile" %}</a></li>
@@ -14,6 +15,11 @@
             <li><a href="{% url 'auth_password_change' %}">{% trans "Change your password" %}</a></li>
             <li><a href="{% url 'satchmo_order_history' %}">{% trans "Order History" %}</a></li>
         <ul>
+        <h3>Become a Vendor</h3>
+        <ul>
+            <li><a href="/create/">{% trans "Create a Shop" %}</a></li>
+            <li><a href="">Shop Handbook</a></li>
+        </ul>
     </div>
     <div class="account-primary">
         <div class="section about-me">

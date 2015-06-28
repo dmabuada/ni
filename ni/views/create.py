@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.core import urlresolvers
 from django.template import RequestContext
 
 from django.shortcuts import render_to_response
@@ -10,6 +9,7 @@ from ni.models import Shop
 
 from django.contrib.sites.models import Site
 
+
 def create_view(request, redirect=None, template="shop/create/new.html"):
     """
     Handle all shop creation logic.
@@ -18,7 +18,6 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
     if request.method == 'POST':
         form = ShopForm(request.POST)
         if form.is_valid():
-            # shop = form.save(request, force_new=True)
             new_shop = Shop(
                 name=form.cleaned_data['name'],
                 owner=request.user,
