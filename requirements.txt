@@ -1,4 +1,4 @@
-Django==1.8
+Django==1.8.2
 django-debug-toolbar-template-timings==0.6.4
 django-keyedcache==1.5.1
 django-threaded-multihost==1.4-1
@@ -6,7 +6,7 @@ oauthlib==0.7.2
 pycrypto==2.6.1
 python-openid==2.2.5
 PyYAML==3.11
-requests==2.6.0
+requests==2.7.0
 sorl-thumbnail==12.2
 django-compressor==1.5
 python-logstash==0.4.5
