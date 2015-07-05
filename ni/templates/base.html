@@ -94,7 +94,7 @@
                 </ul>
             </div>
             <div class="footer-column">
-                {% if shop.owner == User %}
+                {% if user.is_authenticated and shop.owner == User %}
                 <p>Manage your Shop</p>
                 <ul>
                     {# TODO: store create in a context variable #}
