@@ -15,11 +15,19 @@
             <li><a href="{% url 'auth_password_change' %}">{% trans "Change your password" %}</a></li>
             <li><a href="{% url 'satchmo_order_history' %}">{% trans "Order History" %}</a></li>
         <ul>
+        {% if shop.owner == User %}
+        <h3>Manage your Shop</h3>
+        <ul>
+            <li><a href="">View Shop</a></li>
+            <li><a href="">Add a Product</a></li>
+        </ul>
+        {% else %}
         <h3>Become a Vendor</h3>
         <ul>
-            <li><a href="/create/">{% trans "Create a Shop" %}</a></li>
+            <li><a href="/create/">Create a Shop</a></li>
             <li><a href="">Shop Handbook</a></li>
         </ul>
+        {% endif %}
     </div>
     <div class="account-primary">
         <div class="section about-me">

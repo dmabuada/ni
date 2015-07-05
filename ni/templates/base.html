@@ -94,17 +94,25 @@
                 </ul>
             </div>
             <div class="footer-column">
+                {% if shop.owner == User %}
+                <p>Manage your Shop</p>
+                <ul>
+                    {# TODO: store create in a context variable #}
+                    <li><a href="">View Shop</a></li>
+                    <li><a href="">Add a Product</a></li>
+                </ul>
+                {% else %}
                 <p>Become a Vendor</p>
                 <ul>
                     {# TODO: store create in a context variable #}
                     <li><a href="/create/">Create a Shop</a></li>
                     <li><a href="">Shop Handbook</a></li>
                 </ul>
+                {% endif %}
             </div>
         </div>
         <div class="footer-row">
             <ul>
-                {# look up jinja's built-in filter for date retrieval#}
                 <li><a href="">© {% now "Y" %} Ni</a></li>
                 <li><a href="">Terms</a></li>
                 <li><a href="">Privacy</a></li>
