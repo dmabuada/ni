@@ -1,5 +1,6 @@
 {% load comments %}
-<form action="{% comment_form_target %}" method="POST">{% csrf_token %}
+<form action="{% comment_form_target %}" id="product-rating"
+      method="POST">{% csrf_token %}
     <input type="hidden" name="next" value="{{ product.get_absolute_url }}"/>
     <input type='hidden' name="name"
            value="{{ user.get_full_name|default:user.username }}"/>
@@ -41,8 +42,8 @@
         {% endifnotequal %}
     {% endfor %}
     <p class="submit">
+        <input type="hidden" name="preview">
         <input type="submit" name="submit" class="submit-post" value="Post">
-        <input type="submit" name="submit" class="submit-preview"
-               value="Preview">
+        {# <input type="submit" name="submit" class="submit-preview" value="Preview"> #}
     </p>
 </form>
