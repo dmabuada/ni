@@ -25,7 +25,7 @@
     <div id="navbar">
         <a href="/"><div class="logo"></div></a>
         <ul class="primary-nav">
-            <li class="dropdown">
+            <li class="dropdown designers">
             <a href="#designers" class="toggle">Designers</a>
                 <div class="dropdown_panel" id="dropdown-1">
                     <div class="dropdown_panel_wrapper">
@@ -86,11 +86,24 @@
             {% if user.is_authenticated %}
                 {% url 'satchmo_account_info' as accounturl %}
                 {% if accounturl %}
-                    <li><a href="{{ accounturl }}" target="blank">Account
-                        Details</a></li>
+                <li class="dropdown account">
+                    <a href="#account" class="toggle">Account</a>
+                        <div class="dropdown_panel" id="dropdown-1">
+                            <div class="dropdown_panel_wrapper">
+                                <div class="dropdown_panel_content">
+                                    <div class="dropdown_panel_content_column">
+                                        <ul class="dropdown_panel_content_menu">
+                                            <li><a href="{{ accounturl }}">Profile</a></li>
+                                            <li><a href="{% url 'satchmo_order_history' %}">My Orders</a></li>
+                                            <li><a href="">My Reviews</a></li>
+                                            <li><a href="{{ logout_url }}?next={{ request.path }}">Log Out</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
                 {% endif %}
-                <li><a href="{{ logout_url }}?next={{ request.path }}">Log
-                    out</a></li>
             {% else %}
                 <li><a href="{% url 'registration_register' %}">Register</a>
                 </li>
@@ -98,9 +111,10 @@
                     in</a></li>
             {% endif %}
             <li><span></span></li>
+            <li><a class="wishlist-icon" href=""></a></li>
             {% url 'satchmo_cart' as carturl %}
             {% if carturl %}
-                <li><a class="cart" href="{{ carturl }}"></a></li>
+                <li><a class="cart-icon" href="{{ carturl }}"></a></li>
             {% endif %}
         </ul>
     </div>

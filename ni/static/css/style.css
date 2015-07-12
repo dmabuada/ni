@@ -197,8 +197,21 @@ ul, li {
     margin-right: 8em;
 }
  
-#navbar .secondary-nav .cart {
+#navbar .secondary-nav .nav-icons {
+    display: block;
+    height: 1.5em;
+    width: 2em;
+}
+
+#navbar .secondary-nav .cart-icon {
     background: url(/static/images/cart.png) no-repeat;
+    display: block;
+    height: 1.5em;
+    width: 2em;
+}
+
+#navbar .secondary-nav .wishlist-icon {
+    background: url(/static/images/wishlist.png) no-repeat;
     display: block;
     height: 1.5em;
     width: 2em;
@@ -221,7 +234,7 @@ ul, li {
 }
   
 #navbar .logo {
-    background: url(/static/images/hanger.png) no-repeat;
+    background: url(/static/images/logo.png) no-repeat;
     float: left;
     height: 5em;
     margin: .4em 1em 0 .4em;
@@ -280,6 +293,11 @@ ul, li {
     left: 17%;
 }
 
+#navbar .account .dropdown_panel_content:before,
+#navbar .account .dropdown_panel_content:after {
+    left: 52%;
+}
+
 #navbar .dropdown_panel_content:before {
     margin-left: -15px;
     border: 15px solid transparent;
@@ -298,6 +316,10 @@ ul, li {
     padding: 2em;
 }
 
+#navbar .account .dropdown_panel_content_column {
+    padding: 0.5em;
+}
+
 #navbar .dropdown_panel_content_heading {
     margin: 0 0 0.5em;
     font-size: 100%;
@@ -309,6 +331,7 @@ ul, li {
 }
 #navbar .dropdown_panel_content_menu li {
     padding: 0;
+    min-width: 7rem;
 }
 
 /* =============== END: Header ===================== */
@@ -663,15 +686,12 @@ ul, li {
 .checkout-form .empty-cart {
     height: 20em;
     margin: 2em auto 0;
+    text-align: center;
     width: 30em;
 }
  
-.checkout-form .empty-cart div:first-of-type {float: left;}
-
-.checkout-form .empty-cart div:last-of-type {float: right;}
-
 .checkout-form .empty-cart img {
-    width: 15em;
+    width: 10em;
 }
 
 .checkout-form .cart-item {width: 100%;}
