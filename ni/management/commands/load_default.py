@@ -284,6 +284,7 @@ class Command(NoArgsCommand):
                     site=site,
                     name=datum['name'],
                     slug=slugify(datum['name']),
+                    short_description=datum['short_description'],  # TODO: actually add a designer field to Product model so we don't have to use short_description
                     description=datum['description'],
                     featured=i < 2
                 )
