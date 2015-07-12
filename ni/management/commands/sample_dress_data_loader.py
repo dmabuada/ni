@@ -63,6 +63,7 @@ def extract_dress_data(i):
 
     return {
         'name': page.find(class_='display-name').text.strip(),
+        'short_description': page.find(class_='thumb-designer').text.strip(),  # TODO: add designer field to Product model so we don't have to use short
         'price': price,
         'description': page.find(class_='product-details').text.strip(),
         'image-url': image_url
