@@ -35,7 +35,9 @@
                                     New
                                 </h2>
                                 <ul class="dropdown_panel_content_menu">
-                                    <li><a href="">Designer</a></li>
+                                    {% for product in all_products_list|slice:":5" %}
+                                        <li><a href="">{{ product.short_description  }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="dropdown_panel_content_column">
@@ -43,7 +45,9 @@
                                     Popular
                                 </h2>
                                 <ul class="dropdown_panel_content_menu">
-                                    <li><a href="">Designer</a></li>
+                                    {% for product in all_products_list|slice:":5" %}
+                                        <li><a href="">{{ product.short_description  }}</a></li>
+                                    {% endfor %}
                                 </ul>
                             </div>
                             <div class="dropdown_panel_content_column">
@@ -51,7 +55,9 @@
                                     Best Sellers
                                 </h2>
                                 <ul class="dropdown_panel_content_menu">
-                                    <li><a href="">Designer</a></li>
+                                    {% for product in all_products_list|slice:":5" %}
+                                        <li><a href="">{{ product.short_description  }}</a></li>
+                                    {% endfor %}                                
                                 </ul>
                             </div>
                         </div>
