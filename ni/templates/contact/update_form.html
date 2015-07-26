@@ -27,7 +27,7 @@
         <ul>
     </div>
     <div class="account-primary">
-        <div class="section account-form">
+        <div class="section account-form"> 
             <h5>{% trans "Update your profile" %}</h5>
             <form method="post" class="profile" action="{% url 'satchmo_profile_update' %}">{% csrf_token %}
             {{ form.next }}

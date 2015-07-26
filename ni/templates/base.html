@@ -51,7 +51,7 @@
                     <li><a href="{{ accounturl }}" target="blank">Account
                         Details</a></li>
                 {% endif %}
-                <li><a href="{{ logout_url }}?next={{ request.path }}">Log
+                <li><a href="{{ logout_url }}">Log
                     out</a></li>
             {% else %}
                 <li><a href="{% url 'registration_register' %}">Register</a>

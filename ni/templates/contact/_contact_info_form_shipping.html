@@ -3,9 +3,6 @@
 {% block shipping-info %}
     <tr><td colspan="2"><h4>{% trans "Shipping Information" %}</h4></td></tr>
 
-    <tr><td><label for="id_copy_address">{% trans "Shipping same as billing?" %}</label></td><td> {{ form.copy_address }}</td></tr>
-    {% if form.copy_address.errors %}<tr><td class="error" colspan="2">*** {{ form.copy_address.errors|join:", " }}</td></tr>{% endif %}
-
     <tr><td><label for="id_ship_addressee">{% trans "Ship To" %}</label><p class="help">{% trans "If different from the first and last names above" %}</td><td> {{ form.ship_addressee }}</td></tr>
     {% if form.ship_addressee.errors %}<tr><td class="error" colspan="2">*** {{ form.ship_addressee.errors|join:", "}}</td></tr>{% endif %}
 
