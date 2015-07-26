@@ -148,6 +148,9 @@ ul, li {
     position: relative;
     width: 22em;
 }
+.form-container h1 {
+    text-align: center;
+}
 
 .form-container input {
     margin-bottom: 1em;
@@ -523,12 +526,6 @@ ul, li {
 .login-form li,
 .reset-password-form li {
     font-size: 0.8em;
-}
-
-.reset-password-form h1,
-.register-form h1,
-.login-form h1 {
-    text-align: center;
 }
 
 .reset-password-form label,

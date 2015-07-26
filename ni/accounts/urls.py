@@ -72,7 +72,7 @@ urlpatterns += patterns(
 
     (r'^password_reset/done/$', 'password_reset_done',
      {'template_name': 'registration/password_reset_done.html'},
-     'auth_password_reset_done'),
+     'password_reset_done'),
 
     (r'^password_change/$', 'password_change',
      {'template_name': 'registration/password_change_form.html'},
