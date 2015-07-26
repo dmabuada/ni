@@ -4,12 +4,6 @@
 {% load satchmo_checkout %}
 {% load satchmo_order normalize_decimal %}
 
-{% block navbar %}
-    <li class="first"><a href="{{ shop_base }}/">{% trans "Home" %}</a></li>
-    <li><a href="{% url satchmo_account_info %}">{% trans "Account" %}</a></li>
-    <li>{% trans "Order History" %}</li>
-{% endblock %}
-
 {% block content %}
 <div class="my-account">
     <div class="account-sidebar">
@@ -31,9 +25,10 @@
                         <tr>
                             <th>{% trans 'Order #' %}</th>
                             <th>{% trans 'Status' %}</th>
-                            <th>{% trans 'Date' %}</th>
+                            <th>{% trans 'Date of Order' %}</th>
                             <th>{% trans 'Items' %}</th>
                             <th>{% trans 'Total' %}</th>
+                            <th>{% trans 'Review' %}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -56,6 +51,9 @@
                             </td>
                             <td class="ordertototal">
                                 {{ order.total|currency }}
+                            </td>
+                            <td class="orderreview">
+                                Write a Review
                             </td>
                         </tr>
                         {% endfor %}

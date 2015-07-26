@@ -202,9 +202,9 @@ ul, li {
  
 #navbar .secondary-nav .cart {
     background: url(/static/images/cart.png) no-repeat;
-    display: block;
+    display: inline-block;
+    padding-left: 2rem;
     height: 1.5em;
-    width: 2em;
 }
  
 #navbar .search {
