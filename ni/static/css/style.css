@@ -97,7 +97,8 @@ ul, li {
 
 /* Submit Buttons */ 
 
-#container input[type=submit] {
+#container input[type=submit],
+#container button {
     background: #ab8ec5;
     border-color: #ddd1e7 #bba3d0 #aa8cc5;
     border: none;
@@ -110,6 +111,10 @@ ul, li {
     padding: 0;
     width: 100%;
     z-index: 1;
+}
+
+#container button {
+    margin-bottom: 1rem;
 }
  
 #sidebar-secondary {
@@ -529,8 +534,40 @@ ul, li {
     text-align: center;
 }
 
-.login-form label {
-    font-size: 0.8em;
+input#id_remember {
+    box-shadow: none;
+    vertical-align: top;
+    width: 1rem;
+    display: inline-block;
+}
+
+.socialaccount_providers li {
+    margin-top: 1.5em;
+    text-align: center;
+    height: 3em;
+}
+
+.socialaccount_providers li,
+.login-or {
+    text-align: center;
+}
+
+
+.socialaccount_providers li a {
+    font-size: 1em;
+    padding: 1em 11em;
+}
+
+.google {
+    background: #ccc;
+    color: #fff;
+}
+
+.facebook {
+    border-color: #3B5998;
+    border-bottom-color: #263a63;
+    background-color: #3B5998;
+    color: #fff;    
 }
 
 /* =============== END: Login/Registration ===================== */

@@ -96,6 +96,7 @@ MIDDLEWARE_CLASSES = (
 
 )
 
+# TODO: django 1.8 uses TEMPLATES instead of TEMPLATE_CONTEXT_PROCESSORS
 # this is used to add additional config variables to each request
 # NOTE: If you enable the recent_products context_processor, you MUST have the
 # 'satchmo_ext.recentlist' app installed.
@@ -108,11 +109,25 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',  # MEDIA_URL
     'django.core.context_processors.static',  # STATIC_URL
     'django.contrib.messages.context_processors.messages',
+    'django.core.context_processors.request',
+
 
     # Allauth crap
+    'django.contrib.auth.context_processors.auth',
     "allauth.account.context_processors.account",
     "allauth.socialaccount.context_processors.socialaccount",
 )
+
+LOGIN_REDIRECT_URL = '/'
+SOCIALACCOUNT_QUERY_EMAIL = True
+SOCIALACCOUNT_PROVIDERS = {
+    'facebook': {
+        'SCOPE': ['email'],
+        'AUTH_PARAMS': {'auth_type': 'reauthenticate'},
+        'METHOD': 'oauth2',
+        'VERIFIED_EMAIL': False
+    }
+}
 
 ROOT_URLCONF = 'ni.urls'
 
@@ -151,12 +166,12 @@ INSTALLED_APPS = (
     # 'allauth.socialaccount.providers.dropbox',
     # 'allauth.socialaccount.providers.dropbox_oauth2',
     # 'allauth.socialaccount.providers.evernote',
-    # 'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.facebook',
     # 'allauth.socialaccount.providers.flickr',
     # 'allauth.socialaccount.providers.feedly',
     # 'allauth.socialaccount.providers.fxa',
     # 'allauth.socialaccount.providers.github',
-    # 'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.google',
     # 'allauth.socialaccount.providers.hubic',
     # 'allauth.socialaccount.providers.instagram',
     # 'allauth.socialaccount.providers.linkedin',
@@ -231,6 +246,9 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
     'django.contrib.auth.backends.ModelBackend',
 )
+
+#alluth needs this to send verification emails
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # DEBUG_TOOLBAR_CONFIG = {
 # 'INTERCEPT_REDIRECTS' : False,

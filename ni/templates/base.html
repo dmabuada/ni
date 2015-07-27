@@ -8,7 +8,7 @@
 {% load satchmo_discounts %}
 {% load app_plugins %}
 {% load normalize_decimal %}
-
+{% load account %}
 
 {% block additional-head %}
     <link href='http://fonts.googleapis.com/css?family=Muli:300,400'
@@ -54,7 +54,7 @@
                 <li><a href="{{ logout_url }}?next={{ request.path }}">Log
                     out</a></li>
             {% else %}
-                <li><a href="{% url 'registration_register' %}">Register</a>
+                <li><a href="{{ signup_url }}">Register</a>
                 </li>
                 <li><a href="{{ login_url }}?next={{ request.path }}">Log
                     in</a></li>

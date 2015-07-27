@@ -379,7 +379,7 @@ def login_signup_address(request,
 
 
 def register(request, redirect=None,
-             template='registration/registration_form.html'):
+             template='account/signup.html'):
     """
     Allows a new user to register an account.
     """

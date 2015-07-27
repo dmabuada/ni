@@ -12,7 +12,9 @@ urlpatterns = patterns(
     '',
     url(r'^ping', views.ping, name='health'),
 
-    url(r'^accounts/', include('ni.accounts.urls')),
+    #url(r'^accounts/', include('ni.accounts.urls')),
+
+    url(r'^accounts/', include('allauth.urls')),
 
     url(r'^search/', views.search.search_view, name='ni-search')
 
