@@ -14,6 +14,8 @@ urlpatterns = patterns(
 
     url(r'^accounts/', include('ni.accounts.urls')),
 
+    url(r'^create/', views.create.create_view),
+
     url(r'^search/', views.search.search_view, name='ni-search')
 
     # url(r'^search/', include('haystack.urls')),
