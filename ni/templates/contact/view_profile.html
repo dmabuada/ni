@@ -7,27 +7,13 @@
     {% if user_data %}
     {# TODO: create a block for the sidebar #}
     <div class="account-sidebar">
-        <h3>Account Settings</h3>
         <ul>
             <li><a href="{{ accounturl }}">{% trans "Account" %}</a></li>
             <li><a href="{% url 'satchmo_profile_update' %}">{% trans "Update your profile" %}</a></li>
+            <li><a href="{% url 'satchmo_address_create' %}">{% trans "Add address book entry" %}</a></li>
             <li><a href="{% url 'auth_password_change' %}">{% trans "Change your password" %}</a></li>
             <li><a href="{% url 'satchmo_order_history' %}">{% trans "Order History" %}</a></li>
         <ul>
-        {% if shop.owner == User %}
-        <h3>Manage your Shop</h3>
-        <ul>
-            <li><a href="">View Shop</a></li>
-            <li><a href="">Update your Shop</a></li>
-            <li><a href="">Add Products</a></li>
-        </ul>
-        {% else %}
-        <h3>Become a Vendor</h3>
-        <ul>
-            <li><a href="/create/">Create a Shop</a></li>
-            <li><a href="">Shop Handbook</a></li>
-        </ul>
-        {% endif %}
     </div>
     <div class="account-primary">
         <div class="section about-me">
@@ -43,6 +29,15 @@
                 {% endif %}
                 <li>{% trans 'Billing Address:'%}<br/>{% addressblock user_data.billing_address %}</li>
                 <li>{% trans 'Shipping Address:'%}<br/>{% addressblock user_data.shipping_address %}</li>    
+            </ul>
+        </div>
+        <div class="section address-book">
+        <h5>{% trans "Address Book Entries" %}</h5>
+            <ul class="profile">
+            {% for address in user_data.address_book_entries %}
+                <li>{{ address.description }} <a href="{% url 'satchmo_address_edit' address.pk%}">{% trans 'Edit' %}</a> | <a href="{% url 'satchmo_address_delete' address.pk%}">{% trans 'Delete' %}</a></li>
+                {% addressblock address %}
+            {% endfor %}
             </ul>
         </div>
         <div class="section past-reviews">

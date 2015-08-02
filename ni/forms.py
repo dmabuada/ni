@@ -5,7 +5,6 @@ import math
 from django import forms
 from django.db.models import Min, Max
 from django.db.utils import OperationalError
-from django.utils.translation import ugettext_lazy as _
 
 from product.models import Category
 from product.models import Option
@@ -46,12 +45,6 @@ def price_range_choices():
     ranges = [(i, (i + step_size) - 1) for i in
               range(min_price, max_price, step_size)]
     return [('{}-{}'.format(*i), '${}-${}'.format(*i)) for i in ranges]
-
-
-class ShopForm(forms.Form):
-    """The basic store registration form."""
-    name = forms.CharField(max_length=30, label=_('Shop Name'), required=False)
-    next = forms.CharField(max_length=200, required=False, widget=forms.HiddenInput())
 
 
 class SearchForm(forms.Form):
