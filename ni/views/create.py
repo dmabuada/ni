@@ -39,6 +39,7 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
             return HttpResponseRedirect(next)
 
     form = ShopForm()
-    context = RequestContext(request)
+    context = RequestContext(request, {'form': form})
 
-    return render_to_response(template, {'form': form}, context_instance=context)
+    return render_to_response(template, context_instance=context)
+
