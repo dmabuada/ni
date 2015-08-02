@@ -148,6 +148,9 @@ ul, li {
     position: relative;
     width: 22em;
 }
+.form-container h1 {
+    text-align: center;
+}
 
 .form-container input {
     margin-bottom: 1em;
@@ -199,9 +202,9 @@ ul, li {
  
 #navbar .secondary-nav .cart {
     background: url(/static/images/cart.png) no-repeat;
-    display: block;
+    display: inline-block;
+    padding-left: 2rem;
     height: 1.5em;
-    width: 2em;
 }
  
 #navbar .search {
@@ -520,15 +523,12 @@ ul, li {
 /* =============== BEGIN: Login/Registration ===================== */
 
 .register-form li,
-.login-form li {
+.login-form li,
+.reset-password-form li {
     font-size: 0.8em;
 }
 
-.register-form h1,
-.login-form h1 {
-    text-align: center;
-}
-
+.reset-password-form label,
 .login-form label {
     font-size: 0.8em;
 }

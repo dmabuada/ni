@@ -72,7 +72,7 @@ urlpatterns += patterns(
 
     (r'^password_reset/done/$', 'password_reset_done',
      {'template_name': 'registration/password_reset_done.html'},
-     'auth_password_reset_done'),
+     'password_reset_done'),
 
     (r'^password_change/$', 'password_change',
      {'template_name': 'registration/password_change_form.html'},
@@ -80,7 +80,7 @@ urlpatterns += patterns(
 
     (r'^password_change/done/$', 'password_change_done',
      {'template_name': 'registration/password_change_done.html'},
-     'auth_change_done'),
+     'password_change_done'),
 
     (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$',
      'password_reset_confirm'),

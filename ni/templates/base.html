@@ -8,7 +8,7 @@
 {% load satchmo_discounts %}
 {% load app_plugins %}
 {% load normalize_decimal %}
-
+{% plugin_point "cart" %}
 
 {% block additional-head %}
     <link href='http://fonts.googleapis.com/css?family=Muli:300,400'
@@ -24,6 +24,7 @@
 
     <div id="navbar">
         <a href="/"><div class="logo"></div></a>
+
         <ul class="primary-nav">
             <li><a class="down-arrow" href="">Designers</a></li>
             <li><span></span></li>
@@ -51,7 +52,7 @@
                     <li><a href="{{ accounturl }}" target="blank">Account
                         Details</a></li>
                 {% endif %}
-                <li><a href="{{ logout_url }}?next={{ request.path }}">Log
+                <li><a href="{{ logout_url }}">Log
                     out</a></li>
             {% else %}
                 <li><a href="{% url 'registration_register' %}">Register</a>
@@ -62,7 +63,7 @@
             <li><span></span></li>
             {% url 'satchmo_cart' as carturl %}
             {% if carturl %}
-                <li><a class="cart" href="{{ carturl }}"></a></li>
+                <li><a class="cart" href="{{ carturl }}">{{cart_count|normalize_decimal}} items</a></li>
             {% endif %}
         </ul>
     </div>
