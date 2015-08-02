@@ -3,7 +3,6 @@ Custom urls for ni
 """
 
 from django.conf.urls import patterns, include, url
-
 from satchmo_store.urls import urlpatterns
 from ni import views
 
@@ -13,6 +12,11 @@ urlpatterns = patterns(
     url(r'^ping', views.ping, name='health'),
 
     url(r'^accounts/', include('ni.accounts.urls')),
+
+    url(r'^create/', views.create.create_view),
+
+    url(r'^update/', views.create.update_view),
+    #url(r'^update-shop/$', 'update-shop', {}, 'shop_update'),
 
     url(r'^search/', views.search.search_view, name='ni-search')
 
