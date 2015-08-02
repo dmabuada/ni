@@ -14,7 +14,7 @@ from ni.listeners import solr_search_listener
 class NiAppConfig(AppConfig):
     """AppConfig for django"""
     name = 'ni'
-    verbose_name = "Shops"
+    verbose_name = "ni still"
 
     def ready(self):
         if settings.USE_SOLR:

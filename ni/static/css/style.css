@@ -41,7 +41,6 @@ h5 {
     background-color: #f2edf6;
     border-radius: 4px 4px 0 0;
     font-size: 0.8em;
-    margin: 0;
     padding: 0.6em 1.5em;
 }
  
@@ -501,7 +500,10 @@ ul, li {
     margin-bottom: 1.5em;
     width: 50.3em;
 }
-  
+ 
+.my-account .about-me,
+.my-account .address-book {width: 24em;}
+ 
 .my-account .about-me {margin-right: 2em;}
 
 .my-account .profile {
