@@ -11,6 +11,8 @@ from product.models import Category
 from product.models import Option
 from product.models import Price
 
+from ni.models import Shop
+
 
 class SizeModelMultipleChoiceField(forms.ModelMultipleChoiceField):
     """
@@ -52,6 +54,15 @@ class ShopForm(forms.Form):
     """The basic store registration form."""
     name = forms.CharField(max_length=30, label=_('Shop Name'), required=False)
     next = forms.CharField(max_length=200, required=False, widget=forms.HiddenInput())
+
+    def clean_name(self):
+        name = self.cleaned_data['name']
+
+        try:
+            shop = Shop.objects.get(name=name)
+        except shop.DoesNotExist:
+            return name
+        raise forms.ValidationError('Shop name "%s" is already in use.' % name)
 
 
 class SearchForm(forms.Form):

@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render_to_response, get_object_or_404, redirect
+from django.shortcuts import render_to_response
 from django.contrib.sites.models import Site
 
 from ni.forms import ShopForm
@@ -19,9 +19,8 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
     Handle all shop creation logic.
     """
 
-    if request.method == 'POST':
-        form = ShopForm(request.POST)
-        if form.is_valid():
+    form = ShopForm(request.POST)
+    if request.method == 'POST' and form.is_valid():
             new_shop = Shop(
                 name=form.cleaned_data['name'],
                 owner=request.user,
@@ -42,4 +41,3 @@ def create_view(request, redirect=None, template="shop/create/new.html"):
     context = RequestContext(request, {'form': form})
 
     return render_to_response(template, context_instance=context)
-
