@@ -11,7 +11,7 @@ class Command(NoArgsCommand):
         call_command('loaddata', 'l10n_data.xml', interactive=True)
         # call_command('loaddata', 'us_tax.yaml', interactive=True)
 
-        from sample_dress_data_loader import load_sample_data, category_url
+        from _sample_dress_data_loader import load_sample_data, category_url
 
         from satchmo_store.contact.models import (
             AddressBook,
