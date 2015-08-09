@@ -214,6 +214,7 @@ INSTALLED_APPS = (
     'ni'
 )
 
+COMMENTS_ALLOW_PROFANITIES = True
 
 HAYSTACK_CONNECTIONS = {
     'default': {
